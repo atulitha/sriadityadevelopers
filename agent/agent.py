@@ -1,11 +1,17 @@
 # blueprints/agent.py
 from flask import Blueprint, render_template, request, jsonify, send_from_directory
 
-agent = Blueprint('agent', __name__, url_prefix='/agent')
+agent = Blueprint('agent', __name__, url_prefix='/agent',
+                  template_folder='./', static_folder='static')
 
 
 @agent.route('/')
 def agent_index():
+    """
+    Agent index page.
+
+    This is the main page for the agent. It renders ``index.html``.
+    """
     return render_template('index.html')
 
 
@@ -17,6 +23,22 @@ def list_users():
         {'id': 2, 'name': 'Regular User', 'email': 'user@example.com'}
     ]
     return render_template('users.html', users=users)
+
+@agent.route('/users.json')
+def list_users_json():
+    # Sample data - in real app, this would come from a database
+    users = [
+        {'id': 1, 'name': 'agent User', 'email': 'agent@example.com'},
+        {'id': 2, 'name': 'Regular User', 'email': 'user@example.com'}
+    ]
+    return jsonify({'status': 'ok', 'data': users})
+
+@agent.route('/users_api_format')
+def users_api_format():
+    """
+    :return:
+    """
+    return render_template('user_api.html')
 
 
 @agent.route('/settings', methods=['GET', 'POST'])
