@@ -73,3 +73,25 @@ def book_site_visit():
 
 # If booking.book_site_visit is a view function, register it as a route like this:
 agent.add_url_rule('/book-visit', view_func=booking.book_visit, methods=['GET', 'POST'])
+
+###########################################
+@agent.route('/plotdata-tables.html', methods=['GET'])
+def plotdata_tables():
+    """
+    Book a site visit.
+
+    This page allows the agent to book a site visit.
+    """
+    return render_template('plotdata-tables.html')
+####
+@agent.route('/userdata-tables.html', methods=['GET'])
+def userdata_tables():
+    """
+    Book a site visit.
+
+    This page allows the agent to book a site visit.
+    """
+    return render_template('userdata-tables.html')
+
+
+##############################################
