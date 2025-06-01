@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.register_blueprint(admin)
 app.register_blueprint(agent)
 app.register_blueprint(customer)
-
+print("Starting Flask server...")
 
 @app.route('/')
 def index():
