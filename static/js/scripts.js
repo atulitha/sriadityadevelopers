@@ -1,6 +1,6 @@
 /*!
     * Start Bootstrap - SB Admin Pro v1.1.2 (https://shop.startbootstrap.com/product/sb-admin-pro)
-    * Copyright 2013-2020 Start Bootstrap
+    * Copyright 2013-2025 Start Bootstrap
     * Licensed under SEE_LICENSE (https://github.com/BlackrockDigital/sb-admin-pro/blob/master/LICENSE)
     */
     (function($) {

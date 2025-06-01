@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*!
 * Start Bootstrap - SB Admin Pro v1.1.2 (https://shop.startbootstrap.com/product/sb-admin-pro)
-* Copyright 2013-2020 Start Bootstrap
+* Copyright 2013-2025 Start Bootstrap
 * Licensed under SEE_LICENSE (https://github.com/BlackrockDigital/sb-admin-pro/blob/master/LICENSE)
 */
 /*!
@@ -19380,12 +19380,12 @@ body {
 }
 .btn-github:hover {
   color: #fff;
-  background-color: #202020;
+  background-color: #202520;
   border-color: #1a1a1a;
 }
 .btn-github:focus, .btn-github.focus {
   color: #fff;
-  background-color: #202020;
+  background-color: #202520;
   border-color: #1a1a1a;
   box-shadow: 0 0 0 0.2rem rgba(82, 82, 82, 0.5);
 }
