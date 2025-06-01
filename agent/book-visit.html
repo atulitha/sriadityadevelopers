@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Register - SB Admin Pro</title>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png"/>
+    <script data-search-pseudo-elements defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
+            crossorigin="anonymous"></script>
+</head>
+<body class="bg-primary">
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header justify-content-center"><h4 class="font-weight-light my-1">
+                                book-site-visit</h4></div>
+                            <div class="card-body">
+                                <div id="message" class="alert" style="display: none;"></div>
+                                <form id="siteVisitForm">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label class="small mb-1" for="inputFirstName">First
+                                                Name</label><input class="form-control py-4" id="inputFirstName"
+                                                                   name="firstName" type="text"
+                                                                   placeholder="Enter first name" required/></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label class="small mb-1" for="inputLastName">Last
+                                                Name</label><input class="form-control py-4" id="inputLastName"
+                                                                   name="lastName" type="text"
+                                                                   placeholder="Enter last name" required/></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label class="small mb-1"
+                                                                   for="inputEmailAddress">Email</label><input
+                                            class="form-control py-4" id="inputEmailAddress" name="email" type="email"
+                                            aria-describedby="emailHelp" placeholder="Enter email address" required/>
+                                    </div>
+                                    <div class="form-group"><label class="small mb-1" for="mobile">Mobile number</label><input
+                                            class="form-control py-4" id="mobile" name="mobile" type="text"
+                                            pattern="^\d{10}$" maxlength="10" placeholder="mobile number" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="project-name">Project Name </label>
+                                        <select class="form-control py-4" id="project-name" name="projectName" required>
+                                            <option>Aditya Enclave</option>
+                                            <option>Aditya Heights</option>
+                                            <option>Aditya Meadows</option>
+                                            <option>Aditya Greens</option>
+                                            <option>Aditya Pearl</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group"><label class="small mb-1" for="plot-number">Plot
+                                        Number</label><input class="form-control py-3" id="plot-number"
+                                                             name="plotNumber" type="text" placeholder="plot-number"
+                                                             required/></div>
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="visitDate">Date of visit</label>
+                                            <input class="form-control py-4" id="visitDate" name="visitDate" type="date"
+                                                   required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mt-4 mb-0">
+                                        <button type="submit" class="btn btn-primary btn-block">Book Site Visit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="footer mt-auto footer-dark">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 small">Copyright &copy; Your Website 2020</div>
+                    <div class="col-md-6 text-md-right small">
+                        <a href="#!">Privacy Policy</a>
+                        &middot;
+                        <a href="#!">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script>
+    document.getElementById('siteVisitForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const jsonData = {};
+        formData.forEach((value, key) => jsonData[key] = value);
+        const messageDiv = document.getElementById('message');
+
+        fetch('/agent/book-visit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(jsonData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                messageDiv.style.display = 'block';
+                messageDiv.className = 'alert ' + (data.status === 'success' ? 'alert-success' : 'alert-danger');
+                messageDiv.textContent = data.message;
+
+                if (data.status === 'success') {
+                    this.reset();
+                }
+            })
+            .catch(error => {
+                messageDiv.style.display = 'block';
+                messageDiv.className = 'alert alert-danger';
+                messageDiv.textContent = 'An error occurred. Please try again.';
+            });
+    });
+</script>
+</body>
+</html>
