@@ -1,15 +1,21 @@
 import jinja2
 from flask import Flask, render_template, send_from_directory
 
-from agent.agent import agent
 from admin.admin import admin
+from agent.agent import agent
 from customer.customer import customer
+from dbmodels.create import db
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
 app.register_blueprint(admin)
 app.register_blueprint(agent)
 app.register_blueprint(customer)
 print("Starting Flask server...")
+
 
 @app.route('/')
 def index():

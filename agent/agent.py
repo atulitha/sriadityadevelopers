@@ -1,6 +1,8 @@
 # blueprints/agent.py
 from flask import Blueprint, render_template, request, jsonify, send_from_directory
 
+from dbmodels.create import User
+
 agent = Blueprint('agent', __name__, url_prefix='/agent',
                   template_folder='./', static_folder='static')
 
@@ -26,12 +28,31 @@ def list_users():
 
 @agent.route('/users.json')
 def list_users_json():
-    # Sample data - in real app, this would come from a database
-    users = [
-        {'id': 1, 'name': 'agent User', 'email': 'agent@example.com'},
-        {'id': 2, 'name': 'Regular User', 'email': 'user@example.com'}
-    ]
-    return jsonify({'status': 'ok', 'data': users})
+    users = User.query.all()
+    return jsonify({
+        'status': 'ok',
+        'data': [{
+            'id': user.id,
+            'first_name': user.first_name,
+            'middle_name': user.middle_name,
+            'last_name': user.last_name,
+            'name': f"{user.first_name} {user.middle_name or ''} {user.last_name}",
+            'position': user.position,
+            'office': user.office,
+            'age': user.age,
+            'address': user.Address,
+            'start_date': user.start_date.strftime('%Y/%m/%d') if user.start_date else None,
+            'percentage': user.percentage,
+            'sales': user.sales,
+            'status': user.status,
+            'email': user.email,
+            'phone': user.phone,
+            'adhar': user.adhar,
+            'pan': user.pan,
+            'created_at': user.created_at.strftime('%Y-%m-%d %H:%M:%S') if user.created_at else None,
+            'updated_at': user.updated_at.strftime('%Y-%m-%d %H:%M:%S') if user.updated_at else None
+        } for user in users]
+    })
 
 @agent.route('/users_api_format')
 def users_api_format():
