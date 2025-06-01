@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin Pro</title>
+        <title>Tables - SB Admin Pro</title>
         <link href="css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
@@ -15,7 +15,7 @@
     </head>
     <body class="nav-fixed">
         <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-            <a class="navbar-brand d-none d-sm-block" href="index.html">Sri Adithya Developers</a><img class="dropdown-user-img" src="/dist/assets/img/siradithya.jpg" style="width: 60px; height: 58px;" /><button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i data-feather="menu"></i></button>
+            <a class="navbar-brand d-none d-sm-block" href="index.html">SB Admin Pro</a><button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i data-feather="menu"></i></button>
             <form class="form-inline mr-auto d-none d-lg-block"><input class="form-control form-control-solid mr-sm-2" type="search" placeholder="Search" aria-label="Search" /></form>
             <ul class="navbar-nav align-items-center ml-auto">
                 <li class="nav-item dropdown no-caret mr-3">
@@ -30,7 +30,8 @@
                             <div>
                                 <div class="small text-gray-500">Documentation</div>
                                 Usage instructions and reference
-                            </div></a>
+                            </div></a
+                        >
                         <div class="dropdown-divider m-0"></div>
                         <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components" target="_blank"
                             ><div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="code"></i></div>
@@ -85,7 +86,7 @@
                     <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
                         <h6 class="dropdown-header dropdown-notifications-header"><i class="mr-2" data-feather="mail"></i>Message Center</h6>
                         <a class="dropdown-item dropdown-notifications-item" href="#!"
-                            ><img class="dropdown-notifications-item-img" src="/dist/assets/img/siradithya.jpg" />
+                            ><img class="dropdown-notifications-item-img" src="https://source.unsplash.com/vTL_qy03D1I/60x60" />
                             <div class="dropdown-notifications-item-content">
                                 <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
                                 <div class="dropdown-notifications-item-content-details">Emily Fowler · 58m</div>
@@ -100,10 +101,10 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown no-caret mr-3 dropdown-user">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="/dist/assets/img/siradithya.jpg"/></a>
+                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"/></a>
                     <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
                         <h6 class="dropdown-header d-flex align-items-center">
-                            <img class="dropdown-user-img" src="/dist/assets/img/siradithya.jpg" />
+                            <img class="dropdown-user-img" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
                             <div class="dropdown-user-details">
                                 <div class="dropdown-user-details-name">Valerie Luna</div>
                                 <div class="dropdown-user-details-email">vluna@aol.com</div>
@@ -135,7 +136,7 @@
                             <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                     <a class="nav-link" href="index.html">Default</a><a class="nav-link" href="dashboard-2.html">Multipurpose<span class="badge badge-primary ml-2">New!</span></a
-                                    ><a class="nav-link" href="agent-dashboard.html">Agent Dashboard<span class="badge badge-primary ml-2">New!</span></a>
+                                    ><a class="nav-link" href="dashboard-3.html">Affiliate<span class="badge badge-primary ml-2">New!</span></a>
                                 </nav>
                             </div>
                             <div class="sidenav-menu-heading">Interface</div>
@@ -250,72 +251,16 @@
                         <div class="container-fluid">
                             <div class="page-header-content">
                                 <h1 class="page-header-title">
-                                    <div class="page-header-icon"><i data-feather="activity"></i></div>
-                                    <span>Dashboard</span>
+                                    <div class="page-header-icon"><i data-feather="filter"></i></div>
+                                    <span>Tables</span>
                                 </h1>
-                                <div class="page-header-subtitle">Example dashboard overview and content summary</div>
+                                <div class="page-header-subtitle">An extended version of the DataTables library, customized for SB Admin Pro</div>
                             </div>
                         </div>
                     </div>
                     <div class="container-fluid mt-n10">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">Area Chart Example</div>
-                                    <div class="card-body">
-                                        <div class="chart-area"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">Bar Chart Example</div>
-                                    <div class="card-body">
-                                        <div class="chart-bar"><canvas id="myBarChart" width="100%" height="30"></canvas></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card mb-4">
-                            <div class="card-header">DataTable Example</div>
+                            <div class="card-header">Extended DataTables</div>
                             <div class="card-body">
                                 <div class="datatable table-responsive">
                                     <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
@@ -1033,6 +978,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card card-icon mb-4">
+                            <div class="row no-gutters">
+                                <div class="col-auto card-icon-aside bg-primary"><i class="mr-1 text-white-50" data-feather="alert-triangle"></i></div>
+                                <div class="col">
+                                    <div class="card-body py-5">
+                                        <h5 class="card-title">Third-Party Documentation Available</h5>
+                                        <p class="card-text">DataTables is a third party plugin that is used to generate the demo table above. For more information about how to use DataTables with your project, please visit the official DataTables documentation.</p>
+                                        <a class="btn btn-primary btn-sm" href="https://datatables.net/" target="_blank"><i class="mr-1" data-feather="external-link"></i>Visit DataTables Docs</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </main>
                 <footer class="footer mt-auto footer-light">
@@ -1052,9 +1009,6 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
