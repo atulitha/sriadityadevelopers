@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, jsonify, send_from_direct
 
 from dbmodels.create import User
 
-import booking
+from . import booking
 agent = Blueprint('agent', __name__, url_prefix='/agent',
                   template_folder='./', static_folder='static')
 
@@ -62,19 +62,19 @@ def users_api_format():
     return render_template('user_api.html')
 
 
-#@agent.route('/book-site-visit.html', methods=['GET'])
-#def book_site_visit():
-#    """
- #   Book a site visit.
+@agent.route('/book-site-visit.html', methods=['GET'])
+def book_site_visit():
+   """
+   Book a site visit.
 
-   # This page allows the agent to book a site visit.
- #   """
- #   return render_template('book-visit.html')
+   This page allows the agent to book a site visit.
+   """
+   return render_template('book-visit.html')
 
 # If booking.book_site_visit is a view function, register it as a route like this:
-#agent.add_url_rule('/book-visit', view_func=booking.book_visit, methods=['GET', 'POST'])
+agent.add_url_rule('/book-visit', view_func=booking.book_visit, methods=['GET', 'POST'])
 
-###########################################
+##########################################
 @agent.route('/plotdata-tables1.html', methods=['GET'])
 def plotdata_tables():
     """
@@ -83,7 +83,7 @@ def plotdata_tables():
     This page allows the agent to book a site visit.
     """
     return render_template('plotdata-tables1.html')
-####
+
 @agent.route('/userdata-tables.html', methods=['GET'])
 def userdata_tables():
     """
@@ -92,6 +92,3 @@ def userdata_tables():
     This page allows the agent to book a site visit.
     """
     return render_template('userdata-tables.html')
-
-
-##############################################
