@@ -33,6 +33,7 @@
                                                                        placeholder="Enter first name"
                                                                        pattern="^[A-Za-z]+$"
                                                                        inputmode="text"
+                                                                       maxlength="32"
                                                                        required
                                                                        title="Only letters are allowed" />
                                                             </div>
@@ -45,12 +46,26 @@
                                                                placeholder="Enter last name"
                                                                pattern="^[A-Za-z]+$"
                                                                inputmode="text"
+                                                               maxlength="32"
                                                                required
                                                                title="Only letters are allowed"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Email</label><input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Enter email address" /></div>
+                                            <!-- Email Address -->
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                                <input class="form-control py-4"
+                                                       id="inputEmailAddress"
+                                                       type="email"
+                                                       aria-describedby="emailHelp"
+                                                       placeholder="Enter email address"
+                                                       pattern="^[a-zA-Z0-9._%+-]+@(gmail|outlook|hotmail|yahoo)\\.com$"
+                                                       required title="Only Gmail, Outlook, Hotmail, or Yahoo email addresses are allowed"
+                                                       autocomplete="off"
+                                                       oninput="showEmailSuggestions(this)" />
+                                            </div>
+                                            <!--Password and Confirm Password -->
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group"><label class="small mb-1" for="inputPassword">Password</label><input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" /></div>
