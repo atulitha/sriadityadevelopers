@@ -8,6 +8,7 @@ db = SQLAlchemy()
 class Customer(db.Model):
     __tablename__ = 'customers'
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Link to users table
     first_name = db.Column(db.String(100), nullable=False)
     middle_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100), nullable=False)
@@ -24,6 +25,7 @@ class Customer(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
     role = db.Column(db.String(50), default='customer')
+    user = db.relationship('User', backref='customer', lazy=True)
 
 
 class Admin(db.Model):
@@ -38,6 +40,7 @@ class Admin(db.Model):
 class Agent(db.Model):
     __tablename__ = 'agents'
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Link to users table
     first_name = db.Column(db.String(100), nullable=False)
     middle_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100), nullable=False)
@@ -57,6 +60,7 @@ class Agent(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
     role = db.Column(db.String(50), default='user')
+    user = db.relationship('User', backref='agent', lazy=True)
 
 
 class Project(db.Model):
@@ -139,3 +143,4 @@ class User(db.Model):
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
+    role = db.Column(db.String(50), default='user')  # 'customer', 'agent', 'admin'

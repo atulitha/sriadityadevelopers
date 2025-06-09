@@ -4,8 +4,9 @@ from flask import Flask
 
 from dbmodels.create import (
     db, Customer, Agent, Project, Plot,
-    booking, visit, feedback
+    booking, visit, feedback, User
 )
+from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../../users.db'
@@ -18,57 +19,148 @@ def init_db():
     with app.app_context():
         db.create_all()
 
-        # Create Agents
-        agents = [
-            Agent(
-                first_name='John', middle_name='Robert', last_name='Doe',
-                position='Senior Agent', office='Mumbai',
-                age=35, Address='123 Main St',
-                start_date=datetime(2022, 1, 1),
-                percentage=10, sales=500000.0,
-                status='Full-time', email='john.doe@example.com',
-                phone='9876543210', adhar='123456789012',
-                pan='ABCDE1234F', password='hashed_password',
-                role='agent'
-            ),
-            Agent(
-                first_name='Jane', middle_name='Marie', last_name='Smith',
-                position='Agent', office='Delhi',
-                age=28, Address='456 Oak Ave',
-                start_date=datetime(2022, 6, 1),
-                percentage=8, sales=300000.0,
-                status='Part-time', email='jane.smith@example.com',
-                phone='9876543211', adhar='123456789013',
-                pan='FGHIJ5678K', password='hashed_password',
-                role='agent'
-            )
+        # Create Agents and Users
+        agents = []
+        agent_users = [
+            {
+                'name': 'John Doe',
+                'email': 'john.doe@example.com',
+                'password': 'agentpassword',
+                'role': 'agent',
+                'first_name': 'John',
+                'middle_name': 'Robert',
+                'last_name': 'Doe',
+                'position': 'Senior Agent',
+                'office': 'Mumbai',
+                'age': 35,
+                'Address': '123 Main St',
+                'start_date': datetime(2022, 1, 1),
+                'percentage': 10,
+                'sales': 500000.0,
+                'status': 'Full-time',
+                'phone': '9876543210',
+                'adhar': '123456789012',
+                'pan': 'ABCDE1234F',
+            },
+            {
+                'name': 'Jane Smith',
+                'email': 'jane.smith@example.com',
+                'password': 'agentpassword',
+                'role': 'agent',
+                'first_name': 'Jane',
+                'middle_name': 'Marie',
+                'last_name': 'Smith',
+                'position': 'Agent',
+                'office': 'Delhi',
+                'age': 28,
+                'Address': '456 Oak Ave',
+                'start_date': datetime(2022, 6, 1),
+                'percentage': 8,
+                'sales': 300000.0,
+                'status': 'Part-time',
+                'phone': '9876543211',
+                'adhar': '123456789013',
+                'pan': 'FGHIJ5678K',
+            }
         ]
+        for agent_info in agent_users:
+            user = User(
+                name=agent_info['name'],
+                email=agent_info['email'],
+                password=generate_password_hash(agent_info['password']),
+                role=agent_info['role']
+            )
+            db.session.add(user)
+            db.session.commit()
+            agent = Agent(
+                user_id=user.id,
+                first_name=agent_info['first_name'],
+                middle_name=agent_info['middle_name'],
+                last_name=agent_info['last_name'],
+                position=agent_info['position'],
+                office=agent_info['office'],
+                age=agent_info['age'],
+                Address=agent_info['Address'],
+                start_date=agent_info['start_date'],
+                percentage=agent_info['percentage'],
+                sales=agent_info['sales'],
+                status=agent_info['status'],
+                email=agent_info['email'],
+                phone=agent_info['phone'],
+                adhar=agent_info['adhar'],
+                pan=agent_info['pan'],
+                password=user.password,
+                role=agent_info['role']
+            )
+            agents.append(agent)
         db.session.add_all(agents)
         db.session.commit()
 
-        # Create Customers
-        customers = [
-            Customer(
-                first_name='Mike', middle_name='Thomas', last_name='Johnson',
-                age=45, address='789 Pine Rd',
-                email='mike.j@example.com', phone='9876543212',
-                adhar='123456789014', pan='KLMNO9012P',
-                interested_project='Green Valley',
-                interested_plot='A-123',
-                booking_status='interested',
-                password='hashed_password'
-            ),
-            Customer(
-                first_name='Sarah', middle_name='Elizabeth', last_name='Wilson',
-                age=32, address='321 Cedar Ln',
-                email='sarah.w@example.com', phone='9876543213',
-                adhar='123456789015', pan='QRSTU3456V',
-                interested_project='Blue Heights',
-                interested_plot='B-456',
-                booking_status='booked',
-                password='hashed_password'
-            )
+        # Create Customers and Users
+        customers = []
+        customer_users = [
+            {
+                'name': 'Mike Johnson',
+                'email': 'mike.j@example.com',
+                'password': 'customerpassword',
+                'role': 'customer',
+                'first_name': 'Mike',
+                'middle_name': 'Thomas',
+                'last_name': 'Johnson',
+                'age': 45,
+                'address': '789 Pine Rd',
+                'phone': '9876543212',
+                'adhar': '123456789014',
+                'pan': 'KLMNO9012P',
+                'interested_project': 'Green Valley',
+                'interested_plot': 'A-123',
+                'booking_status': 'interested',
+            },
+            {
+                'name': 'Sarah Wilson',
+                'email': 'sarah.w@example.com',
+                'password': 'customerpassword',
+                'role': 'customer',
+                'first_name': 'Sarah',
+                'middle_name': 'Elizabeth',
+                'last_name': 'Wilson',
+                'age': 32,
+                'address': '321 Cedar Ln',
+                'phone': '9876543213',
+                'adhar': '123456789015',
+                'pan': 'QRSTU3456V',
+                'interested_project': 'Blue Heights',
+                'interested_plot': 'B-456',
+                'booking_status': 'booked',
+            }
         ]
+        for cust_info in customer_users:
+            user = User(
+                name=cust_info['name'],
+                email=cust_info['email'],
+                password=generate_password_hash(cust_info['password']),
+                role=cust_info['role']
+            )
+            db.session.add(user)
+            db.session.commit()
+            customer = Customer(
+                user_id=user.id,
+                first_name=cust_info['first_name'],
+                middle_name=cust_info['middle_name'],
+                last_name=cust_info['last_name'],
+                age=cust_info['age'],
+                address=cust_info['address'],
+                email=cust_info['email'],
+                phone=cust_info['phone'],
+                adhar=cust_info['adhar'],
+                pan=cust_info['pan'],
+                interested_project=cust_info['interested_project'],
+                interested_plot=cust_info['interested_plot'],
+                booking_status=cust_info['booking_status'],
+                password=user.password,
+                role=cust_info['role']
+            )
+            customers.append(customer)
         db.session.add_all(customers)
         db.session.commit()
 
