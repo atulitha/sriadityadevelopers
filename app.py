@@ -160,6 +160,8 @@ def logout():
 def test():
     if request.method == 'POST':
         print(request.get_json())
+        files = request.files
+        print(files)
         return jsonify({'status': 'ok', 'message': 'Test successful'})
     return render_template('login-basic.html')
 
