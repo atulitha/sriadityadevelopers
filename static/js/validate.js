@@ -27,17 +27,29 @@ document.addEventListener('DOMContentLoaded', function () {
     // Password match validation
     const password = document.getElementById('inputPassword');
     const confirmPassword = document.getElementById('inputConfirmPassword');
-    const confirmPasswordError = document .getElementById('confirmPasswordError');
-    function checkPasswordMatch() {
-        if (password.value !== confirmPassword.value) {
-            confirmPasswordError.style.display = 'block';
-            confirmPasswordError.textContent = 'Passwords do not match';
-            confirmPassword.setCustomValidity('Passwords do not match');
-        } else {
-            confirmPasswordError.style.display = 'none';
-            confirmPassword.setCustomValidity('');
-        }
+    const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+function checkPasswordMatch() {
+    if (!password.value) {
+        confirmPasswordError.style.display = 'block';
+        confirmPasswordError.textContent = 'Password cannot be empty';
+        password.setCustomValidity('Password cannot be empty');
+    } else if (!password.checkValidity()) {
+        confirmPasswordError.style.display = 'block';
+        confirmPasswordError.textContent = 'Password must be 8-24 characters, include letters, numbers, and special symbols.';
+        password.setCustomValidity('Invalid password');
+    } else if (password.value !== confirmPassword.value) {
+        confirmPasswordError.style.display = 'block';
+        confirmPasswordError.textContent = 'Passwords do not match';
+        confirmPassword.setCustomValidity('Passwords do not match');
+        password.setCustomValidity('');
+    } else {
+        confirmPasswordError.style.display = 'none';
+        password.setCustomValidity('');
+        confirmPassword.setCustomValidity('');
     }
+}
+
     password.addEventListener('input', checkPasswordMatch);
     confirmPassword.addEventListener('input', checkPasswordMatch);
 

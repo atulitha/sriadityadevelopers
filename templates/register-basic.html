@@ -76,7 +76,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputPassword">Password</label>
-                                                <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password"/>
+                                                <input class="form-control py-4"
+                                                       id="inputPassword"
+                                                       type="password"
+                                                       placeholder="Enter password"
+                                                       pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,24}$"
+                                                       required
+                                                       title="Password must be 8-24 characters, include letters, numbers, and special symbols."/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
