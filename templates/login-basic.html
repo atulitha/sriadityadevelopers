@@ -1,82 +1,119 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Login - SB Admin Pro</title>
-        <link href="css/styles.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
-        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Login</h3></div>
-                                    <div class="card-body">
-                                        <form id="loginForm">
-                                            <div class="form-group">
-                                                <!-- Email field with required asterisk -->
-                                                <label class="small mb-1" for="inputEmailAddress">
-                                                    Email <span style="color: red;">*</span>
-                                                </label>
-                                                      <input class="form-control py-4" id="inputEmailAddress" name="email" type="email" placeholder="Enter email address" required />
-                                                        <div id="emailError" style="color: red; font-size: 0.9em; display: none;">Please enter a valid email address.</div>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Login - SB Admin Pro</title>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png"/>
+    <script data-search-pseudo-elements defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
+            crossorigin="anonymous"></script>
+</head>
+<body class="bg-primary">
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">
+                                Login</h3></div>
+                            <div class="card-body">
+                                <form id="loginForm">
+                                    <div class="form-group">
+                                        <!-- Email field with required asterisk -->
+                                        <label class="small mb-1" for="inputEmailAddress">
+                                            Email <span style="color: red;">*</span>
+                                        </label>
+                                        <input class="form-control py-4" id="inputEmailAddress" name="email"
+                                               type="email" placeholder="Enter email address" required/>
+                                        <div id="emailError" style="color: red; font-size: 0.9em; display: none;">Please
+                                            enter a valid email address.
+                                        </div>
 
-                                                        <!-- Password field with required asterisk -->
-                                                <label class="small mb-1" for="inputPassword">
-                                                    Password <span style="color: red;">*</span>
-                                                </label>
-                                                <input class="form-control py-4" id="inputPassword" name="password" type="password" placeholder="Enter password" required />
-                                                <div id="passwordError" style="color: red; font-size: 0.9em; display: none;">Password must be 8-32 characters and include letters, numbers, and symbols.</div>
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
-                                                    <label class="custom-control-label" for="rememberPasswordCheck">Remember password</label>
-                                                </div>
+                                        <!-- Password field with required asterisk -->
+                                        <label class="small mb-1" for="inputPassword">
+                                            Password <span style="color: red;">*</span>
+                                        </label>
+                                        <input class="form-control py-4" id="inputPassword" name="password"
+                                               type="password" placeholder="Enter password" required/>
+                                        <div id="passwordError" style="color: red; font-size: 0.9em; display: none;">
+                                            Password must be 8-32 characters and include letters, numbers, and symbols.
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" id="rememberPasswordCheck"
+                                                       type="checkbox"/>
+                                                <label class="custom-control-label" for="rememberPasswordCheck">Remember
+                                                    password</label>
                                             </div>
-                                                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                 <a class="small" href="password-basic.html">Forgot Password?</a>
-                                                 <button type="submit" class="btn btn-primary">Login</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        </div>
+                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                            <a class="small" href="password-basic.html">Forgot Password?</a>
+                                            <button type="submit" class="btn btn-primary">Login</button>
+                                        </div>
                                     </div>
-                                    <div class="card-footer text-center">
-                                        <div class="small"><a href="register-basic.html" style="font-size: 1.5em;">Need an account? Sign up!</a></div>
-                                    </div>
-                                </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center">
+                                <div class="small"><a href="register-basic.html" style="font-size: 1.5em;">Need an
+                                    account? Sign up!</a></div>
                             </div>
                         </div>
                     </div>
-                </main>
+                </div>
             </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="footer mt-auto footer-dark">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Sri Aditya Developers 2025</div>
-                            <div class="col-md-6 text-md-right small">
-                                <a href="#!">Privacy Policy</a>
-                                &middot;
-                                <a href="#!">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
+        </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="footer mt-auto footer-dark">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 small">Copyright &copy; Sri Aditya Developers 2025</div>
+                    <div class="col-md-6 text-md-right small">
+                        <a href="#!">Privacy Policy</a>
+                        &middot;
+                        <a href="#!">Terms &amp; Conditions</a>
                     </div>
-                </footer>
+                </div>
             </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="js/validate.js"></script>
-    </body>
+        </footer>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="js/validate.js"></script>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const email = document.getElementById('inputEmailAddress').value;
+        const password = document.getElementById('inputPassword').value;
+
+        const response = await fetch('/test', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email, password})
+        });
+
+        if (response.ok) {
+            // Handle success (e.g., redirect or show message)
+            window.location.href = '/index.html'; // Example redirect
+        } else {
+            // Handle error (e.g., show error message)
+            alert('Login failed. Please check your credentials.');
+        }
+    });
+</script>
+</body>
 </html>

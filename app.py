@@ -150,6 +150,18 @@ def login():
             return render_template('login-basic.html', error='Invalid credentials')
     return render_template('login-basic.html')
 
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    session.pop('role', None)
+    return redirect(url_for('index'))
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    if request.method == 'POST':
+        print(request.get_json())
+        return jsonify({'status': 'ok', 'message': 'Test successful'})
+    return render_template('login-basic.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
