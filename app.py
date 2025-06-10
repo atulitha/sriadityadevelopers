@@ -1,21 +1,31 @@
+import os
+
 import jinja2
 from flask import Flask, render_template, send_from_directory, jsonify, request, redirect, url_for, session
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 
 from admin.admin import admin
 from agent.agent import agent
 from customer.customer import customer
-from dbmodels.create import User, Customer, Agent, db
+from dbmodels.create import User, Customer, db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = {'pdf'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 db.init_app(app)
 app.register_blueprint(admin)
 app.register_blueprint(agent)
 app.register_blueprint(customer)
 print("Starting Flask server...")
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route('/')
@@ -55,36 +65,71 @@ def list_users_json():
         } for user in users]
     })
 
-
+# TODO: move this to a separate module for user management
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-        role = request.form['role']  # 'customer', 'agent', or 'admin'
+        print(request.get_json())
+        # Get form fields
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        dob = request.form.get('dob')
+        gender = request.form.get('gender')
+        adhar = request.form.get('adhar')
+        pan = request.form.get('pan')
+        role = 'customer'  # or get from form if needed
+
+        # Validate passwords match
+        if password != confirm_password:
+            return 'Passwords do not match', 400
+
+        # Handle file uploads
+        aadhaar_file = request.files.get('aadhaar_file')
+        pan_file = request.files.get('pan_file')
+        if not (aadhaar_file and allowed_file(aadhaar_file.filename)):
+            return 'Invalid Aadhaar file', 400
+        if not (pan_file and allowed_file(pan_file.filename)):
+            return 'Invalid PAN file', 400
+
+        os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+        aadhaar_filename = secure_filename(aadhaar_file.filename)
+        pan_filename = secure_filename(pan_file.filename)
+        aadhaar_path = os.path.join(app.config['UPLOAD_FOLDER'], aadhaar_filename)
+        pan_path = os.path.join(app.config['UPLOAD_FOLDER'], pan_filename)
+        aadhaar_file.save(aadhaar_path)
+        pan_file.save(pan_path)
+
         hashed_password = generate_password_hash(password)
+
         # Create user
-        user = User(name=name, email=email, password=hashed_password, role=role)
+        user = User(name=f"{first_name} {last_name}", email=email, password=hashed_password, role=role)
         db.session.add(user)
         db.session.commit()
-        # Create role-specific entry
-        if role == 'customer':
-            customer = Customer(user_id=user.id, first_name=name, email=email, password=hashed_password)
-            db.session.add(customer)
-        elif role == 'agent':
-            agent = Agent(user_id=user.id, first_name=name, email=email, password=hashed_password)
-            db.session.add(agent)
-        elif role == 'admin':
-            from dbmodels.create import Admin
-            admin = Admin(user_id=user.id)
-            db.session.add(admin)
+
+        # Create customer entry (add fields as per your Customer model)
+        customer = Customer(
+            user_id=user.id,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            password=hashed_password,
+            dob=dob,
+            gender=gender,
+            adhar=adhar,
+            pan=pan,
+            aadhaar_file=aadhaar_filename,
+            pan_file=pan_filename
+        )
+        db.session.add(customer)
         db.session.commit()
         return redirect(url_for('login'))
     return render_template('register-basic.html')
 
-
-@app.route('/login', methods=['GET', 'POST'])
+# TODO: Add CSRF protection (e.g., with Flask-WTF), server-side form validation, and robust error handling before deploying to production.# TODO: Add CSRF protection (e.g., with Flask-WTF), server-side form validation,
+#  and robust error handling before deploying to production.
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -108,4 +153,3 @@ def login():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
