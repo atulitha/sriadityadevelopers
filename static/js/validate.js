@@ -86,6 +86,19 @@ if (panInput) {
     });
 }
 
+    // Place this script after your form or in your existing script block
+    document.getElementById('address').addEventListener('input', function () {
+        const address = this.value;
+        const errorDiv = document.getElementById('addressError');
+        if (address.length > 128) {
+            errorDiv.textContent = 'Address cannot exceed 128 characters.';
+            errorDiv.style.display = 'block';
+        } else {
+            errorDiv.textContent = '';
+            errorDiv.style.display = 'none';
+        }
+    });
+
 
 
     // Password show/hide toggle
