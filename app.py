@@ -65,6 +65,7 @@ def list_users_json():
         } for user in users]
     })
 
+
 # TODO: move this to a separate module for user management
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -128,6 +129,7 @@ def register():
         return redirect(url_for('login'))
     return render_template('register-basic.html')
 
+
 # TODO: Add CSRF protection (e.g., with Flask-WTF), server-side form validation, and robust error handling before deploying to production.# TODO: Add CSRF protection (e.g., with Flask-WTF), server-side form validation,
 #  and robust error handling before deploying to production.
 def login():
@@ -150,11 +152,13 @@ def login():
             return render_template('login-basic.html', error='Invalid credentials')
     return render_template('login-basic.html')
 
+
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
     session.pop('role', None)
     return redirect(url_for('index'))
+
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
@@ -163,7 +167,23 @@ def test():
         files = request.files
         print(files)
         return jsonify({'status': 'ok', 'message': 'Test successful'})
+    if request.method == 'GET':
+        key = request.args.get('key')
+        sample_data = {
+            'agents': [
+                {'id': 1, 'name': 'Agent Smith',},
+                {'id': 2, 'name': 'Agent Johnson',}
+            ],
+            'directors': [
+                {'id': 1, 'name': 'Director Brown',},
+                {'id': 2, 'name': 'Director White',}
+            ]
+        }
+        if key in sample_data:
+            return jsonify({'status': 'ok', key: sample_data[key]})
+        return jsonify({'status': 'ok', **sample_data})
     return render_template('login-basic.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
