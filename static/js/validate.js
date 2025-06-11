@@ -28,18 +28,65 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // PAN validation
-    const panInput = document.getElementById('pan');
-    if (panInput) {
-        panInput.setAttribute('maxlength', '10');
-        panInput.addEventListener('input', function () {
-            this.value = this.value.replace(/[^A-Za-z0-9]/g, '').slice(0, 10).toUpperCase();
-            if (this.value.length !== 10) {
-                this.setCustomValidity('Please enter valid PAN Number');
-            } else {
-                this.setCustomValidity('');
+        const panInput = document.getElementById('pan');
+
+if (panInput) {
+    panInput.setAttribute('maxlength', '10');
+
+    panInput.addEventListener('input', function () {
+        let raw = this.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); // allow only A-Z, 0-9
+        let formatted = '';
+
+        // Enforce first 5 letters
+        for (let i = 0; i < raw.length && i < 5; i++) {
+            if (/[A-Z]/.test(raw[i])) {
+                formatted += raw[i];
             }
-        });
-    }
+        }
+
+        // Enforce next 4 digits
+        for (let i = 5; i < raw.length && formatted.length < 9; i++) {
+            if (/[0-9]/.test(raw[i])) {
+                formatted += raw[i];
+            }
+        }
+
+        // Enforce final character (letter)
+        for (let i = 9; i < raw.length && formatted.length < 10; i++) {
+            if (/[A-Z]/.test(raw[i])) {
+                formatted += raw[i];
+            }
+        }
+
+        this.value = formatted;
+
+        // Final validation only when length is 10
+        const panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+        if (formatted.length === 10 && !panPattern.test(formatted)) {
+            this.setCustomValidity('PAN must be 5 letters, 4 digits, 1 letter (e.g., ABCDE1234F)');
+        } else {
+            this.setCustomValidity('');
+        }
+    });
+
+    // Optional: block invalid keypresses
+    panInput.addEventListener('keypress', function (e) {
+        const char = e.key.toUpperCase();
+        const value = panInput.value.toUpperCase();
+
+        if (value.length >= 10) {
+            e.preventDefault();
+        } else if (value.length < 5 && !/[A-Z]/.test(char)) {
+            e.preventDefault(); // Only letters for first 5
+        } else if (value.length >= 5 && value.length < 9 && !/[0-9]/.test(char)) {
+            e.preventDefault(); // Only digits for next 4
+        } else if (value.length === 9 && !/[A-Z]/.test(char)) {
+            e.preventDefault(); // Only letter for 10th character
+        }
+    });
+}
+
+
 
     // Password show/hide toggle
     document.querySelectorAll('.toggle-password').forEach(function(toggle) {
