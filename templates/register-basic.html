@@ -26,7 +26,7 @@
                             <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Create
                                 Account</h3></div>
                             <div class="card-body">
-                                <form action="/register" method="post" enctype="multipart/form-data" novalidate>
+                                <form>
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -87,8 +87,10 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputConfirmPassword">Confirm Password</label>
-                                                <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password"/>
+                                                <label class="small mb-1" for="inputConfirmPassword">Confirm
+                                                    Password</label>
+                                                <input class="form-control py-4" id="inputConfirmPassword"
+                                                       type="password" placeholder="Confirm password"/>
                                                 <div id="confirmPasswordError" style="display:none;color:red;"></div>
                                             </div>
                                         </div>
@@ -159,15 +161,21 @@
 
 
                                         <div class="col-md-6">
-                                            <div class="form-group"><label class="small mb-1" for="Aadhaar number">Aadhaar
-                                                number</label><input class="form-control py-4" id="adhar" type="text"
-                                                                     pattern="^\d{16}$" maxlength="16"
-                                                                     placeholder="Aadhaar number" required/></div>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="Aadhaar number">Aadhaar number</label>
+                                                <input class="form-control"
+                                                       id="adhar"
+                                                       type="tel"
+                                                       maxlength="14" placeholder="Aadhaar number"
+                                                       pattern="\d{4} \d{4} \d{4}"
+                                                       required
+                                                       autocomplete="off"/>
+                                            </div>
                                         </div>
                                         <div class="col-md-7">
                                             <div class="form-group"><label class="small mb-1"
                                                                            for="Pan">pan</label><input
-                                                    class="form-control py-4" id="pan" type="text" pattern="^\d{16}$"
+                                                    class="form-control py-4" id="pan" type="text"
                                                     maxlength="16" placeholder="pan number" required/></div>
                                         </div>
 
@@ -195,8 +203,8 @@
 
                                     </div>
                                     <div class="form-group mt-4 mb-0">
-        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-    </div>
+                                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                                    </div>
                                 </form>
                             </div>
                             <div class="card-footer text-center">
@@ -228,5 +236,41 @@
         crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>
 <script src="js/validate.js"></script>
+<script>
+    document.querySelector('form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const data = {
+            firstName: document.getElementById('inputFirstName').value,
+            lastName: document.getElementById('inputLastName').value,
+            email: document.getElementById('inputEmailAddress').value,
+            password: document.getElementById('inputPassword').value,
+            confirmPassword: document.getElementById('inputConfirmPassword').value,
+            dob: document.getElementById('dob').value,
+            gender: document.getElementById('gender').value,
+            designation: document.getElementById('designation').value,
+            referenceAgent: document.getElementById('Reference_agent').value,
+            agentTeam: document.getElementById('Agent_team').value,
+            aadhaar: document.getElementById('adhar').value,
+            pan: document.getElementById('pan').value
+            // File uploads are not included in JSON; handle separately if needed
+        };
+
+        const response = await fetch('/test', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert('Registration successful!');
+            // Optionally redirect
+        } else {
+            alert('Registration failed.');
+        }
+    });
+</script>
 </body>
 </html>
