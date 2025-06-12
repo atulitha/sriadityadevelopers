@@ -273,22 +273,68 @@
     });
 </script>
 <script>
-    fetch('/test?key=agents')
+    // Populate Designation dropdown
+    fetch('/test?key=Designation')
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
-        })
-        .then(data => {
-        if (data.status === 'ok' && Array.isArray(data.agents)) {
-          const select = document.getElementById('Reference_agent');
-          data.agents.forEach(agent => {
+      })
+      .then(data => {
+        if (data.status === 'ok' && Array.isArray(data.Designation)) {
+          const select = document.getElementById('designation');
+          select.innerHTML = '<option value="">Select Designation</option>';
+          data.Designation.forEach(item => {
             const option = document.createElement('option');
-            option.value = agent.id;
-            option.textContent = agent.name;
+            option.value = item.id || item.name;
+            option.textContent = item.name;
             select.appendChild(option);
           });
         }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+
+    // Populate Reference of director for agent dropdown
+    fetch('/test?key=directors')
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(data => {
+        if (data.status === 'ok' && Array.isArray(data.directors)) {
+          const select = document.getElementById('Reference_agent');
+          select.innerHTML = '<option value="">Select Reference</option>';
+          data.directors.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id || item.name;
+            option.textContent = item.name;
+            select.appendChild(option);
+          });
         }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+
+    // Populate Agent team dropdown
+    fetch('/test?key=teams')
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(data => {
+        if (data.status === 'ok' && Array.isArray(data.teams)) {
+          const select = document.getElementById('Agent_team');
+          select.innerHTML = '<option value="">Select Agent Team</option>';
+          data.teams.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id || item.name;
+            option.textContent = item.name;
+            select.appendChild(option);
+          });
+        }
+      })
       .catch(error => {
         console.error('Fetch error:', error);
       });
