@@ -171,12 +171,21 @@ def test():
         key = request.args.get('key')
         sample_data = {
             'agents': [
-                {'id': 1, 'name': 'Agent Smith',},
-                {'id': 2, 'name': 'Agent Johnson',}
+                {'id': 1, 'name': 'Self Registration',},
+                {'id': 2, 'name': 'Agent Jhon',},
+                {'id': 3, 'name': 'Agent Smith',}
             ],
             'directors': [
                 {'id': 1, 'name': 'Director Brown',},
                 {'id': 2, 'name': 'Director White',}
+            ],
+            'teams': [
+                {'id': 1, 'name': 'Team Alpha',},
+                {'id': 2, 'name': 'Team Beta',}
+            ],
+            'Designation': [
+                {'id': 1, 'name': 'Manager',},
+                {'id': 2, 'name': 'Executive',}
             ]
         }
         if key in sample_data:
