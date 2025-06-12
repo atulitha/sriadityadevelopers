@@ -69,6 +69,42 @@ if (panInput) {
         }
     });
 
+    // Date of visit validation: only allow booking from tomorrow onwards
+    const dateInput = document.getElementById('dateOfVisit');
+    if (dateInput) {
+        function setMinDate() {
+            const today = new Date();
+            today.setDate(today.getDate() + 1); // Move to tomorrow
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const minDate = `${yyyy}-${mm}-${dd}`;
+            dateInput.setAttribute('min', minDate);
+        }
+        setMinDate();
+        setInterval(setMinDate, 60 * 60 * 1000); // Update every hour
+
+        let errorDiv = document.getElementById('dateError');
+        if (!errorDiv) {
+            errorDiv = document.createElement('div');
+            errorDiv.id = 'dateError';
+            errorDiv.style.color = 'red';
+            errorDiv.style.display = 'none';
+            dateInput.parentNode.appendChild(errorDiv);
+        }
+
+        dateInput.addEventListener('input', function () {
+            if (this.value < this.min) {
+                this.value = '';
+                errorDiv.textContent = 'Invalid date. Please select a future date (from tomorrow onwards).';
+                errorDiv.style.display = 'block';
+            } else {
+                errorDiv.textContent = '';
+                errorDiv.style.display = 'none';
+            }
+        });
+    }
+
     // Optional: block invalid keypresses
     panInput.addEventListener('keypress', function (e) {
         const char = e.key.toUpperCase();

@@ -271,5 +271,18 @@
         }
     });
 </script>
+<script>
+        fetch('/test?key=agents')
+          .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+          })
+          .then(data => {
+            console.log(data); // Handle your agents data here
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
+          });
+</script>
 </body>
 </html>
