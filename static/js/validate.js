@@ -147,38 +147,37 @@ if (panInput) {
     });
     // Date of visit validation: only allow booking from tomorrow onwards
        const dateInput = document.getElementById('dateOfVisit');
-if (dateInput) {
-    function setMinDateToTomorrow() {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
+        if (dateInput) {
+            function setMinDateToTomorrow() {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
 
-        const yyyy = tomorrow.getFullYear();
-        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
-        const dd = String(tomorrow.getDate()).padStart(2, '0');
-        const minDate = `${yyyy}-${mm}-${dd}`;
+                const yyyy = tomorrow.getFullYear();
+                const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+                const dd = String(tomorrow.getDate()).padStart(2, '0');
+                const minDate = `${yyyy}-${mm}-${dd}`;
 
-        dateInput.setAttribute('min', minDate);
+                dateInput.setAttribute('min', minDate);
 
-        // Clear invalid value if necessary
-        if (dateInput.value && dateInput.value < minDate) {
-            dateInput.value = '';
+                // Clear invalid value if necessary
+                if (dateInput.value && dateInput.value < minDate) {
+                    dateInput.value = '';
+                }
+            }
+
+            setMinDateToTomorrow(); // Set once on load
+
+            // Block invalid manual input
+            dateInput.addEventListener('input', function () {
+                const selectedDate = new Date(this.value);
+                const minAllowed = new Date(this.min);
+
+                if (selectedDate < minAllowed) {
+                    alert('Invalid date. Please select a future date (from tomorrow onwards).');
+                    this.value = '';
+                }
+            });
         }
-    }
-
-    setMinDateToTomorrow(); // Set once on load
-
-    // Block invalid manual input
-    dateInput.addEventListener('input', function () {
-        const selectedDate = new Date(this.value);
-        const minAllowed = new Date(this.min);
-
-        if (selectedDate < minAllowed) {
-            alert('Invalid date. Please select a future date (from tomorrow onwards).');
-            this.value = '';
-        }
-    });
-}
-
 
     // Password validation
     const passwordInput = document.getElementById("inputPassword");
