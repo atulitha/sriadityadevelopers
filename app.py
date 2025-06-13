@@ -171,28 +171,57 @@ def test():
         key = request.args.get('key')
         sample_data = {
             'agents': [
-                {'id': 1, 'name': 'Self Registration',},
-                {'id': 2, 'name': 'Agent Jhon',},
-                {'id': 3, 'name': 'Agent Smith',}
+                {'id': 1, 'name': 'Self Registration'},
+                {'id': 2, 'name': 'Agent Jhon'},
+                {'id': 3, 'name': 'Agent Smith'}
             ],
             'directors': [
-                {'id': 1, 'name': 'Director Brown',},
-                {'id': 2, 'name': 'Director White',}
+                {'id': 1, 'name': 'Director Brown'},
+                {'id': 2, 'name': 'Director White'}
             ],
             'teams': [
-                {'id': 1, 'name': 'Team Alpha',},
-                {'id': 2, 'name': 'Team Beta',}
+                {'id': 1, 'name': 'Team Alpha'},
+                {'id': 2, 'name': 'Team Beta'}
             ],
             'Designation': [
-                {'id': 1, 'name': 'Manager',},
-                {'id': 2, 'name': 'Executive',}
-            ]
+                {'id': 1, 'name': 'Manager'},
+                {'id': 2, 'name': 'Executive'}
+            ],
+            'sub1Options': {
+                'nandagokulam': [
+                    {'value': 'villas_ng', 'text': 'Luxury Villas'},
+                    {'value': 'Flats_ng', 'text': 'Luxury Flats'},
+                    {'value': 'plots_ng', 'text': 'Plots'}
+                ],
+                'panasapadu': [
+                    {'value': 'villas_pns', 'text': 'Luxury Villas'},
+                    {'value': 'Flats_pns', 'text': 'Luxury Flats'}
+                ]
+            },
+            'sub2Options': {
+                'villas_ng': [
+                    {'value': 'villa1', 'text': 'Villa 1-East facing'},
+                    {'value': 'villa2', 'text': 'Villa 2-West facing'}
+                ],
+                'Flats_ng': [
+                    {'value': 'flat1', 'text': 'Flat no 101-East facing'},
+                    {'value': 'flat2', 'text': 'Flat no 102-West facing'}
+                ],
+                'villas_pns': [
+                    {'value': 'villa1', 'text': 'Villa 1-East facing'},
+                    {'value': 'villa2', 'text': 'Villa 2-West facing'}
+                ],
+                'Flats_pns': [
+                    {'value': 'flat1', 'text': 'Flat no 101-East facing'},
+                    {'value': 'flat 2', 'text': 'Flat no 102-West facing'}
+                ]
+            },
+
         }
         if key in sample_data:
             return jsonify({'status': 'ok', key: sample_data[key]})
         return jsonify({'status': 'ok', **sample_data})
     return render_template('login-basic.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -223,4 +223,82 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         }
+        // Agent-sales page:  dynamic dropdowns
+        // Fetch sub1Options and sub2Options before attaching dropdown event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  // Populate mainDropdown with project options
+  const mainDropdown = document.getElementById('mainDropdown');
+  if (mainDropdown) {
+    mainDropdown.innerHTML = `
+      <option value="">Select Project</option>
+      <option value="nandagokulam">Nanda Gokulam</option>
+      <option value="panasapadu">Panasapadu</option>
+    `;
+  }
+
+  Promise.all([
+    fetch('/test?key=sub1Options').then(res => res.json()),
+    fetch('/test?key=sub2Options').then(res => res.json())
+  ]).then(([sub1, sub2]) => {
+    window.sub1Options = sub1.sub1Options;
+    window.sub2Options = sub2.sub2Options;
+
+    mainDropdown.addEventListener('change', function() {
+      const val = this.value;
+      const sub1 = document.getElementById('sub1Dropdown');
+      const sub2 = document.getElementById('sub2Dropdown');
+      const sub1Group = document.getElementById('sub1Group');
+      const sub2Group = document.getElementById('sub2Group');
+      sub1.innerHTML = '<option value="">Select Sub Option 1</option>';
+      sub2.innerHTML = '<option value="">Select Sub Option 2</option>';
+      sub1Group.style.display = 'none';
+      sub2Group.style.display = 'none';
+      if (window.sub1Options[val]) {
+        window.sub1Options[val].forEach(opt => {
+          sub1.innerHTML += `<option value="${opt.value}">${opt.text}</option>`;
+        });
+        sub1Group.style.display = '';
+      }
+    });
+
+    document.getElementById('sub1Dropdown').addEventListener('change', function() {
+      const val = this.value;
+      const sub2 = document.getElementById('sub2Dropdown');
+      const sub2Group = document.getElementById('sub2Group');
+      sub2.innerHTML = '<option value="">Select Sub Option 2</option>';
+      sub2Group.style.display = 'none';
+      if (window.sub2Options[val]) {
+        window.sub2Options[val].forEach(opt => {
+          sub2.innerHTML += `<option value="${opt.value}">${opt.text}</option>`;
+        });
+        sub2Group.style.display = '';
+      }
+    });
+  });
+});        // Agent-sales page
+        document.addEventListener('DOMContentLoaded', function() {
+                   const today = new Date().toISOString().split('T')[0];
+                   document.getElementById('bookingDateInput').value = today;
+                   });
+
+
+        // Agent-sales page total plot value calculation
+        function updateTotalPlotValue() {
+        const size = parseFloat(document.getElementById('plotSizeInput').value) || 0;
+        const price = parseFloat(document.getElementById('plotPriceInput').value) || 0;
+        document.getElementById('totalPlotValueInput').value = size * price;
+    }
+    document.getElementById('plotSizeInput').addEventListener('input', updateTotalPlotValue);
+    document.getElementById('plotPriceInput').addEventListener('input', updateTotalPlotValue);
+
+    //agent sales page final sale
+       function updateFinalSalePrice() {
+            const total = parseFloat(document.getElementById('totalPlotValueInput').value) || 0;
+            const discount = parseFloat(document.getElementById('discountInput').value) || 0;
+            document.getElementById('finalSalePriceInput').value = total - discount;
+            }
+        document.getElementById('totalPlotValueInput').addEventListener('input', updateFinalSalePrice);
+        document.getElementById('discountInput').addEventListener('input', updateFinalSalePrice);
+
+
     });

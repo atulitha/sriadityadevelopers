@@ -23,20 +23,73 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Agent Sales Page</h3></div>
+                            <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Agent
+                                Sales Page</h3></div>
                             <div class="card-body">
                                 <form>
-                                    <div class="form-group col-md-12">
-                                        <label class="small mb-1" for="inputProjectName">Project Name</label>
-                                        <select class="form-control py-4" id="inputProjectName" required>
-                                            <option value="">Select a project</option>
-                                            <option value="project1">Project 1</option>
-                                            <option value="project2">Project 2</option>
-                                            <option value="project3">Project 3</option>
+                                    <div class="form-group">
+                                        <label for="mainDropdown">Project</label>
+                                        <select class="form-control" id="mainDropdown">
+                                            <option value="">Select Project</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="sub1Group" style="display:none;">
+                                        <label for="sub1Dropdown">Nanda Gokulam</label>
+                                        <select class="form-control" id="sub1Dropdown">
+                                            <option value="">Select options</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="sub2Group" style="display:none;">
+                                        <label for="sub2Dropdown">Options</label>
+                                        <select class="form-control" id="sub2Dropdown">
+                                            <option value="">Select options</option>
                                         </select>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="plotSizeInput">Plot Size (Sq Yards/Sq Ft)</label>
+                                        <input type="number" class="form-control" id="plotSizeInput"
+                                               placeholder="Enter plot size">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="plotFacingDropdown">Plot Facing</label>
+                                        <select class="form-control" id="plotFacingDropdown" required>
+                                            <option value="">Select Plot Facing</option>
+                                            <option value="East">East</option>
+                                            <option value="West">West</option>
+                                            <option value="North">North</option>
+                                            <option value="South">South</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookingDateInput">Booking Date</label>
+                                        <input type="date" class="form-control" id="bookingDateInput" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="plotPriceInput">Plot Price (Per Sq Yard/Sq Ft)</label>
+                                        <input type="number" class="form-control" id="plotPriceInput"
+                                               placeholder="Enter plot price">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="totalPlotValueInput">Total Plot Value</label>
+                                        <input type="number" class="form-control" id="totalPlotValueInput" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="discountInput">Discount (if any)</label>
+                                        <input type="number" class="form-control" id="discountInput" placeholder="Enter discount (optional)">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="finalSalePriceInput">Final Sale Price</label>
+                                        <input type="number" class="form-control" id="finalSalePriceInput" readonly>
+                                    </div>
+
+                                    <div class="form-group text-center">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
                                 </form>
+
+
                             </div>
                             <div class="card-footer text-center">
                                 <div class="small"><a href="login-basic.html"></a></div>
@@ -71,25 +124,15 @@
 </html>
 
 
-Field	Type	Remarks
-Project Name	Dropdown	Linked to Project Master
-Plot Number	Dropdown	Filtered by selected project
-Plot Size (Sq Yards/Sq Ft)	Numeric	Auto pull from Plot Master
-Plot Facing	Dropdown	East/West/North/South
-Booking Date	Date Picker	Default to today
-Plot Price (Per Sq Yard/Sq Ft)	Numeric	Auto from Project
-Total Plot Value	Calculated	Plot Size x Price
-Discount (if any)	Numeric	Optional
-Final Sale Price	Calculated	Total - Discount
-Field	Type	Remarks
 
-Booking Amount	Numeric	Mandatory
-Payment Mode	Dropdown	Cash/UPI/NEFT/RTGS/Cheque
-Cheque/Transaction ID	Text	Conditional
-Down Payment	Numeric	Optional
-Loan Required	Yes/No	Toggle
-Loan Bank Name	Text	If loan required
-Loan Amount	Numeric	If loan required
-Sanction Letter Upload	File Upload	If loan required
-Balance Amount	Numeric	Calculated
-Payment Schedule	Table	Date-wise schedule
+Field    Type    Remarks
+Booking Amount    Numeric    Mandatory
+Payment Mode    Dropdown    Cash/UPI/NEFT/RTGS/Cheque
+Cheque/Transaction ID    Text    Conditional
+Down Payment    Numeric    Optional
+Loan Required    Yes/No    Toggle
+Loan Bank Name    Text    If loan required
+Loan Amount    Numeric    If loan required
+Sanction Letter Upload    File Upload    If loan required
+Balance Amount    Numeric    Calculated
+Payment Schedule    Table    Date-wise schedule
