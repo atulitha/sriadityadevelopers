@@ -69,3 +69,27 @@
 <script src="js/validate.js"></script>
 </body>
 </html>
+
+
+Field	Type	Remarks
+Project Name	Dropdown	Linked to Project Master
+Plot Number	Dropdown	Filtered by selected project
+Plot Size (Sq Yards/Sq Ft)	Numeric	Auto pull from Plot Master
+Plot Facing	Dropdown	East/West/North/South
+Booking Date	Date Picker	Default to today
+Plot Price (Per Sq Yard/Sq Ft)	Numeric	Auto from Project
+Total Plot Value	Calculated	Plot Size x Price
+Discount (if any)	Numeric	Optional
+Final Sale Price	Calculated	Total - Discount
+Field	Type	Remarks
+
+Booking Amount	Numeric	Mandatory
+Payment Mode	Dropdown	Cash/UPI/NEFT/RTGS/Cheque
+Cheque/Transaction ID	Text	Conditional
+Down Payment	Numeric	Optional
+Loan Required	Yes/No	Toggle
+Loan Bank Name	Text	If loan required
+Loan Amount	Numeric	If loan required
+Sanction Letter Upload	File Upload	If loan required
+Balance Amount	Numeric	Calculated
+Payment Schedule	Table	Date-wise schedule
