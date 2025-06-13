@@ -84,22 +84,6 @@ if (panInput) {
         }
     });
 }
-
-    // Place this script after your form or in your existing script block
-    document.getElementById('address').addEventListener('input', function () {
-        const address = this.value;
-        const errorDiv = document.getElementById('addressError');
-        if (address.length > 128) {
-            errorDiv.textContent = 'Address cannot exceed 128 characters.';
-            errorDiv.style.display = 'block';
-        } else {
-            errorDiv.textContent = '';
-            errorDiv.style.display = 'none';
-        }
-    });
-
-
-
     // Password show/hide toggle
     document.querySelectorAll('.toggle-password').forEach(function(toggle) {
         toggle.addEventListener('click', function() {
@@ -147,113 +131,96 @@ if (panInput) {
     });
     // Date of visit validation: only allow booking from tomorrow onwards
        const dateInput = document.getElementById('dateOfVisit');
-if (dateInput) {
-    function setMinDateToTomorrow() {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
+        if (dateInput) {
+            function setMinDateToTomorrow() {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
 
-        const yyyy = tomorrow.getFullYear();
-        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
-        const dd = String(tomorrow.getDate()).padStart(2, '0');
-        const minDate = `${yyyy}-${mm}-${dd}`;
+                const yyyy = tomorrow.getFullYear();
+                const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+                const dd = String(tomorrow.getDate()).padStart(2, '0');
+                const minDate = `${yyyy}-${mm}-${dd}`;
 
-        dateInput.setAttribute('min', minDate);
+                dateInput.setAttribute('min', minDate);
 
-        // Clear invalid value if necessary
-        if (dateInput.value && dateInput.value < minDate) {
-            dateInput.value = '';
-        }
-    }
-
-    setMinDateToTomorrow(); // Set once on load
-
-    // Block invalid manual input
-    dateInput.addEventListener('input', function () {
-        const selectedDate = new Date(this.value);
-        const minAllowed = new Date(this.min);
-
-        if (selectedDate < minAllowed) {
-            alert('Invalid date. Please select a future date (from tomorrow onwards).');
-            this.value = '';
-        }
-    });
-}
-
-
-    // Password validation
-    const passwordInput = document.getElementById("inputPassword");
-    const confirmPasswordInput = document.getElementById("inputConfirmPassword");
-    const confirmPasswordError = document.getElementById("confirmPasswordError");
-
-    // Add ✅ spans next to password fields
-    function createTick(input) {
-        const span = document.createElement("span");
-        span.textContent = " ✅";
-        span.style.color = "green";
-        span.style.fontWeight = "bold";
-        span.style.display = "none";
-        input.parentNode.appendChild(span);
-        return span;
-    }
-    const passwordTick = createTick(passwordInput);
-    const confirmTick = createTick(confirmPasswordInput);
-
-    function validatePasswords() {
-        const pwd = passwordInput.value;
-        const cpwd = confirmPasswordInput.value;
-
-        if (pwd === cpwd && pwd.length > 0) {
-            confirmPasswordError.style.display = "none";
-            passwordInput.style.border = "2px solid green";
-            confirmPasswordInput.style.border = "2px solid green";
-            passwordTick.style.display = "inline";
-            confirmTick.style.display = "inline";
-            return true;
-        } else {
-            confirmPasswordError.style.display = "block";
-            confirmPasswordError.textContent = " Passwords do not match!";
-            passwordInput.style.border = "2px solid red";
-            confirmPasswordInput.style.border = "2px solid red";
-            passwordTick.style.display = "none";
-            confirmTick.style.display = "none";
-            return false;
-        }
-    }
-
-    passwordInput.addEventListener("input", validatePasswords);
-    confirmPasswordInput.addEventListener("input", validatePasswords);
-
-    // Form submit validation
-    const form = document.querySelector("form");
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const pwdMatch = validatePasswords();
-
-        if (!passwordInput.checkValidity()) {
-            alert("Password does not meet the required complexity.");
-            return;
-        }
-
-        if (!pwdMatch) {
-            confirmPasswordInput.focus();
-            return;
-        }
-
-        // Dropdowns required check
-        let valid = true;
-        dropdowns.forEach(drop => {
-            const select = document.getElementById(drop.selectId);
-            if (select && !select.value) {
-                select.classList.add('is-invalid');
-                valid = false;
-            } else if (select) {
-                select.classList.remove('is-invalid');
+                // Clear invalid value if necessary
+                if (dateInput.value && dateInput.value < minDate) {
+                    dateInput.value = '';
+                }
             }
-        });
 
-        if (!valid) {
-            return;
+            setMinDateToTomorrow(); // Set once on load
+
+            // Block invalid manual input
+            dateInput.addEventListener('input', function () {
+                const selectedDate = new Date(this.value);
+                const minAllowed = new Date(this.min);
+
+                if (selectedDate < minAllowed) {
+                    alert('Invalid date. Please select a future date (from tomorrow onwards).');
+                    this.value = '';
+                }
+            });
+        }
+ });
+
+// password validation with tick marks
+ document.addEventListener('DOMContentLoaded', function () {
+     const passwordInput = document.getElementById("inputPassword");
+     const confirmPasswordInput = document.getElementById("inputConfirmPassword");
+     const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+     let passwordTick, confirmTick;
+     if (passwordInput) {
+         passwordTick = createTick(passwordInput);
+     }
+     if (confirmPasswordInput) {
+         confirmTick = createTick(confirmPasswordInput);
+     }
+
+     function validatePasswords() {
+         if (!passwordInput || !confirmPasswordInput) return false;
+         const pwd = passwordInput.value;
+         const cpwd = confirmPasswordInput.value;
+
+         if (pwd === cpwd && pwd.length > 0) {
+             if (confirmPasswordError) confirmPasswordError.style.display = "none";
+             passwordInput.style.border = "2px solid green";
+             confirmPasswordInput.style.border = "2px solid green";
+             if (passwordTick) passwordTick.style.display = "inline";
+             if (confirmTick) confirmTick.style.display = "inline";
+             return true;
+         } else {
+             if (confirmPasswordError) {
+                 confirmPasswordError.style.display = "block";
+                 confirmPasswordError.textContent = " Passwords do not match!";
+             }
+             passwordInput && (passwordInput.style.border = "2px solid red");
+             confirmPasswordInput && (confirmPasswordInput.style.border = "2px solid red");
+             if (passwordTick) passwordTick.style.display = "none";
+             if (confirmTick) confirmTick.style.display = "none";
+             return false;
+         }
+     }
+
+     if (passwordInput) passwordInput.addEventListener("input", validatePasswords);
+     if (confirmPasswordInput) confirmPasswordInput.addEventListener("input", validatePasswords);
+ });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+        const addressInput = document.getElementById('address');
+        if (addressInput) {
+            addressInput.addEventListener('input', function () {
+                const address = this.value;
+                const errorDiv = document.getElementById('addressError');
+                if (address.length > 128) {
+                    errorDiv.textContent = 'Address cannot exceed 128 characters.';
+                    errorDiv.style.display = 'block';
+                } else {
+                    errorDiv.textContent = '';
+                    errorDiv.style.display = 'none';
+                }
+            });
         }
     });
-});

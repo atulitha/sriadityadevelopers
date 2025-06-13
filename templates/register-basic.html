@@ -23,7 +23,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Agent Registration Form</h3></div>
+                            <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Agent
+                                Registration Form</h3></div>
                             <div class="card-body">
                                 <form>
                                     <div class="form-row">
@@ -184,7 +185,7 @@
                                                 <label class="medium mb-1" for="aadhaar_file">Upload Aadhaar (PDF
                                                     only)</label>
                                                 <input class="form-control py-4" id="aadhaar_file" name="aadhaar_file"
-                                                       type="file" accept="application/pdf" style="height: 55px;"
+                                                       type="file" accept="application/pdf" style="height: 65px;"
                                                        required/>
                                             </div>
                                         </div>
@@ -194,7 +195,7 @@
                                             <div class="form-group">
                                                 <label class="small mb-1" for="pan_file">Upload PAN (PDF only)</label>
                                                 <input class="form-control py-4" id="pan_file" name="pan_file"
-                                                       type="file" accept="application/pdf" style="height: 55px;"
+                                                       type="file" accept="application/pdf" style="height: 65px;"
                                                        required/>
                                             </div>
                                         </div>
@@ -272,17 +273,71 @@
     });
 </script>
 <script>
-        fetch('/test?key=agents')
-          .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-          })
-          .then(data => {
-            console.log(data); // Handle your agents data here
-          })
-          .catch(error => {
-            console.error('Fetch error:', error);
+    // Populate Designation dropdown
+    fetch('/test?key=Designation')
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(data => {
+        if (data.status === 'ok' && Array.isArray(data.Designation)) {
+          const select = document.getElementById('designation');
+          select.innerHTML = '<option value="">Select Designation</option>';
+          data.Designation.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id || item.name;
+            option.textContent = item.name;
+            select.appendChild(option);
           });
+        }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+
+    // Populate Reference of director for agent dropdown
+    fetch('/test?key=directors')
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(data => {
+        if (data.status === 'ok' && Array.isArray(data.directors)) {
+          const select = document.getElementById('Reference_agent');
+          select.innerHTML = '<option value="">Select Reference</option>';
+          data.directors.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id || item.name;
+            option.textContent = item.name;
+            select.appendChild(option);
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+
+    // Populate Agent team dropdown
+    fetch('/test?key=teams')
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(data => {
+        if (data.status === 'ok' && Array.isArray(data.teams)) {
+          const select = document.getElementById('Agent_team');
+          select.innerHTML = '<option value="">Select Agent Team</option>';
+          data.teams.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id || item.name;
+            option.textContent = item.name;
+            select.appendChild(option);
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
 </script>
 </body>
 </html>
