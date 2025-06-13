@@ -76,7 +76,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="discountInput">Discount (if any)</label>
-                                        <input type="number" class="form-control" id="discountInput" placeholder="Enter discount (optional)">
+                                        <input type="number" class="form-control" id="discountInput"
+                                               placeholder="Enter discount (optional)">
                                     </div>
 
                                     <div class="form-group">
@@ -84,6 +85,127 @@
                                         <input type="number" class="form-control" id="finalSalePriceInput" readonly>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="bookingAmountInput">Booking Amount</label>
+                                        <input type="number" class="form-control" id="bookingAmountInput"
+                                               name="bookingAmount" placeholder="Enter booking amount" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="paymentModeDropdown">Payment Mode</label>
+                                        <select class="form-control" id="paymentModeDropdown" name="paymentMode" required>
+                                            <option value="">Select Payment Mode</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="UPI">UPI</option>
+                                            <option value="NEFT">NEFT</option>
+                                            <option value="RTGS">RTGS</option>
+                                            <option value="Cheque">Cheque</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Cheque/Transaction ID (conditional) -->
+                                    <div class="form-group" id="chequeTxnGroup" style="display:none;">
+                                        <label for="chequeTxnInput">Cheque/Transaction ID</label>
+                                        <input type="text" class="form-control" id="chequeTxnInput" name="chequeTxn">
+                                    </div>
+
+                                    <!-- Down Payment (optional) -->
+                                    <div class="form-group">
+                                        <label for="downPaymentInput">Down Payment</label>
+                                        <input type="number" class="form-control" id="downPaymentInput" name="downPayment" placeholder="Enter down payment">
+                                    </div>
+
+                                    <!-- Loan Required (toggle) -->
+                                    <div class="form-group">
+                                        <label>Loan Required</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="loanRequired" id="loanYes" value="Yes">
+                                            <label class="form-check-label" for="loanYes">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="loanRequired" id="loanNo" value="No" checked>
+                                            <label class="form-check-label" for="loanNo">No</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Loan fields (conditional) -->
+                                    <div id="loanFields" style="display:none;">
+                                        <div class="form-group">
+                                            <label for="loanBankNameInput">Loan Bank Name</label>
+                                            <input type="text" class="form-control" id="loanBankNameInput" name="loanBankName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="loanAmountInput">Loan Amount</label>
+                                            <input type="number" class="form-control" id="loanAmountInput" name="loanAmount">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sanctionLetterInput">Sanction Letter Upload</label>
+                                            <input type="file" class="form-control-file" id="sanctionLetterInput" name="sanctionLetter">
+                                        </div>
+                                    </div>
+
+                                    <!-- Balance Amount (calculated) -->
+                                    <div class="form-group">
+                                        <label for="balanceAmountInput">Balance Amount</label>
+                                        <input type="number" class="form-control" id="balanceAmountInput" name="balanceAmount" readonly>
+                                    </div>
+
+                                    <!-- Payment Schedule Table -->
+                                    <div class="form-group">
+                                        <label>Payment Schedule</label>
+                                        <table class="table table-bordered" id="paymentScheduleTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Amount</th>
+                                                    <th>Remarks</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Rows will be added dynamically -->
+                                            </tbody>
+                                        </table>
+                                        <button type="button" class="btn btn-sm btn-secondary" id="addScheduleRow">Add Row</button>
+                                    </div>
+
+                                    <script>
+                                    // Show Cheque/Transaction ID if payment mode is Cheque/NEFT/RTGS
+                                    document.getElementById('paymentModeDropdown').addEventListener('change', function() {
+                                        const val = this.value;
+                                        const group = document.getElementById('chequeTxnGroup');
+                                        if (['Cheque', 'NEFT', 'RTGS'].includes(val)) {
+                                            group.style.display = '';
+                                        } else {
+                                            group.style.display = 'none';
+                                        }
+                                    });
+
+                                    // Show loan fields if loan required is Yes
+                                    document.querySelectorAll('input[name="loanRequired"]').forEach(el => {
+                                        el.addEventListener('change', function() {
+                                            document.getElementById('loanFields').style.display = this.value === 'Yes' ? '' : 'none';
+                                        });
+                                    });
+
+                                    // Payment Schedule table row add/remove
+                                    document.getElementById('addScheduleRow').addEventListener('click', function() {
+                                        const tbody = document.getElementById('paymentScheduleTable').querySelector('tbody');
+                                        const row = document.createElement('tr');
+                                        row.innerHTML = `
+                                            <td><input type="date" class="form-control" name="scheduleDate[]"></td>
+                                            <td><input type="number" class="form-control" name="scheduleAmount[]"></td>
+                                            <td><input type="text" class="form-control" name="scheduleRemarks[]"></td>
+                                            <td><button type="button" class="btn btn-danger btn-sm removeRow">Remove</button></td>
+                                        `;
+                                        tbody.appendChild(row);
+                                    });
+                                    document.getElementById('paymentScheduleTable').addEventListener('click', function(e) {
+                                        if (e.target.classList.contains('removeRow')) {
+                                            e.target.closest('tr').remove();
+                                        }
+                                    });
+                                    </script>
                                     <div class="form-group text-center">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
@@ -122,17 +244,3 @@
 <script src="js/validate.js"></script>
 </body>
 </html>
-
-
-
-Field    Type    Remarks
-Booking Amount    Numeric    Mandatory
-Payment Mode    Dropdown    Cash/UPI/NEFT/RTGS/Cheque
-Cheque/Transaction ID    Text    Conditional
-Down Payment    Numeric    Optional
-Loan Required    Yes/No    Toggle
-Loan Bank Name    Text    If loan required
-Loan Amount    Numeric    If loan required
-Sanction Letter Upload    File Upload    If loan required
-Balance Amount    Numeric    Calculated
-Payment Schedule    Table    Date-wise schedule
