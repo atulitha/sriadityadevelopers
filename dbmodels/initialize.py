@@ -1,12 +1,12 @@
 from datetime import datetime, timedelta
 
 from flask import Flask
+from werkzeug.security import generate_password_hash
 
 from dbmodels.create import (
     db, Customer, Agent, Project, Plot,
     booking, visit, feedback, User
 )
-from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../../users.db'
@@ -15,17 +15,21 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 
-def init_db():
+def create_db():
     with app.app_context():
         db.create_all()
+        print("Database tables created successfully.")
 
+
+def init_db():
+    with app.app_context():
         # Create Agents and Users
         agents = []
         agent_users = [
             {
                 'name': 'John Doe',
                 'email': 'john.doe@example.com',
-                'password': 'agentpassword',
+                'password': 'Agent@123',
                 'role': 'agent',
                 'first_name': 'John',
                 'middle_name': 'Robert',
@@ -45,7 +49,7 @@ def init_db():
             {
                 'name': 'Jane Smith',
                 'email': 'jane.smith@example.com',
-                'password': 'agentpassword',
+                'password': 'Agent@123',
                 'role': 'agent',
                 'first_name': 'Jane',
                 'middle_name': 'Marie',
@@ -66,9 +70,13 @@ def init_db():
         for agent_info in agent_users:
             user = User(
                 name=agent_info['name'],
+                first_name=agent_info['first_name'],
+                last_name=agent_info['last_name'],
                 email=agent_info['email'],
                 password=generate_password_hash(agent_info['password']),
-                role=agent_info['role']
+                role=agent_info['role'],
+                adhar=agent_info['adhar'],
+                pan=agent_info['pan']
             )
             db.session.add(user)
             db.session.commit()
@@ -102,7 +110,7 @@ def init_db():
             {
                 'name': 'Mike Johnson',
                 'email': 'mike.j@example.com',
-                'password': 'customerpassword',
+                'password': 'Customer@123',
                 'role': 'customer',
                 'first_name': 'Mike',
                 'middle_name': 'Thomas',
@@ -119,7 +127,7 @@ def init_db():
             {
                 'name': 'Sarah Wilson',
                 'email': 'sarah.w@example.com',
-                'password': 'customerpassword',
+                'password': 'Customer@123',
                 'role': 'customer',
                 'first_name': 'Sarah',
                 'middle_name': 'Elizabeth',
@@ -137,9 +145,13 @@ def init_db():
         for cust_info in customer_users:
             user = User(
                 name=cust_info['name'],
+                first_name=cust_info['first_name'],
+                last_name=cust_info['last_name'],
                 email=cust_info['email'],
                 password=generate_password_hash(cust_info['password']),
-                role=cust_info['role']
+                role=cust_info['role'],
+                adhar=cust_info['adhar'],
+                pan=cust_info['pan']
             )
             db.session.add(user)
             db.session.commit()
@@ -255,5 +267,6 @@ def init_db():
 
 
 if __name__ == '__main__':
+    create_db()
     init_db()
     print("Database initialized successfully with mock data!")
