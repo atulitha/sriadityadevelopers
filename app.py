@@ -190,33 +190,26 @@ def test():
             'sub1Options': {
                 'nandagokulam': [
                     {'value': 'villas_ng', 'text': 'Luxury Villas'},
-                    {'value': 'Flats_ng', 'text': 'Luxury Flats'},
-                    {'value': 'plots_ng', 'text': 'Plots'}
+                    {'value': 'Flats_ng', 'text': 'Luxury Flats'}
                 ],
                 'panasapadu': [
-                    {'value': 'villas_pns', 'text': 'Luxury Villas'},
-                    {'value': 'Flats_pns', 'text': 'Luxury Flats'}
+                    {'value': 'plots_pns', 'text': 'Plots'}
                 ]
             },
             'sub2Options': {
                 'villas_ng': [
-                    {'value': 'villa1', 'text': 'Villa 1-East facing'},
-                    {'value': 'villa2', 'text': 'Villa 2-West facing'}
+                    {'value': 'villa1', 'text': 'Villa 1-East facing', 'size': 3200},
+                    {'value': 'villa2', 'text': 'Villa 2-West facing', 'size': 3400}
                 ],
                 'Flats_ng': [
-                    {'value': 'flat1', 'text': 'Flat no 101-East facing'},
-                    {'value': 'flat2', 'text': 'Flat no 102-West facing'}
+                    {'value': 'flat1', 'text': 'Flat no 101-East facing', 'size': 1200},
+                    {'value': 'flat2', 'text': 'Flat no 102-West facing', 'size': 1250}
                 ],
-                'villas_pns': [
-                    {'value': 'villa1', 'text': 'Villa 1-East facing'},
-                    {'value': 'villa2', 'text': 'Villa 2-West facing'}
-                ],
-                'Flats_pns': [
-                    {'value': 'flat1', 'text': 'Flat no 101-East facing'},
-                    {'value': 'flat 2', 'text': 'Flat no 102-West facing'}
+                'plots_pns': [
+                    {'value': 'plot1', 'text': 'Plot 1-East facing', 'size': 180},
+                    {'value': 'plot2', 'text': 'Plot 2-West facing', 'size': 220}
                 ]
             },
-
         }
         if key in sample_data:
             return jsonify({'status': 'ok', key: sample_data[key]})

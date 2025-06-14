@@ -34,7 +34,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group" id="sub1Group" style="display:none;">
-                                        <label for="sub1Dropdown">Nanda Gokulam</label>
+                                        <label for="sub1Dropdown"></label>
                                         <select class="form-control" id="sub1Dropdown">
                                             <option value="">Select options</option>
                                         </select>
@@ -47,23 +47,17 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="plotSizeInput">Plot Size (Sq Yards/Sq Ft)</label>
-                                        <input type="number" class="form-control" id="plotSizeInput"
-                                               placeholder="Enter plot size">
+                                        <label for="plotSizeInput">Plot Size</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="plotSizeInput"
+                                                   placeholder="Enter plot size" readonly>
+                                        </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <label for="plotFacingDropdown">Plot Facing</label>
-                                        <select class="form-control" id="plotFacingDropdown" required>
-                                            <option value="">Select Plot Facing</option>
-                                            <option value="East">East</option>
-                                            <option value="West">West</option>
-                                            <option value="North">North</option>
-                                            <option value="South">South</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="bookingDateInput">Booking Date</label>
-                                        <input type="date" class="form-control" id="bookingDateInput" required>
+                                        <label for="dateOfVisit">Booking Date</label>
+                                        <input type="date" class="form-control" id="dateOfVisit" required>
+                                        <div id="dateError" style="color: red; display: none; font-size: 0.9em;"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="plotPriceInput">Plot Price (Per Sq Yard/Sq Ft)</label>
@@ -93,7 +87,8 @@
 
                                     <div class="form-group">
                                         <label for="paymentModeDropdown">Payment Mode</label>
-                                        <select class="form-control" id="paymentModeDropdown" name="paymentMode" required>
+                                        <select class="form-control" id="paymentModeDropdown" name="paymentMode"
+                                                required>
                                             <option value="">Select Payment Mode</option>
                                             <option value="Cash">Cash</option>
                                             <option value="UPI">UPI</option>
@@ -112,18 +107,21 @@
                                     <!-- Down Payment (optional) -->
                                     <div class="form-group">
                                         <label for="downPaymentInput">Down Payment</label>
-                                        <input type="number" class="form-control" id="downPaymentInput" name="downPayment" placeholder="Enter down payment">
+                                        <input type="number" class="form-control" id="downPaymentInput"
+                                               name="downPayment" placeholder="Enter down payment">
                                     </div>
 
                                     <!-- Loan Required (toggle) -->
                                     <div class="form-group">
                                         <label>Loan Required</label><br>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="loanRequired" id="loanYes" value="Yes">
+                                            <input class="form-check-input" type="radio" name="loanRequired"
+                                                   id="loanYes" value="Yes">
                                             <label class="form-check-label" for="loanYes">Yes</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="loanRequired" id="loanNo" value="No" checked>
+                                            <input class="form-check-input" type="radio" name="loanRequired" id="loanNo"
+                                                   value="No" checked>
                                             <label class="form-check-label" for="loanNo">No</label>
                                         </div>
                                     </div>
@@ -132,22 +130,26 @@
                                     <div id="loanFields" style="display:none;">
                                         <div class="form-group">
                                             <label for="loanBankNameInput">Loan Bank Name</label>
-                                            <input type="text" class="form-control" id="loanBankNameInput" name="loanBankName">
+                                            <input type="text" class="form-control" id="loanBankNameInput"
+                                                   name="loanBankName">
                                         </div>
                                         <div class="form-group">
                                             <label for="loanAmountInput">Loan Amount</label>
-                                            <input type="number" class="form-control" id="loanAmountInput" name="loanAmount">
+                                            <input type="number" class="form-control" id="loanAmountInput"
+                                                   name="loanAmount">
                                         </div>
                                         <div class="form-group">
                                             <label for="sanctionLetterInput">Sanction Letter Upload</label>
-                                            <input type="file" class="form-control-file" id="sanctionLetterInput" name="sanctionLetter">
+                                            <input type="file" class="form-control-file" id="sanctionLetterInput"
+                                                   name="sanctionLetter">
                                         </div>
                                     </div>
 
                                     <!-- Balance Amount (calculated) -->
                                     <div class="form-group">
                                         <label for="balanceAmountInput">Balance Amount</label>
-                                        <input type="number" class="form-control" id="balanceAmountInput" name="balanceAmount" readonly>
+                                        <input type="number" class="form-control" id="balanceAmountInput"
+                                               name="balanceAmount" readonly>
                                     </div>
 
                                     <!-- Payment Schedule Table -->
@@ -155,57 +157,60 @@
                                         <label>Payment Schedule</label>
                                         <table class="table table-bordered" id="paymentScheduleTable">
                                             <thead>
-                                                <tr>
-                                                    <th>Date</th>
-                                                    <th>Amount</th>
-                                                    <th>Remarks</th>
-                                                    <th>Action</th>
-                                                </tr>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Amount</th>
+                                                <th>Remarks</th>
+                                                <th>Action</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- Rows will be added dynamically -->
+                                            <!-- Rows will be added dynamically -->
                                             </tbody>
                                         </table>
-                                        <button type="button" class="btn btn-sm btn-secondary" id="addScheduleRow">Add Row</button>
+                                        <button type="button" class="btn btn-sm btn-secondary" id="addScheduleRow">Add
+                                            Row
+                                        </button>
                                     </div>
 
                                     <script>
-                                    // Show Cheque/Transaction ID if payment mode is Cheque/NEFT/RTGS
-                                    document.getElementById('paymentModeDropdown').addEventListener('change', function() {
-                                        const val = this.value;
-                                        const group = document.getElementById('chequeTxnGroup');
-                                        if (['Cheque', 'NEFT', 'RTGS'].includes(val)) {
-                                            group.style.display = '';
-                                        } else {
-                                            group.style.display = 'none';
-                                        }
-                                    });
-
-                                    // Show loan fields if loan required is Yes
-                                    document.querySelectorAll('input[name="loanRequired"]').forEach(el => {
-                                        el.addEventListener('change', function() {
-                                            document.getElementById('loanFields').style.display = this.value === 'Yes' ? '' : 'none';
+                                        // Show Cheque/Transaction ID if payment mode is Cheque/NEFT/RTGS
+                                        document.getElementById('paymentModeDropdown').addEventListener('change', function() {
+                                            const val = this.value;
+                                            const group = document.getElementById('chequeTxnGroup');
+                                            if (['Cheque', 'NEFT', 'RTGS'].includes(val)) {
+                                                group.style.display = '';
+                                            } else {
+                                                group.style.display = 'none';
+                                            }
                                         });
-                                    });
 
-                                    // Payment Schedule table row add/remove
-                                    document.getElementById('addScheduleRow').addEventListener('click', function() {
-                                        const tbody = document.getElementById('paymentScheduleTable').querySelector('tbody');
-                                        const row = document.createElement('tr');
-                                        row.innerHTML = `
-                                            <td><input type="date" class="form-control" name="scheduleDate[]"></td>
-                                            <td><input type="number" class="form-control" name="scheduleAmount[]"></td>
-                                            <td><input type="text" class="form-control" name="scheduleRemarks[]"></td>
-                                            <td><button type="button" class="btn btn-danger btn-sm removeRow">Remove</button></td>
-                                        `;
-                                        tbody.appendChild(row);
-                                    });
-                                    document.getElementById('paymentScheduleTable').addEventListener('click', function(e) {
-                                        if (e.target.classList.contains('removeRow')) {
-                                            e.target.closest('tr').remove();
-                                        }
-                                    });
+                                        // Show loan fields if loan required is Yes
+                                        document.querySelectorAll('input[name="loanRequired"]').forEach(el => {
+                                            el.addEventListener('change', function() {
+                                                document.getElementById('loanFields').style.display = this.value === 'Yes' ? '' : 'none';
+                                            });
+                                        });
+
+                                        // Payment Schedule table row add/remove
+                                        document.getElementById('addScheduleRow').addEventListener('click', function() {
+                                            const tbody = document.getElementById('paymentScheduleTable').querySelector('tbody');
+                                            const row = document.createElement('tr');
+                                            row.innerHTML = `
+                                                <td><input type="date" class="form-control" name="scheduleDate[]"></td>
+                                                <td><input type="number" class="form-control" name="scheduleAmount[]"></td>
+                                                <td><input type="text" class="form-control" name="scheduleRemarks[]"></td>
+                                                <td><button type="button" class="btn btn-danger btn-sm removeRow">Remove</button></td>
+                                            `;
+                                            tbody.appendChild(row);
+                                        });
+                                        document.getElementById('paymentScheduleTable').addEventListener('click', function(e) {
+                                            if (e.target.classList.contains('removeRow')) {
+                                                e.target.closest('tr').remove();
+                                            }
+                                        });
                                     </script>
+
                                     <div class="form-group text-center">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
