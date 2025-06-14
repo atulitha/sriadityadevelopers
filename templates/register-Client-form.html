@@ -211,19 +211,24 @@
     document.querySelector('form').addEventListener('submit', async function(e) {
         e.preventDefault();
 
+        function getValue(id) {
+            const el = document.getElementById(id);
+            return el ? el.value : '';
+        }
+
         const data = {
-            firstName: document.getElementById('inputFirstName').value,
-            lastName: document.getElementById('inputLastName').value,
-            email: document.getElementById('inputEmailAddress').value,
-            password: document.getElementById('inputPassword').value,
-            confirmPassword: document.getElementById('inputConfirmPassword').value,
-            dob: document.getElementById('dob').value,
-            gender: document.getElementById('gender').value,
-            designation: document.getElementById('designation').value,
-            referenceAgent: document.getElementById('Reference_agent').value,
-            agentTeam: document.getElementById('Agent_team').value,
-            aadhaar: document.getElementById('adhar').value,
-            pan: document.getElementById('pan').value
+            firstName: getValue('inputFirstName'),
+            lastName: getValue('inputLastName'),
+            email: getValue('inputEmailAddress'),
+            password: getValue('inputPassword'),
+            confirmPassword: getValue('inputConfirmPassword'),
+            dob: getValue('dob'),
+            gender: getValue('gender'),
+            designation: getValue('designation'),
+            referenceAgent: getValue('Reference_agent'),
+            agentTeam: getValue('Agent_team'),
+            aadhaar: getValue('adhar'),
+            pan: getValue('pan')
             // File uploads are not included in JSON; handle separately if needed
         };
 
