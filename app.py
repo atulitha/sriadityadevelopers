@@ -4,13 +4,15 @@ import jinja2
 from flask import Flask, render_template, send_from_directory, jsonify, request, redirect, url_for, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
+from functools import wraps
 
 from admin.admin import admin
 from agent.agent import agent
 from customer.customer import customer
-from dbmodels.create import User, Customer, db
+from dbmodels.create import User, db
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your-very-secret-key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 UPLOAD_FOLDER = 'static/uploads'
@@ -214,31 +216,39 @@ def test():
             'sub1Options': {
                 'nandagokulam': [
                     {'value': 'villas_ng', 'text': 'Luxury Villas'},
-                    {'value': 'Flats_ng', 'text': 'Luxury Flats'}
+                    {'value': 'Flats_ng', 'text': 'Luxury Flats'},
+                    {'value': 'plots_ng', 'text': 'Plots'}
                 ],
                 'panasapadu': [
-                    {'value': 'plots_pns', 'text': 'Plots'}
+                    {'value': 'villas_pns', 'text': 'Luxury Villas'},
+                    {'value': 'Flats_pns', 'text': 'Luxury Flats'}
                 ]
             },
             'sub2Options': {
                 'villas_ng': [
-                    {'value': 'villa1', 'text': 'Villa 1-East facing', 'size': 3200},
-                    {'value': 'villa2', 'text': 'Villa 2-West facing', 'size': 3400}
+                    {'value': 'villa1', 'text': 'Villa 1-East facing'},
+                    {'value': 'villa2', 'text': 'Villa 2-West facing'}
                 ],
                 'Flats_ng': [
-                    {'value': 'flat1', 'text': 'Flat no 101-East facing', 'size': 1200},
-                    {'value': 'flat2', 'text': 'Flat no 102-West facing', 'size': 1250}
+                    {'value': 'flat1', 'text': 'Flat no 101-East facing'},
+                    {'value': 'flat2', 'text': 'Flat no 102-West facing'}
                 ],
-                'plots_pns': [
-                    {'value': 'plot1', 'text': 'Plot 1-East facing', 'size': 180},
-                    {'value': 'plot2', 'text': 'Plot 2-West facing', 'size': 220}
+                'villas_pns': [
+                    {'value': 'villa1', 'text': 'Villa 1-East facing'},
+                    {'value': 'villa2', 'text': 'Villa 2-West facing'}
+                ],
+                'Flats_pns': [
+                    {'value': 'flat1', 'text': 'Flat no 101-East facing'},
+                    {'value': 'flat 2', 'text': 'Flat no 102-West facing'}
                 ]
             },
+
         }
         if key in sample_data:
             return jsonify({'status': 'ok', key: sample_data[key]})
         return jsonify({'status': 'ok', **sample_data})
     return render_template('login-basic.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
