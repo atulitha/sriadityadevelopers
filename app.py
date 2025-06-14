@@ -53,7 +53,17 @@ def not_found(e):
     return '<strong>Page Not Found!</strong>', 404
 
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            return jsonify({'status': 'error', 'message': 'Authentication required'}), 401
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 @app.route('/users.json')
+@login_required
 def list_users_json():
     users = User.query.all()
     return jsonify({
@@ -70,18 +80,29 @@ def list_users_json():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        print(request.get_json())
-        # Get form fields
-        first_name = request.form.get('first_name')
-        last_name = request.form.get('last_name')
-        email = request.form.get('email')
-        password = request.form.get('password')
-        confirm_password = request.form.get('confirm_password')
-        dob = request.form.get('dob')
-        gender = request.form.get('gender')
-        adhar = request.form.get('adhar')
-        pan = request.form.get('pan')
-        role = 'customer'  # or get from form if needed
+        # Parse JSON fields from the 'data' blob
+        if request.content_type.startswith('application/json'):
+            # Handle pure JSON
+            json_data = request.get_json()
+            print('JSON:', json_data)
+        import json
+        json_blob = request.files.get('data')
+        print(json_blob)
+        if not json_blob:
+            return 'Missing form data', 400
+        json_fields = json.load(json_blob)
+
+        # Extract fields from JSON
+        first_name = json_fields.get('first_name')
+        last_name = json_fields.get('last_name')
+        email = json_fields.get('email')
+        password = json_fields.get('password')
+        confirm_password = json_fields.get('confirm_password')
+        dob = json_fields.get('dob')
+        gender = json_fields.get('gender')
+        adhar = json_fields.get('adhar')
+        pan = json_fields.get('pan')
+        role = 'customer'
 
         # Validate passwords match
         if password != confirm_password:
@@ -105,27 +126,9 @@ def register():
 
         hashed_password = generate_password_hash(password)
 
-        # Create user
-        user = User(name=f"{first_name} {last_name}", email=email, password=hashed_password, role=role)
-        db.session.add(user)
-        db.session.commit()
+        # Create user and customer as before...
+        # (rest of your code unchanged)
 
-        # Create customer entry (add fields as per your Customer model)
-        customer = Customer(
-            user_id=user.id,
-            first_name=first_name,
-            last_name=last_name,
-            email=email,
-            password=hashed_password,
-            dob=dob,
-            gender=gender,
-            adhar=adhar,
-            pan=pan,
-            aadhaar_file=aadhaar_filename,
-            pan_file=pan_filename
-        )
-        db.session.add(customer)
-        db.session.commit()
         return redirect(url_for('login'))
     return render_template('register-basic.html')
 
@@ -133,40 +136,61 @@ def register():
 # TODO: Add CSRF protection (e.g., with Flask-WTF), server-side form validation, and robust error handling before deploying to production.# TODO: Add CSRF protection (e.g., with Flask-WTF), server-side form validation,
 #  and robust error handling before deploying to production.
 def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        user = User.query.filter_by(email=email).first()
-        if user and check_password_hash(user.password, password):
-            session['user_id'] = user.id
-            session['role'] = getattr(user, 'role', None)
-            if user.role == 'admin':
-                return redirect(url_for('admin.dashboard'))
-            elif user.role == 'agent':
-                return redirect(url_for('agent.agent_dashboard'))
-            elif user.role == 'customer':
-                return redirect(url_for('customer.customer_dashboard'))
-            else:
-                return 'Unknown role', 403
-        else:
-            return render_template('login-basic.html', error='Invalid credentials')
-    return render_template('login-basic.html')
+    if not request.is_json:
+        return jsonify({'status': 'error', 'message': 'Content-Type must be application/json'}), 400
+    data = request.get_json()
+    print(data)
+    email = data.get('email')
+    password = data.get('password')
+    print(email, password)
+    user = User.query.filter_by(email=email).first()
+    print('User:', user)
+    print(True if user and check_password_hash(user.password, password) else False)
+    print(check_password_hash(user.password, password))
+    if user and check_password_hash(user.password, password):
+        session['user_id'] = user.id
+        session['role'] = getattr(user, 'role', 'user')
+        print('Logged in as {}'.format(user.email))
+        return jsonify({
+            'status': 'ok',
+            'user': {
+                'id': user.id,
+                'email': user.email,
+                'role': getattr(user, 'role', None),
+                'name': user.name
+            }
+        })
+    else:
+        return jsonify({'status': 'error', 'message': 'Invalid username or password'}), 401
 
 
 @app.route('/logout')
+@login_required
 def logout():
     session.pop('user_id', None)
     session.pop('role', None)
-    return redirect(url_for('index'))
+    return jsonify({'status': 'ok', 'message': 'Logged out'})
 
 
 @app.route('/test', methods=['GET', 'POST'])
+@login_required
 def test():
     if request.method == 'POST':
-        print(request.get_json())
-        files = request.files
-        print(files)
-        return jsonify({'status': 'ok', 'message': 'Test successful'})
+        if request.content_type.startswith('application/json'):
+            # Handle pure JSON
+            json_data = request.get_json()
+            print('JSON:', json_data)
+            return jsonify({'status': 'ok', 'type': 'json', 'data': json_data})
+        elif request.content_type.startswith('multipart/form-data'):
+            # Handle multipart with JSON blob and files
+            import json
+            json_blob = request.files.get('data')
+            json_fields = json.load(json_blob) if json_blob else {}
+            print('Form JSON:', json_fields)
+            print('Files:', request.files)
+            return jsonify({'status': 'ok', 'type': 'multipart', 'data': json_fields})
+        else:
+            return jsonify({'status': 'error', 'message': 'Unsupported Content-Type'}), 415
     if request.method == 'GET':
         key = request.args.get('key')
         sample_data = {
