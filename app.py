@@ -1,10 +1,12 @@
 import os
+from functools import wraps
+import time
+from collections import defaultdict
 
 import jinja2
-from flask import Flask, render_template, send_from_directory, jsonify, request, redirect, url_for, session
+from flask import Flask, render_template, send_from_directory, jsonify, request, redirect, url_for, session, abort
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
-from functools import wraps
 
 from admin.admin import admin
 from agent.agent import agent
@@ -19,6 +21,39 @@ UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'pdf'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# --- Security: Session cookie settings ---
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = True  # Set to True in production with HTTPS
+
+# --- Security: Simple Rate Limiting (per IP, per endpoint) ---
+RATE_LIMIT = 100  # requests
+RATE_PERIOD = 60  # seconds
+rate_limits = defaultdict(list)
+
+def rate_limiter():
+    ip = request.remote_addr
+    endpoint = request.endpoint
+    now = time.time()
+    window = [t for t in rate_limits[(ip, endpoint)] if now - t < RATE_PERIOD]
+    window.append(now)
+    rate_limits[(ip, endpoint)] = window
+    if len(window) > RATE_LIMIT:
+        return False
+    return True
+
+def api_security(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        # Rate limiting
+        if not rate_limiter():
+            return jsonify({'status': 'error', 'message': 'Too many requests'}), 429
+        # Require authentication
+        if 'user_id' not in session:
+            return jsonify({'status': 'error', 'message': 'Authentication required'}), 401
+        return f(*args, **kwargs)
+    return decorated
+
 db.init_app(app)
 app.register_blueprint(admin)
 app.register_blueprint(agent)
@@ -27,6 +62,9 @@ print("Starting Flask server...")
 
 
 def allowed_file(filename):
+    # Sanitize filename
+    if not filename or '/' in filename or '\\' in filename:
+        return False
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
@@ -61,11 +99,12 @@ def login_required(f):
         if 'user_id' not in session:
             return jsonify({'status': 'error', 'message': 'Authentication required'}), 401
         return f(*args, **kwargs)
+
     return decorated_function
 
 
-@app.route('/users.json')
-@login_required
+@app.route('/users.json', methods=['GET'])
+@api_security
 def list_users_json():
     users = User.query.all()
     return jsonify({
@@ -78,7 +117,6 @@ def list_users_json():
     })
 
 
-# TODO: move this to a separate module for user management
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -128,31 +166,50 @@ def register():
 
         hashed_password = generate_password_hash(password)
 
-        # Create user and customer as before...
-        # (rest of your code unchanged)
+        # Validate email
+        if not email or '@' not in email or len(email) > 255:
+            return 'Invalid email', 400
+        # Validate password length
+        if not password or len(password) < 8:
+            return 'Password too short', 400
+        # Prevent duplicate email registration
+        if User.query.filter_by(email=email).first():
+            return 'Email already registered', 400
+
+        # Complete user creation and commit to DB
+        user = User(
+            name=f"{first_name} {last_name}",
+            email=email,
+            password=hashed_password,
+            dob=dob,
+            gender=gender,
+            adhar=adhar,
+            pan=pan,
+            aadhaar_file=aadhaar_filename,
+            pan_file=pan_filename,
+            role=role
+        )
+        db.session.add(user)
+        db.session.commit()
 
         return redirect(url_for('login'))
     return render_template('register-basic.html')
 
 
-# TODO: Add CSRF protection (e.g., with Flask-WTF), server-side form validation, and robust error handling before deploying to production.# TODO: Add CSRF protection (e.g., with Flask-WTF), server-side form validation,
-#  and robust error handling before deploying to production.
+@app.route('/login', methods=['POST'])
 def login():
     if not request.is_json:
         return jsonify({'status': 'error', 'message': 'Content-Type must be application/json'}), 400
     data = request.get_json()
-    print(data)
     email = data.get('email')
     password = data.get('password')
-    print(email, password)
+    # Validate input
+    if not email or not password:
+        return jsonify({'status': 'error', 'message': 'Missing credentials'}), 400
     user = User.query.filter_by(email=email).first()
-    print('User:', user)
-    print(True if user and check_password_hash(user.password, password) else False)
-    print(check_password_hash(user.password, password))
     if user and check_password_hash(user.password, password):
         session['user_id'] = user.id
         session['role'] = getattr(user, 'role', 'user')
-        print('Logged in as {}'.format(user.email))
         return jsonify({
             'status': 'ok',
             'user': {
@@ -166,16 +223,15 @@ def login():
         return jsonify({'status': 'error', 'message': 'Invalid username or password'}), 401
 
 
-@app.route('/logout')
-@login_required
+@app.route('/logout', methods=['POST'])
+@api_security
 def logout():
     session.pop('user_id', None)
     session.pop('role', None)
     return jsonify({'status': 'ok', 'message': 'Logged out'})
 
-
 @app.route('/test', methods=['GET', 'POST'])
-@login_required
+@api_security
 def test():
     if request.method == 'POST':
         if request.content_type.startswith('application/json'):
@@ -248,6 +304,15 @@ def test():
             return jsonify({'status': 'ok', key: sample_data[key]})
         return jsonify({'status': 'ok', **sample_data})
     return render_template('login-basic.html')
+
+
+# --- Security: Hide error details in production ---
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # Only show details in debug mode
+    if app.debug:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    return jsonify({'status': 'error', 'message': 'Internal server error'}), 500
 
 
 if __name__ == '__main__':
