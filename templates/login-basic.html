@@ -27,7 +27,7 @@
                             <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">
                                 Login</h3></div>
                             <div class="card-body">
-                                <form id="loginForm">
+                                <form id="loginForm" action="javascript:void(0);">
                                     <div class="form-group">
                                         <!-- Email field with required asterisk -->
                                         <label class="small mb-1" for="inputEmailAddress">
@@ -59,6 +59,9 @@
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small" href="password-basic.html">Forgot Password?</a>
                                             <button type="submit" class="btn btn-primary">Login</button>
+                                        </div>
+                                        <div id="loginError" style="color: red; font-size: 1em; display: none;">
+                                            Invalid username or password.
                                         </div>
                                     </div>
                                 </form>
@@ -100,7 +103,10 @@
         const password = document.getElementById('inputPassword').value;
         const rememberMe = document.getElementById('rememberPasswordCheck').checked;
 
-        const response = await fetch('/test', {
+        // Hide previous error
+        document.getElementById('loginError').style.display = 'none';
+
+        const response = await fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -109,10 +115,21 @@
         });
 
         if (response.ok) {
-            // Handle success (e.g., redirect or show message)
-            window.location.href = '/index.html'; // Example redirect
+            const data = await response.json();
+            if (data && data.user && data.user.role) {
+                if (data.user.role === 'agent') {
+                    window.location.href = '/agent/';
+                } else if (data.user.role === 'admin') {
+                    window.location.href = '/admin/';
+                } else if (data.user.role === 'customer') {
+                    window.location.href = '/customer/';
+                } else {
+                    window.location.href = '/login-basic.html';
+                }
+            }
+        } else if (response.status === 401) {
+            document.getElementById('loginError').style.display = 'block';
         } else {
-            // Handle error (e.g., show error message)
             alert('Login failed. Please check your credentials.');
         }
     });
