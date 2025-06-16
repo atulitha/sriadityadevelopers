@@ -95,3 +95,7 @@ def userdata_tables():
     This page allows the agent to book a site visit.
     """
     return render_template('userdata-tables.html')
+
+@agent.route('/<pagename>')
+def serve_page(pagename):  # Changed from 'admin' to 'serve_page'
+    return render_template(pagename)
