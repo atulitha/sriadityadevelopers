@@ -392,4 +392,52 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }
                             });
                         }
+
+                        //Date of birth validation
+                        // Date of birth validation
+                        const dobInput = document.getElementById('dob');
+                        if (dobInput) {
+                            let errorDiv = document.getElementById('dobError');
+                            if (!errorDiv) {
+                                errorDiv = document.createElement('div');
+                                errorDiv.id = 'dobError';
+                                errorDiv.style.color = 'red';
+                                errorDiv.style.display = 'none';
+                                dobInput.parentNode.appendChild(errorDiv);
+                            }
+
+                            function updateDOBMax() {
+                                const now = new Date();
+                                const maxDate = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+                                dobInput.max = maxDate.toISOString().split('T')[0];
+                            }
+                            setInterval(updateDOBMax, 1000);
+                            updateDOBMax();
+
+                            dobInput.addEventListener('change', function () {
+                                const dob = new Date(this.value);
+                                const now = new Date();
+                                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                                const minAgeDate = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+                                errorDiv.style.display = 'none';
+
+                                // Prevent selecting today or any future date
+                                if (this.value === '' || dob.getTime() === today.getTime() || dob > today) {
+                                    errorDiv.textContent = 'Please select a valid date of birth (not today or future).';
+                                    errorDiv.style.display = 'block';
+                                    this.value = '';
+                                    this.classList.add('is-invalid');
+                                    return;
+                                }
+                                if (dob > minAgeDate) {
+                                    errorDiv.textContent = 'You must be at least 18 years old.';
+                                    errorDiv.style.display = 'block';
+                                    this.value = '';
+                                    this.classList.add('is-invalid');
+                                    return;
+                                }
+                                this.classList.remove('is-invalid');
+                                this.classList.add('is-valid');
+                            });
+                        }
                     });
