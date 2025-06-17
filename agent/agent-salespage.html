@@ -28,6 +28,14 @@
                             <div class="card-body">
                                 <form>
                                     <div class="form-group">
+                                        <label for="clientIdInput">Client ID</label>
+                                        <input type="text" class="form-control" id="clientIdInput" name="clientId" placeholder="Enter Client ID" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="clientMobileInput">Client Mobile Number</label>
+                                        <input type="tel" class="form-control" id="clientMobileInput" name="clientMobile" placeholder="Enter Mobile Number" pattern="[0-9]{10}" maxlength="10" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="mainDropdown">Project</label>
                                         <select class="form-control" id="mainDropdown">
                                             <option value="">Select Project</option>
@@ -40,8 +48,7 @@
                                         <select class="form-control" id="sub1Dropdown">
                                             <option value="">Select options</option>
                                         </select>
-                                    </div>
-                                    <div class="form-group" id="sub2Group" style="display:none;">
+                                    </div><div class="form-group" id="sub2Group" style="display:none;">
                                         <label for="sub2Dropdown">Options</label>
                                         <select class="form-control" id="sub2Dropdown">
                                             <option value="">Select options</option>

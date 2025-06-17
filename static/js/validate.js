@@ -362,4 +362,34 @@ document.addEventListener('DOMContentLoaded', function () {
                                 removeBtn.style.display = 'none';
                             });
                         }
+
+
+                        const phoneInput = document.getElementById('phone');
+                        if (phoneInput) {
+                            phoneInput.setAttribute('maxlength', '10');
+                            phoneInput.addEventListener('input', function () {
+                                this.value = this.value.replace(/\D/g, '').slice(0, 10);
+                                let errorDiv = document.getElementById('phoneError');
+                                if (!errorDiv) {
+                                    errorDiv = document.createElement('div');
+                                    errorDiv.id = 'phoneError';
+                                    errorDiv.style.color = 'red';
+                                    errorDiv.style.fontSize = '0.9em';
+                                    phoneInput.parentNode.appendChild(errorDiv);
+                                }
+                                if (this.value.length !== 10 && this.value.length > 0) {
+                                    errorDiv.textContent = "Phone number must be exactly 10 digits.";
+                                    errorDiv.style.display = "block";
+                                    this.setCustomValidity("Phone number must be exactly 10 digits.");
+                                } else {
+                                    errorDiv.style.display = "none";
+                                    this.setCustomValidity("");
+                                }
+                            });
+                            phoneInput.addEventListener('keypress', function (e) {
+                                if (!/\d/.test(e.key) || this.value.length >= 10) {
+                                    e.preventDefault();
+                                }
+                            });
+                        }
                     });
