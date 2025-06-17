@@ -31,6 +31,7 @@ RATE_LIMIT = 100  # requests
 RATE_PERIOD = 60  # seconds
 rate_limits = defaultdict(list)
 
+
 def rate_limiter():
     ip = request.remote_addr
     endpoint = request.endpoint
@@ -42,6 +43,7 @@ def rate_limiter():
         return False
     return True
 
+
 def api_security(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -52,7 +54,9 @@ def api_security(f):
         if 'user_id' not in session:
             return jsonify({'status': 'error', 'message': 'Authentication required'}), 401
         return f(*args, **kwargs)
+
     return decorated
+
 
 db.init_app(app)
 app.register_blueprint(admin)
@@ -115,6 +119,14 @@ def list_users_json():
             'name': f"{user.name}",
         } for user in users]
     })
+
+
+def allowed_image(filename):
+    ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    if not filename or '/' in filename or '\\' in filename:
+        return False
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
+    pass
 
 
 @app.route('/register', methods=['POST'])
@@ -223,14 +235,17 @@ def logout():
     session.pop('role', None)
     return jsonify({'status': 'ok', 'message': 'Logged out'})
 
+
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     if request.method == 'POST':
         if request.content_type.startswith('application/json'):
+            # Handle pure JSON
             json_data = request.get_json()
             print('JSON:', json_data)
             return jsonify({'status': 'ok', 'type': 'json', 'data': json_data})
         elif request.content_type.startswith('multipart/form-data'):
+            # Handle multipart with JSON blob and files
             import json
             json_blob = request.files.get('data')
             json_fields = json.load(json_blob) if json_blob else {}
@@ -291,7 +306,10 @@ def test():
         if key in sample_data:
             return jsonify({'status': 'ok', key: sample_data[key]})
         return jsonify({'status': 'ok', **sample_data})
-    return render_template('login-basic.html')# --- Security: Hide error details in production ---
+    return render_template('login-basic.html')
+
+
+# --- Security: Hide error details in production ---
 @app.errorhandler(Exception)
 def handle_exception(e):
     # Only show details in debug mode
