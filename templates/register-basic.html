@@ -1,101 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Register- Sri Aditya Developers </title>
-    <link href="css/styles.css" rel="stylesheet"/>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png"/>
-    <script data-search-pseudo-elements defer
-            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
-            crossorigin="anonymous"></script>
-</head>
-<body class="bg-primary">
-<div id="layoutAuthentication">
-    <div id="layoutAuthentication_content">
-        <main>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-7">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Agent
-                                Registration Form</h3></div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="small mb-1" for="inputFirstName">First Name</label>
-                                                <input class="form-control py-4"
-                                                       id="inputFirstName"
-                                                       type="text"
-                                                       placeholder="Enter first name"
-                                                       pattern="^[A-Za-z]+$"
-                                                       inputmode="text"
-                                                       maxlength="32"
-                                                       required
-                                                       title="Only letters are allowed"/>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Register- Sri Aditya Developers </title>
+        <link href="css/styles.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png"/>
+        <script data-search-pseudo-elements defer
+                src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
+                crossorigin="anonymous"></script>
+    </head>
+    <body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Agent
+                                    Registration Form</h3></div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputFirstName">First Name</label>
+                                                    <input class="form-control py-4"
+                                                           id="inputFirstName"
+                                                           type="text"
+                                                           placeholder="Enter first name"
+                                                           pattern="^[A-Za-z]+$"
+                                                           inputmode="text"
+                                                           maxlength="32"
+                                                           required
+                                                           title="Only letters are allowed"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputLastName">Last Name</label>
+                                                    <input class="form-control py-4"
+                                                           id="inputLastName" type="text"
+                                                           placeholder="Enter last name"
+                                                           pattern="^[A-Za-z]+$"
+                                                           inputmode="text"
+                                                           maxlength="32"
+                                                           required
+                                                           title="Only letters are allowed"/>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="small mb-1" for="inputLastName">Last Name</label>
-                                                <input class="form-control py-4"
-                                                       id="inputLastName" type="text"
-                                                       placeholder="Enter last name"
-                                                       pattern="^[A-Za-z]+$"
-                                                       inputmode="text"
-                                                       maxlength="32"
-                                                       required
-                                                       title="Only letters are allowed"/>
+                                        <!-- Email Address -->
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="inputEmailAddress">
+                                                Email <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control py-4" id="inputEmailAddress" name="email"
+                                                   type="email"
+                                                   placeholder="Enter email address"
+                                                   pattern="^[a-zA-Z0-9._%+-]+@(gmail|outlook|hotmail|yahoo)\.com$"
+                                                   required
+                                                   autocomplete="off"/>
+                                            <div class="invalid-feedback">
+                                                Please enter a valid email address (Gmail, Outlook, Hotmail, or Yahoo).
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- Email Address -->
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="inputEmailAddress">
-                                            Email <span class="text-danger">*</span>
-                                        </label>
-                                        <input class="form-control py-4" id="inputEmailAddress" name="email"
-                                               type="email"
-                                               placeholder="Enter email address"
-                                               pattern="^[a-zA-Z0-9._%+-]+@(gmail|outlook|hotmail|yahoo)\.com$"
-                                               required
-                                               autocomplete="off"/>
-                                        <div class="invalid-feedback">
-                                            Please enter a valid email address (Gmail, Outlook, Hotmail, or Yahoo).
-                                        </div>
-                                    </div>
-                                    <!--Password and Confirm Password -->
-                                    <div class="form-row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="small mb-1" for="inputPassword">Password</label>
-                                                <input class="form-control py-4"
-                                                       id="inputPassword"
-                                                       type="password"
-                                                       placeholder="Enter password"
-                                                       pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,24}$"
-                                                       required
-                                                       title="Password must be 8-24 characters, include letters, numbers, and special symbols."/>
+                                        <!--Password and Confirm Password -->
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputPassword">Password</label>
+                                                    <input class="form-control py-4"
+                                                           id="inputPassword"
+                                                           type="password"
+                                                           placeholder="Enter password"
+                                                           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,24}$"
+                                                           required
+                                                           title="Password must be 8-24 characters, include letters, numbers, and special symbols."/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputConfirmPassword">Confirm
+                                                        Password</label>
+                                                    <input class="form-control py-4" id="inputConfirmPassword"
+                                                           type="password" placeholder="Confirm password"/>
+                                                    <div id="confirmPasswordError" style="display:none;color:red;"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="small mb-1" for="inputConfirmPassword">Confirm
-                                                    Password</label>
-                                                <input class="form-control py-4" id="inputConfirmPassword"
-                                                       type="password" placeholder="Confirm password"/>
-                                                <div id="confirmPasswordError" style="display:none;color:red;"></div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Date of Birth -->
                                         <div class="form-row">
                                             <!-- Date of Birth -->
                                             <div class="col-md-6">
@@ -171,11 +170,9 @@
                                                     </select>
                                                 </div>
                                             </div>
-
-
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="small mb-1" for="Aadhaar number">Aadhaar
+                                                    <label class="small mb-1" for="adhar">Aadhaar
                                                         number</label>
                                                     <input class="form-control"
                                                            id="adhar"
@@ -188,11 +185,10 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-group"><label class="small mb-1"
-                                                                               for="Pan">pan</label><input
+                                                                               for="pan">pan</label><input
                                                         class="form-control py-4" id="pan" type="text"
                                                         maxlength="16" placeholder="pan number" required/></div>
                                             </div>
-
                                             <!-- Aadhaar Upload -->
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -204,7 +200,6 @@
                                                            required/>
                                                 </div>
                                             </div>
-
                                             <!-- PAN Upload -->
                                             <div class="col-md-7">
                                                 <div class="form-group">
@@ -215,146 +210,143 @@
                                                            required/>
                                                 </div>
                                             </div>
-
-
                                         </div>
-                                        <div class="form-group mt-4 mb-0">
-                                            <button type="submit" class="btn btn-primary btn-block">Create Account
-                                            </button>
+                                        <div class="form-group mt-4 mb-0 text-center">
+                                            <button type="submit" class="btn btn-primary">Create Account</button>
                                         </div>
-                                </form>
-                            </div>
-                            <div class="card-footer text-center">
-                                <div class="small"><a href="login-basic.html"></a></div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <div class="small"><a href="login-basic.html"></a></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
-    </div>
-    <div id="layoutAuthentication_footer">
-        <footer class="footer mt-auto footer-dark">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 small">Copyright &copy; Sri Aditya Developers 2025</div>
-                    <div class="col-md-6 text-md-right small">
-                        <a href="#!">Privacy Policy</a>
-                        &middot;
-                        <a href="#!">Terms &amp; Conditions</a>
+            </main>
+        </div>
+        <div id="layoutAuthentication_footer">
+            <footer class="footer mt-auto footer-dark">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 small">Copyright &copy; Sri Aditya Developers 2025</div>
+                        <div class="col-md-6 text-md-right small">
+                            <a href="#!">Privacy Policy</a>
+                            &middot;
+                            <a href="#!">Terms &amp; Conditions</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
-<script src="js/validate.js"></script>
-<script>
-    document.querySelector('form').addEventListener('submit', async function(e) {
-        e.preventDefault();
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/validate.js"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-        const data = {
-            firstName: document.getElementById('inputFirstName').value,
-            lastName: document.getElementById('inputLastName').value,
-            email: document.getElementById('inputEmailAddress').value,
-            password: document.getElementById('inputPassword').value,
-            confirmPassword: document.getElementById('inputConfirmPassword').value,
-            dob: document.getElementById('dob').value,
-            gender: document.getElementById('gender').value,
-            designation: document.getElementById('designation').value,
-            referenceAgent: document.getElementById('Reference_agent').value,
-            agentTeam: document.getElementById('Agent_team').value,
-            aadhaar: document.getElementById('adhar').value,
-            pan: document.getElementById('pan').value
-            // File uploads are not included in JSON; handle separately if needed
-        };
+            const data = {
+                firstName: document.getElementById('inputFirstName').value,
+                lastName: document.getElementById('inputLastName').value,
+                email: document.getElementById('inputEmailAddress').value,
+                password: document.getElementById('inputPassword').value,
+                confirmPassword: document.getElementById('inputConfirmPassword').value,
+                dob: document.getElementById('dob').value,
+                gender: document.getElementById('gender').value,
+                designation: document.getElementById('designation').value,
+                referenceAgent: document.getElementById('Reference_agent').value,
+                agentTeam: document.getElementById('Agent_team').value,
+                aadhaar: document.getElementById('adhar').value,
+                pan: document.getElementById('pan').value
+                // File uploads are not included in JSON; handle separately if needed
+            };
 
-        const response = await fetch('/test', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            const response = await fetch('/test', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert('Registration successful!');
+                // Optionally redirect
+            } else {
+                alert('Registration failed.');
+            }
         });
-
-        if (response.ok) {
-            alert('Registration successful!');
-            // Optionally redirect
-        } else {
-            alert('Registration failed.');
-        }
-    });
-</script>
-<script>
-    // Populate Designation dropdown
-    fetch('/test?key=Designation')
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => {
-        if (data.status === 'ok' && Array.isArray(data.Designation)) {
-          const select = document.getElementById('designation');
-          select.innerHTML = '<option value="">Select Designation</option>';
-          data.Designation.forEach(item => {
-            const option = document.createElement('option');
-            option.value = item.id || item.name;
-            option.textContent = item.name;
-            select.appendChild(option);
+    </script>
+    <script>
+        // Populate Designation dropdown
+        fetch('/test?key=Designation')
+          .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+          })
+          .then(data => {
+            if (data.status === 'ok' && Array.isArray(data.Designation)) {
+              const select = document.getElementById('designation');
+              select.innerHTML = '<option value="">Select Designation</option>';
+              data.Designation.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.id || item.name;
+                option.textContent = item.name;
+                select.appendChild(option);
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
           });
-        }
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
-      });
 
-    // Populate Reference of director for agent dropdown
-    fetch('/test?key=directors')
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => {
-        if (data.status === 'ok' && Array.isArray(data.directors)) {
-          const select = document.getElementById('Reference_agent');
-          select.innerHTML = '<option value="">Select Reference</option>';
-          data.directors.forEach(item => {
-            const option = document.createElement('option');
-            option.value = item.id || item.name;
-            option.textContent = item.name;
-            select.appendChild(option);
+        // Populate Reference of director for agent dropdown
+        fetch('/test?key=directors')
+          .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+          })
+          .then(data => {
+            if (data.status === 'ok' && Array.isArray(data.directors)) {
+              const select = document.getElementById('Reference_agent');
+              select.innerHTML = '<option value="">Select Reference</option>';
+              data.directors.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.id || item.name;
+                option.textContent = item.name;
+                select.appendChild(option);
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
           });
-        }
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
-      });
 
-    // Populate Agent team dropdown
-    fetch('/test?key=teams')
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => {
-        if (data.status === 'ok' && Array.isArray(data.teams)) {
-          const select = document.getElementById('Agent_team');
-          select.innerHTML = '<option value="">Select Agent Team</option>';
-          data.teams.forEach(item => {
-            const option = document.createElement('option');
-            option.value = item.id || item.name;
-            option.textContent = item.name;
-            select.appendChild(option);
+        // Populate Agent team dropdown
+        fetch('/test?key=teams')
+          .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+          })
+          .then(data => {
+            if (data.status === 'ok' && Array.isArray(data.teams)) {
+              const select = document.getElementById('Agent_team');
+              select.innerHTML = '<option value="">Select Agent Team</option>';
+              data.teams.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.id || item.name;
+                option.textContent = item.name;
+                select.appendChild(option);
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
           });
-        }
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
-      });
-</script>
-</body>
-</html>
+    </script>
+    </body>
+    </html>

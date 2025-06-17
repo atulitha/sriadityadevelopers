@@ -227,12 +227,10 @@ def logout():
 def test():
     if request.method == 'POST':
         if request.content_type.startswith('application/json'):
-            # Handle pure JSON
             json_data = request.get_json()
             print('JSON:', json_data)
             return jsonify({'status': 'ok', 'type': 'json', 'data': json_data})
         elif request.content_type.startswith('multipart/form-data'):
-            # Handle multipart with JSON blob and files
             import json
             json_blob = request.files.get('data')
             json_fields = json.load(json_blob) if json_blob else {}
@@ -268,37 +266,32 @@ def test():
                     {'value': 'plots_ng', 'text': 'Plots'}
                 ],
                 'panasapadu': [
-                    {'value': 'villas_pns', 'text': 'Luxury Villas'},
-                    {'value': 'Flats_pns', 'text': 'Luxury Flats'}
+                    {'value': 'plots_pns', 'text': 'Plots'}
                 ]
             },
             'sub2Options': {
                 'villas_ng': [
-                    {'value': 'villa1', 'text': 'Villa 1-East facing'},
-                    {'value': 'villa2', 'text': 'Villa 2-West facing'}
+                    {'value': 'villa1', 'text': 'Villa 1-East facing', 'size': 2500},
+                    {'value': 'villa2', 'text': 'Villa 2-West facing', 'size': 2600}
                 ],
                 'Flats_ng': [
-                    {'value': 'flat1', 'text': 'Flat no 101-East facing'},
-                    {'value': 'flat2', 'text': 'Flat no 102-West facing'}
+                    {'value': 'flat1', 'text': 'Flat no 101-East facing', 'size': 1200},
+                    {'value': 'flat2', 'text': 'Flat no 102-West facing', 'size': 1250}
                 ],
-                'villas_pns': [
-                    {'value': 'villa1', 'text': 'Villa 1-East facing'},
-                    {'value': 'villa2', 'text': 'Villa 2-West facing'}
+                'plots_ng': [
+                    {'value': 'plot1', 'text': 'Plot 1', 'size': 300},
+                    {'value': 'plot2', 'text': 'Plot 2', 'size': 320}
                 ],
-                'Flats_pns': [
-                    {'value': 'flat1', 'text': 'Flat no 101-East facing'},
-                    {'value': 'flat 2', 'text': 'Flat no 102-West facing'}
+                'plots_pns': [
+                    {'value': 'plot1', 'text': 'Plot 1', 'size': 350},
+                    {'value': 'plot2', 'text': 'Plot 2', 'size': 370}
                 ]
-            },
-
+            }
         }
         if key in sample_data:
             return jsonify({'status': 'ok', key: sample_data[key]})
         return jsonify({'status': 'ok', **sample_data})
-    return render_template('login-basic.html')
-
-
-# --- Security: Hide error details in production ---
+    return render_template('login-basic.html')# --- Security: Hide error details in production ---
 @app.errorhandler(Exception)
 def handle_exception(e):
     # Only show details in debug mode
