@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
 
                         //Date of birth validation
-                        // Date of birth validation
+
                         const dobInput = document.getElementById('dob');
                         if (dobInput) {
                             let errorDiv = document.getElementById('dobError');
