@@ -12,6 +12,7 @@ from admin.admin import admin
 from agent.agent import agent
 from customer.customer import customer
 from dbmodels.create import User, db
+import routes
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-very-secret-key'
@@ -129,7 +130,7 @@ def allowed_image(filename):
     pass
 
 
-@app.route('/register', methods=['POST'])
+# @app.route('/register', methods=['POST'])
 def register():
     import json
     json_blob = request.files.get('data')
@@ -316,6 +317,100 @@ def handle_exception(e):
     if app.debug:
         return jsonify({'status': 'error', 'message': str(e)}), 500
     return jsonify({'status': 'error', 'message': 'Internal server error'}), 500
+
+@app.route('/register_client', methods=['GET', 'POST'])
+def register_agent():
+    if 'user_id' not in session or session.get('role') != 'admin':
+        return jsonify({'status': 'error', 'message': 'Authentication required'}), 401
+
+    if request.method == 'POST':
+        data = request.get_json()
+
+        # Validate the registration data
+        validation_result = validate_agent_data(data)
+        if validation_result['status'] == 'error':
+            return jsonify(validation_result), 400
+
+        try:
+            # Create new agent user
+            hashed_password = generate_password_hash(data['password'])
+
+            agent = User(
+                name=f"{data['firstName']} {data['lastName']}",
+                email=data['email'],
+                password=hashed_password,
+                dob=data['dob'],
+                gender=data['gender'],
+                designation=data['designation'],
+                reference_agent=data['referenceAgent'],
+                agent_team=data['agentTeam'],
+                adhar=data['aadhaar'],
+                pan=data['pan'],
+                role='agent'
+            )
+
+            db.session.add(agent)
+            db.session.commit()
+
+            return jsonify({
+                'status': 'ok',
+                'message': 'Agent registered successfully',
+                'agent_id': agent.id
+            })
+
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({
+                'status': 'error',
+                'message': 'Failed to register agent'
+            }), 500
+
+    # GET request returns form data structure
+    return jsonify({
+        'status': 'ok',
+        'form_fields': {
+            'firstName': '',
+            'lastName': '',
+            'email': '',
+            'password': '',
+            'confirmPassword': '',
+            'dob': '',
+            'gender': ['male', 'female', 'other'],
+            'designation': '',
+            'referenceAgent': '',
+            'agentTeam': '',
+            'aadhaar': '',
+            'pan': ''
+        }
+    })
+
+def validate_agent_data(data):
+    required_fields = [
+        'firstName', 'lastName', 'email', 'password', 'confirmPassword',
+        'dob', 'gender', 'designation', 'referenceAgent', 'agentTeam',
+        'aadhaar', 'pan'
+    ]
+
+    # Check required fields
+    for field in required_fields:
+        if field not in data:
+            return {'status': 'error', 'message': f'Missing field: {field}'}
+
+    # Password validation
+    if data['password'] != data['confirmPassword']:
+        return {'status': 'error', 'message': 'Passwords do not match'}
+    if len(data['password']) < 8:
+        return {'status': 'error', 'message': 'Password must be at least 8 characters'}
+
+    # Email validation
+    if not re.match(r'^[^@]+@[^@]+\.[^@]+$', data['email']):
+        return {'status': 'error', 'message': 'Invalid email format'}
+
+    # Check if email already exists
+    if User.query.filter_by(email=data['email']).first():
+        return {'status': 'error', 'message': 'Email already registered'}
+
+    return {'status': 'ok'}
 
 
 if __name__ == '__main__':
