@@ -2,7 +2,6 @@ import jinja2
 from flask import Flask, render_template, send_from_directory, jsonify, request, session
 from werkzeug.security import check_password_hash
 
-import routes
 import views
 from admin.admin import admin
 from agent.agent import agent
@@ -116,10 +115,12 @@ def test():
                                   {'id': 3, 'name': 'Agent Smith'}],
                        'directors': [{'id': 1, 'name': 'Director Brown'}, {'id': 2, 'name': 'Director White'}],
                        'teams': [{'id': 1, 'name': 'Team Alpha'}, {'id': 2, 'name': 'Team Beta'}],
-                       'Designation': [{'id': 1, 'name': 'Manager'}, {'id': 2, 'name': 'Executive'}], 'sub1Options': {
-                'nandagokulam': [{'value': 'villas_ng', 'text': 'Luxury Villas'},
-                                 {'value': 'Flats_ng', 'text': 'Luxury Flats'}, {'value': 'plots_ng', 'text': 'Plots'}],
-                'panasapadu': [{'value': 'plots_pns', 'text': 'Plots'}]}, 'sub2Options': {
+                       'Designation': [{'id': 'Manager', 'name': 'Manager'}, {'id': 'Executive', 'name': 'Executive'}],
+                       'sub1Options': {
+                           'nandagokulam': [{'value': 'villas_ng', 'text': 'Luxury Villas'},
+                                            {'value': 'Flats_ng', 'text': 'Luxury Flats'},
+                                            {'value': 'plots_ng', 'text': 'Plots'}],
+                           'panasapadu': [{'value': 'plots_pns', 'text': 'Plots'}]}, 'sub2Options': {
                 'villas_ng': [{'value': 'villa1', 'text': 'Villa 1-East facing', 'size': 2500},
                               {'value': 'villa2', 'text': 'Villa 2-West facing', 'size': 2600}],
                 'Flats_ng': [{'value': 'flat1', 'text': 'Flat no 101-East facing', 'size': 1200},
@@ -143,7 +144,7 @@ def handle_exception(e):
     return jsonify({'status': 'error', 'message': 'Internal server error'}), 500
 
 
-app.add_url_rule('/register-agent', '/register_agent', view_func=views.register_agent, methods=['POST'])
+app.add_url_rule('/register-agent', '/register_agent', view_func=views.register_agent, methods=['GET', 'POST'])
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000, threaded=True)

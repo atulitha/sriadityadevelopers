@@ -27,14 +27,12 @@ def init_db():
         agents = []
         agent_users = [
             {
-                'name': 'John Doe',
-                'email': 'john.doe@example.com',
+                'email': 'john.doe@gmail.com',
                 'password': 'Agent@123',
                 'role': 'agent',
                 'first_name': 'John',
                 'middle_name': 'Robert',
                 'last_name': 'Doe',
-                'position': 'Senior Agent',
                 'office': 'Mumbai',
                 'age': 35,
                 'Address': '123 Main St',
@@ -46,16 +44,15 @@ def init_db():
                 'adhar': '123456789012',
                 'pan': 'ABCDE1234F',
                 'designation': 'Senior Agent',
+                'agent_team': 'Team A'
             },
             {
-                'name': 'Jane Smith',
-                'email': 'jane.smith@example.com',
+                'email': 'jane.smith@gmail.com',
                 'password': 'Agent@123',
                 'role': 'agent',
                 'first_name': 'Jane',
                 'middle_name': 'Marie',
                 'last_name': 'Smith',
-                'position': 'Agent',
                 'office': 'Delhi',
                 'age': 28,
                 'Address': '456 Oak Ave',
@@ -67,28 +64,51 @@ def init_db():
                 'adhar': '123456789013',
                 'pan': 'FGHIJ5678K',
                 'designation': 'Agent',
-            }
+                'agent_team': 'Team B'
+            },
+            {
+                'email': 'satish@gmail.com',
+                'password': 'Director@123',
+                'role': 'director',
+                'first_name': 'Satish',
+                'last_name': '',
+                'office': 'Bangalore',
+                'age': 50,
+                'Address': '789 Elm St',
+                'start_date': datetime(2020, 1, 1),
+                'percentage': 15,
+                'sales': 10000000.0,
+                'status': 'Full-time',
+                'phone': '9876543213',
+                'adhar': '123456789016',
+                'pan': 'LMNOP6789R',
+                'designation': 'Director',
+                'agent_team': 'Management',
+            },
         ]
         for agent_info in agent_users:
             user = User(
-                name=agent_info['name'],
                 first_name=agent_info['first_name'],
                 last_name=agent_info['last_name'],
                 email=agent_info['email'],
                 password=generate_password_hash(agent_info['password']),
-                role=agent_info['role'],
+                dob=agent_info.get('dob', datetime(1985, 1, 1)),
+                gender=agent_info.get('gender', 'Male'),
                 adhar=agent_info['adhar'],
                 pan=agent_info['pan'],
-                designation=agent_info['designation']
+                aadhaar_file=agent_info.get('aadhaar_file', None),
+                pan_file=agent_info.get('pan_file', None),
+                designation=agent_info['designation'],
+                role=agent_info['role'],
+                reference_agent=agent_info.get('reference_agent', None),
+                agent_team=agent_info.get('agent_team', None)
             )
             db.session.add(user)
             db.session.commit()
             agent = Agent(
                 user_id=user.id,
                 first_name=agent_info['first_name'],
-                middle_name=agent_info['middle_name'],
                 last_name=agent_info['last_name'],
-                position=agent_info['position'],
                 office=agent_info['office'],
                 age=agent_info['age'],
                 Address=agent_info['Address'],
@@ -112,7 +132,7 @@ def init_db():
         customer_users = [
             {
                 'name': 'Mike Johnson',
-                'email': 'mike.j@example.com',
+                'email': 'mike.j@gmail.com',
                 'password': 'Customer@123',
                 'role': 'customer',
                 'first_name': 'Mike',
@@ -129,7 +149,7 @@ def init_db():
             },
             {
                 'name': 'Sarah Wilson',
-                'email': 'sarah.w@example.com',
+                'email': 'sarah.w@gmail.com',
                 'password': 'Customer@123',
                 'role': 'customer',
                 'first_name': 'Sarah',
@@ -147,14 +167,20 @@ def init_db():
         ]
         for cust_info in customer_users:
             user = User(
-                name=cust_info['name'],
                 first_name=cust_info['first_name'],
                 last_name=cust_info['last_name'],
                 email=cust_info['email'],
                 password=generate_password_hash(cust_info['password']),
-                role=cust_info['role'],
+                dob=cust_info.get('dob', datetime(1990, 1, 1)),  # Example default
+                gender=cust_info.get('gender', 'Male'),
                 adhar=cust_info['adhar'],
-                pan=cust_info['pan']
+                pan=cust_info['pan'],
+                aadhaar_file=cust_info.get('aadhaar_file', None),
+                pan_file=cust_info.get('pan_file', None),
+                designation=cust_info.get('designation', None),
+                role=cust_info['role'],
+                reference_agent=cust_info.get('reference_agent', None),
+                agent_team=cust_info.get('agent_team', None)
             )
             db.session.add(user)
             db.session.commit()
