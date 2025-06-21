@@ -1,16 +1,17 @@
 import re
 from collections import defaultdict
-from datetime import time
 from functools import wraps
 
 from flask import request, jsonify, session
 
 from dbmodels.create import User
+
 # --- Security: Simple Rate Limiting (per IP, per endpoint) ---
 RATE_LIMIT = 100  # requests
 RATE_PERIOD = 60  # seconds
 rate_limits = defaultdict(list)
 ALLOWED_EXTENSIONS = {'pdf'}
+
 
 def validate_agent_data(data):
     required_fields = [
@@ -42,6 +43,7 @@ def validate_agent_data(data):
 
 
 def rate_limiter():
+    import time
     ip = request.remote_addr
     endpoint = request.endpoint
     now = time.time()
@@ -56,13 +58,14 @@ def rate_limiter():
 def api_security(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        # Rate limiting
-        if not rate_limiter():
-            return jsonify({'status': 'error', 'message': 'Too many requests'}), 429
-        # Require authentication
-        if 'user_id' not in session:
-            return jsonify({'status': 'error', 'message': 'Authentication required'}), 401
-        return f(*args, **kwargs)
+        try:
+            if not rate_limiter():
+                return jsonify({'status': 'error', 'message': 'Too many requests'}), 429
+            if 'user_id' not in session:
+                return jsonify({'status': 'error', 'message': 'Authentication required'}), 401
+            return f(*args, **kwargs)
+        except Exception as e:
+            return jsonify({'status': 'error', 'message': str(e)}), 500
 
     return decorated
 

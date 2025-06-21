@@ -4,8 +4,9 @@ def book_visit():
     if request.method == 'POST':
         data = request.get_json()
         print("Received JSON data:", data)
+
         return jsonify({
             'status': 'success',
             'message': 'Site visit booked successfully',
         })
-    return render_template('book-site-visit.html')
+    return None

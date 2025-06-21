@@ -88,6 +88,7 @@ def login():
 def logout():
     session.pop('user_id', None)
     session.pop('role', None)
+    print('User logged out')
     return jsonify({'status': 'ok', 'message': 'Logged out'})
 
 
@@ -113,9 +114,6 @@ def test():
         key = request.args.get('key')
         sample_data = {'agents': [{'id': 1, 'name': 'Self Registration'}, {'id': 2, 'name': 'Agent Jhon'},
                                   {'id': 3, 'name': 'Agent Smith'}],
-                       'directors': [{'id': 1, 'name': 'Director Brown'}, {'id': 2, 'name': 'Director White'}],
-                       'teams': [{'id': 1, 'name': 'Team Alpha'}, {'id': 2, 'name': 'Team Beta'}],
-                       'Designation': [{'id': 'Manager', 'name': 'Manager'}, {'id': 'Executive', 'name': 'Executive'}],
                        'sub1Options': {
                            'nandagokulam': [{'value': 'villas_ng', 'text': 'Luxury Villas'},
                                             {'value': 'Flats_ng', 'text': 'Luxury Flats'},
