@@ -14,8 +14,20 @@
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
             crossorigin="anonymous"></script>
+    <style>
+        input.form-control {
+            background: transparent !important;
+            color: #232946;
+        }
+        input.form-control::placeholder {
+            color: rgba(35,41,70,0.5);
+            opacity: 1;
+        }
+    </style>
+
 </head>
-<body class="bg-primary" style="background: url('assets/img/background.jpg') no-repeat center center fixed; background-size: cover;">
+<body class="bg-primary"
+      style="background: url('assets/img/background2k .jpg') no-repeat center center fixed; background-size: cover;">
 <div id="layoutAuthentication">
     <div id="layoutAuthentication_content">
         <main>
@@ -23,7 +35,7 @@
                 <div class="row justify-content-start">
                     <div class="col-lg-5" style="margin-left:0;margin-right:auto;">
                         <div class="card shadow-lg border-0 rounded-lg mt-5"
-                             style="box-shadow:0 4px 32px 0 #ffb54588, 0 2px 8px 0 #23294644; width:375px; max-width:100%;">
+                             style="background: rgba(255,255,255,0.15); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.25); box-shadow:0 4px 32px 0 #ffb54588, 0 2px 8px 0 #23294644; width:375px; max-width:100%;">
                             <div class="card-header justify-content-center">
                                 <h3 class="font-weight-light my-4">Login</h3>
                             </div>
@@ -35,7 +47,7 @@
                                             Email <span style="color: red;">*</span>
                                         </label>
                                         <input class="form-control py-4" id="inputEmailAddress" name="email"
-                                               type="email" placeholder="Enter email address" required/>
+                                               type="email" placeholder="Enter email address"  required style=" background: transparent; color:white;"/>
                                         <div id="emailError" style="color: red; font-size: 0.9em; display: none;">Please
                                             enter a valid email address.
                                         </div>
@@ -67,7 +79,7 @@
                                                 Invalid username or password.
                                             </div>
                                             <div style="text-align: center; margin: 1.5em 0 1em 0;">
-                                            <span style="font-size: 0.9em; font-weight: 500; letter-spacing: 0.04em; background: linear-gradient(90deg, #3a8dde, #1fc8db); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;">or register as</span>
+                                                <span style="font-size: 0.9em; font-weight: 500; letter-spacing: 0.04em; background: linear-gradient(90deg, #3a8dde, #1fc8db); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;">or register as</span>
                                                 <div style="height: 0.5px; background: linear-gradient(90deg, #e3eafc 0%, #c8e6fa 100%); margin: 0.7em auto 1em auto; width: 55%;"></div>
                                             </div>
                                             <div style="text-align: center;">
