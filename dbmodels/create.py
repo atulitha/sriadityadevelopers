@@ -139,7 +139,6 @@ class feedback(db.Model):
 
 class User(db.Model):
         __tablename__ = 'users'
-        name = db.Column(db.String(100), nullable=False)
         id = db.Column(db.Integer, primary_key=True)
         first_name = db.Column(db.String(100), nullable=False)
         last_name = db.Column(db.String(100), nullable=False)
@@ -154,3 +153,4 @@ class User(db.Model):
         designation = db.Column(db.String(100), nullable=True)  # e.g., 'Agent', 'Manager'
         role = db.Column(db.String(50), default='user')  # 'customer', 'agent', 'admin'
         reference_agent = db.Column(db.String(100), nullable=True)  # Reference agent for agents
+        agent_team = db.Column(db.String(100), nullable=True)  # Team for agents

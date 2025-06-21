@@ -337,7 +337,7 @@
 </script>
 <script>
     // Populate Designation dropdown
-    fetch('/test?key=Designation')
+    fetch('/register-agent?key=Designation')
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
@@ -359,7 +359,7 @@
       });
 
     // Populate Reference of director for agent dropdown
-    fetch('/test?key=directors')
+    fetch('/register-agent?key=directors')
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
@@ -381,7 +381,7 @@
       });
 
     // Populate Agent team dropdown
-    fetch('/test?key=teams')
+    fetch('/register-agent?key=teams')
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
