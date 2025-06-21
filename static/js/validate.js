@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         const photoInput = document.getElementById('photo_file');
                         const photoPreview = document.getElementById('photo_preview');
                         const removeBtn = document.getElementById('remove_photo');
-                        const placeholder = 'assets/img/photo-placeholder.png';
+                        const placeholder = 'assets/img/profile_photo.png';
 
                         if (photoInput && photoPreview && removeBtn) {
                             photoInput.addEventListener('change', function(event) {
