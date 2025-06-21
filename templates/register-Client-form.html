@@ -37,6 +37,9 @@
             margin-left: 0 !important;
             padding-left: 0 !important;
         }
+        .card-header {
+            margin-bottom: 0px;
+        }
         .card {
             background: rgba(255, 255, 255, 0.04) !important;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
@@ -68,6 +71,53 @@
         label {
             color: #f8f9fa !important;
         }
+        .custom-green-btn {
+            background-color: #232b33 !important;
+            border-color: #232b33 !important;
+        }
+
+        .photo-upload-group {
+    position: relative;
+    height: 260px;
+    min-width: 160px;
+    min-height: 220px;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    padding: 10px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.photo-preview-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    margin-bottom: 10px;
+}
+.photo-preview-img {
+    width: 140px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    background: transparent;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+.photo-remove-btn {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 3;
+}
     </style>
 </head>
 <body>
@@ -189,31 +239,30 @@
                                         <!-- Photo Upload Row -->
                                         <div class="form-row py-4">
                                             <div class="col-md-8 px-2">
-                                                <div class="form-group"
-                                                     style="position: relative; height: 260px; min-width: 160px; min-height: 220px; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.08); padding: 10px; margin-top: 0; display: flex; flex-direction: column; justify-content: flex-end;">
-                                                    <label class="small mb-1" for="photo_file"
-                                                           style="font-size: 1.0rem;">
+                                                <div class="form-group photo-upload-group">
+                                                    <label class="small mb-1" for="photo_file">
                                                         Upload Photo <span class="text-danger">*</span>
                                                     </label>
-                                                    <div style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center; height: 180px; margin-bottom: 10px;">
+                                                    <div class="photo-preview-container">
                                                         <img id="photo_preview"
                                                              src="assets/img/photo-placeholder.png"
                                                              alt="Photo Preview"
-                                                             style="width: 140px; height: 180px; object-fit: cover; border-radius: 5px; background: transparent; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.04);"/>
+                                                             class="photo-preview-img"/>
                                                         <button type="button" id="remove_photo"
-                                                                style="display:none; position: absolute; top: 8px; right: 8px; z-index: 3;"
-                                                                class="btn btn-sm btn-outline-danger">Remove
+                                                                class="btn btn-sm btn-outline-danger photo-remove-btn"
+                                                                aria-label="Remove photo">
+                                                            Remove
                                                         </button>
                                                     </div>
                                                     <input class="form-control-file" id="photo_file"
                                                            name="photo_file"
                                                            type="file" accept="image/png, image/jpeg" required
-                                                           aria-describedby="photoHelp"
-                                                           style="margin-bottom: 6px;"/>
-                                                    <small id="photoHelp" class="form-text text-muted">Max size:
-                                                        2MB. JPG or PNG only.</small>
-                                                    <div id="photoError"
-                                                         style="color: #dc3545; font-size: 0.95em; display: none; margin-top: 4px;"></div>
+                                                           aria-describedby="photoHelp"/>
+                                                    <small id="photoHelp" class="form-text text-muted">
+                                                        Max size: 2MB. JPG or PNG only.
+                                                    </small>
+                                                    <div id="photoError" class="text-danger"
+                                                         style="display: none; font-size: 0.95em; margin-top: 4px;"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -260,7 +309,8 @@
                                         </div>
                                         <!-- Terms and Conditions -->
                                         <div class="form-group mt-4 mb-0">
-                                            <button type="submit" class="btn btn-primary btn-block">Create Account
+                                            <button type="submit" class="btn btn-primary btn-block custom-green-btn">
+                                                Create Account
                                             </button>
                                         </div>
                                 </form>
