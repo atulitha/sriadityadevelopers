@@ -56,19 +56,35 @@
                                                     password</label>
                                             </div>
                                         </div>
-                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="password-basic.html">Forgot Password?</a>
-                                            <button type="submit" class="btn btn-primary">Login</button>
-                                        </div>
-                                        <div id="loginError" style="color: red; font-size: 1em; display: none;">
-                                            Invalid username or password.
-                                        </div>
-                                    </div>
+                                     <div style="background: #f8fafc; padding: 1.5em 1em; border-radius: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-top: 1.5em;">
+                                         <div class="form-group d-flex align-items-center justify-content-between mb-2">
+                                             <a class="small" href="password-basic.html">Forgot Password?</a>
+                                             <button type="submit" class="btn btn-primary">Login</button>
+                                         </div>
+                                         <div id="loginError" style="color: red; font-size: 1em; display: none; text-align: center;">
+                                             Invalid username or password.
+                                         </div>
+                                         <div style="text-align: center; margin: 1em 0 0.5em 0;">
+                                             <span style="font-size: 0.9em; font-weight: 400; letter-spacing: 0.04em; background: linear-gradient(90deg, #6cb2ff, #51d88a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;">
+                                                 or register as
+                                             </span>
+                                         </div>
+                                         <div style="text-align: center;">
+                                             <button type="button"
+                                                     class="btn btn-sm mr-2"
+                                                     style="background: linear-gradient(90deg, #007bff 0%, #0056b3 100%); color: #fff; border: none; border-radius: 25px; padding: 0.5rem 1.5rem; box-shadow: 0 4px 14px rgba(0,123,255,0.15);"
+                                                     onclick="window.location.href='register-basic.html'">
+                                                 <i class="fas fa-user-tie"></i> Agent
+                                             </button>
+                                             <button type="button"
+                                                     class="btn btn-sm"
+                                                     style="background: linear-gradient(90deg, #17a2b8 0%, #138496 100%); color: #fff; border: none; border-radius: 25px; padding: 0.5rem 1.5rem; box-shadow: 0 4px 14px rgba(23,162,184,0.15);"
+                                                     onclick="window.location.href='register-Client-form.html'">
+                                                 <i class="fas fa-user"></i> Client
+                                             </button>
+                                         </div>
+                                     </div>
                                 </form>
-                            </div>
-                            <div class="card-footer text-center">
-                                <div class="small"><a href="register-basic.html" style="font-size: 1.5em;">Need an
-                                    account? Sign up!</a></div>
                             </div>
                         </div>
                     </div>
