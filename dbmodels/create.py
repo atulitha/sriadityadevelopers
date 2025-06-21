@@ -151,4 +151,6 @@ class User(db.Model):
         pan = db.Column(db.String(20), unique=True, nullable=False)
         aadhaar_file = db.Column(db.String(255), nullable=True)
         pan_file = db.Column(db.String(255), nullable=True)
+        designation = db.Column(db.String(100), nullable=True)  # e.g., 'Agent', 'Manager'
         role = db.Column(db.String(50), default='user')  # 'customer', 'agent', 'admin'
+        reference_agent = db.Column(db.String(100), nullable=True)  # Reference agent for agents

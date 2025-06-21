@@ -45,6 +45,7 @@ def init_db():
                 'phone': '9876543210',
                 'adhar': '123456789012',
                 'pan': 'ABCDE1234F',
+                'designation': 'Senior Agent',
             },
             {
                 'name': 'Jane Smith',
@@ -65,6 +66,7 @@ def init_db():
                 'phone': '9876543211',
                 'adhar': '123456789013',
                 'pan': 'FGHIJ5678K',
+                'designation': 'Agent',
             }
         ]
         for agent_info in agent_users:
@@ -76,7 +78,8 @@ def init_db():
                 password=generate_password_hash(agent_info['password']),
                 role=agent_info['role'],
                 adhar=agent_info['adhar'],
-                pan=agent_info['pan']
+                pan=agent_info['pan'],
+                designation=agent_info['designation']
             )
             db.session.add(user)
             db.session.commit()
