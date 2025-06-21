@@ -392,7 +392,12 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }
                             });
                         }
-
+                            document.getElementById('photo_file').addEventListener('change', function(event) {
+                                const [file] = event.target.files;
+                                if (file) {
+                                    document.getElementById('photo_preview').src = URL.createObjectURL(file);
+                                }
+                            });
                         //Date of birth validation
 
                         const dobInput = document.getElementById('dob');
