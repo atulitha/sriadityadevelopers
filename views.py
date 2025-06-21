@@ -73,13 +73,26 @@ def register_agent():
             print(data)
             for x in request.files:
                 print(x, request.files[x])
-            photo = request.files['photo_file']
-            photo_path = 'static/uploads/' + photo.filename
-            photo.save(photo_path)
             aadhaar_file = request.files['aadhaar_file']
-            aadhaar_file.save('static/uploads/' + aadhaar_file.filename)
+            aadhaar_file_bytes = aadhaar_file.read()
             pan_file = request.files['pan_file']
-            pan_file.save('static/uploads/' + pan_file.filename)
+            pan_file_bytes = pan_file.read()
+            photo = request.files['photo_file']
+            photo_file_bytes = photo.read()
+            if not aadhaar_file_bytes or not pan_file_bytes or not photo_file_bytes:
+                return jsonify({
+                    'status': 'error',
+                    'message': 'Aadhaar, PAN, and Photo files are required'
+                }), 400
+            MAX_FILE_SIZE = 2 * 1024 * 1024  # 2 MB in bytes
+
+            if (len(aadhaar_file_bytes) > MAX_FILE_SIZE or
+                len(pan_file_bytes) > MAX_FILE_SIZE or
+                len(photo_file_bytes) > MAX_FILE_SIZE):
+                return jsonify({
+                    'status': 'error',
+                    'message': 'Aadhaar, PAN, and Photo files must be less than 2 MB each'
+                }), 400
 
             # Create new agent user
             hashed_password = generate_password_hash(data['password'])
@@ -97,8 +110,9 @@ def register_agent():
                 adhar=data['aadhaar'],
                 pan=data['pan'],
                 role='agent',
-                aadhaar_file=data.get('aadhaar_file', None),
-                pan_file=data.get('pan_file', None),
+                aadhaar_file=aadhaar_file_bytes,
+                pan_file=pan_file_bytes,
+                photo=photo_file_bytes,
             )
             db.session.add(agent)
             db.session.commit()

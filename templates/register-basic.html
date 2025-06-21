@@ -194,7 +194,7 @@
                                                     Upload Photo <span class="text-danger">*</span>
                                                 </label>
                                                 <div style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center; height: 180px; margin-bottom: 10px;">
-                                                    <img id="photo_preview" src="assets/img/profile_photo.png"
+                                                    <img id="photo_preview" src="assets/img/profile-pic.svg"
                                                          alt="Photo Preview"
                                                          style="width: 140px; height: 180px; object-fit: cover; border-radius: 5px; background: #fff; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.04);"/>
                                                     <button type="button" id="remove_photo"
@@ -329,125 +329,126 @@
 <script src="js/validate.js"></script>
 <script>
     document.querySelector('form').addEventListener('submit', async function (e) {
-        e.preventDefault();
+            e.preventDefault();
 
-        const form = e.target;
-        const formData = new FormData();
+            const form = e.target;
+            const formData = new FormData();
 
-        formData.append('firstName', document.getElementById('inputFirstName').value);
-        formData.append('lastName', document.getElementById('inputLastName').value);
-        formData.append('email', document.getElementById('inputEmailAddress').value);
-        formData.append('password', document.getElementById('inputPassword').value);
-        formData.append('confirmPassword', document.getElementById('inputConfirmPassword').value);
-        formData.append('dob', document.getElementById('dob').value);
-        formData.append('gender', document.getElementById('gender').value);
-        formData.append('designation', document.getElementById('designation').value);
-        formData.append('referenceAgent', document.getElementById('Reference_agent').value);
-        formData.append('agentTeam', document.getElementById('Agent_team').value);
-        formData.append('aadhaar', document.getElementById('adhar').value);
-        formData.append('pan', document.getElementById('pan').value);
+            formData.append('firstName', document.getElementById('inputFirstName').value);
+            formData.append('lastName', document.getElementById('inputLastName').value);
+            formData.append('email', document.getElementById('inputEmailAddress').value);
+            formData.append('password', document.getElementById('inputPassword').value);
+            formData.append('confirmPassword', document.getElementById('inputConfirmPassword').value);
+            formData.append('dob', document.getElementById('dob').value);
+            formData.append('gender', document.getElementById('gender').value);
+            formData.append('designation', document.getElementById('designation').value);
+            formData.append('referenceAgent', document.getElementById('Reference_agent').value);
+            formData.append('agentTeam', document.getElementById('Agent_team').value);
+            formData.append('aadhaar', document.getElementById('adhar').value);
+            formData.append('pan', document.getElementById('pan').value);
 
-        // Append files
-        const photoFile = document.getElementById('photo_file').files[0];
-        if (photoFile) formData.append('photo_file', photoFile);
+            // Append files
+            const photoFile = document.getElementById('photo_file').files[0];
+            if (photoFile) formData.append('photo_file', photoFile);
 
-        const aadhaarFile = document.getElementById('aadhaar_file').files[0];
-        if (aadhaarFile) formData.append('aadhaar_file', aadhaarFile);
+            const aadhaarFile = document.getElementById('aadhaar_file').files[0];
+            if (aadhaarFile) formData.append('aadhaar_file', aadhaarFile);
 
-        const panFile = document.getElementById('pan_file').files[0];
-        if (panFile) formData.append('pan_file', panFile);
+            const panFile = document.getElementById('pan_file').files[0];
+            if (panFile) formData.append('pan_file', panFile);
 
-        const response = await fetch('/register-agent', {
-            method: 'POST',
-            body: formData
-            // No need to set Content-Type; browser will set it to multipart/form-data
+            const response = await fetch('/register-agent', {
+                method: 'POST',
+                body: formData
+                // No need to set Content-Type; browser will set it to multipart/form-data
+            });
+
+            if (response.ok) {
+                alert('Registration successful!');
+            } else {
+                let errorMsg = 'Registration failed.';
+                try {
+                    const data = await response.json();
+                    if (data && (data.error || data.message)) {
+                        errorMsg += ' ' + (data.error || data.message);
+                    } else {
+                        errorMsg += ' (No error message from server)';
+                    }
+                } catch (e) {
+                    const text = await response.text();
+                    errorMsg += ` (Status: ${response.status})\n${text}`;
+                }
+                alert(errorMsg);
+            }
+        }
+    )
+    ;
+
+    // Populate Designation dropdown
+    fetch('/register-agent?key=Designation')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'ok' && Array.isArray(data.Designation)) {
+                const select = document.getElementById('designation');
+                select.innerHTML = '<option value="">Select Designation</option>';
+                data.Designation.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id || item.name;
+                    option.textContent = item.name;
+                    select.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
         });
 
-        if (response.ok) {
-            alert('Registration successful!');
-        } else {
-            let errorMsg = 'Registration failed.';
-            try {
-                const data = await response.json();
-                if (data && (data.error || data.message)) {
-                    errorMsg += ' ' + (data.error || data.message);
-                } else {
-                    errorMsg += ' (No error message from server)';
-                }
-            } catch (e) {
-                const text = await response.text();
-                errorMsg += ` (Status: ${response.status})\n${text}`;
+    // Populate Reference of director for agent dropdown
+    fetch('/register-agent?key=directors')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'ok' && Array.isArray(data.directors)) {
+                const select = document.getElementById('Reference_agent');
+                select.innerHTML = '<option value="">Select Reference</option>';
+                data.directors.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id || item.name;
+                    option.textContent = item.name;
+                    select.appendChild(option);
+                });
             }
-            alert(errorMsg);
-        }}
-    )
-        ;
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
 
-        // Populate Designation dropdown
-        fetch('/register-agent?key=Designation')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
-            .then(data => {
-                if (data.status === 'ok' && Array.isArray(data.Designation)) {
-                    const select = document.getElementById('designation');
-                    select.innerHTML = '<option value="">Select Designation</option>';
-                    data.Designation.forEach(item => {
-                        const option = document.createElement('option');
-                        option.value = item.id || item.name;
-                        option.textContent = item.name;
-                        select.appendChild(option);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-            });
-
-        // Populate Reference of director for agent dropdown
-        fetch('/register-agent?key=directors')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
-            .then(data => {
-                if (data.status === 'ok' && Array.isArray(data.directors)) {
-                    const select = document.getElementById('Reference_agent');
-                    select.innerHTML = '<option value="">Select Reference</option>';
-                    data.directors.forEach(item => {
-                        const option = document.createElement('option');
-                        option.value = item.id || item.name;
-                        option.textContent = item.name;
-                        select.appendChild(option);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-            });
-
-        // Populate Agent team dropdown
-        fetch('/register-agent?key=teams')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
-            .then(data => {
-                if (data.status === 'ok' && Array.isArray(data.teams)) {
-                    const select = document.getElementById('Agent_team');
-                    select.innerHTML = '<option value="">Select Agent Team</option>';
-                    data.teams.forEach(item => {
-                        const option = document.createElement('option');
-                        option.value = item.id || item.name;
-                        option.textContent = item.name;
-                        select.appendChild(option);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-            });
+    // Populate Agent team dropdown
+    fetch('/register-agent?key=teams')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'ok' && Array.isArray(data.teams)) {
+                const select = document.getElementById('Agent_team');
+                select.innerHTML = '<option value="">Select Agent Team</option>';
+                data.teams.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id || item.name;
+                    option.textContent = item.name;
+                    select.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
 </script>
 </body>
 </html>

@@ -138,19 +138,20 @@ class feedback(db.Model):
 
 
 class User(db.Model):
-        __tablename__ = 'users'
-        id = db.Column(db.Integer, primary_key=True)
-        first_name = db.Column(db.String(100), nullable=False)
-        last_name = db.Column(db.String(100), nullable=False)
-        email = db.Column(db.String(120), unique=True, nullable=False)
-        password = db.Column(db.String(255), nullable=False)
-        dob = db.Column(db.Date, nullable=True)
-        gender = db.Column(db.String(20), nullable=True)
-        adhar = db.Column(db.String(20), unique=True, nullable=False)
-        pan = db.Column(db.String(20), unique=True, nullable=False)
-        aadhaar_file = db.Column(db.String(255), nullable=True)
-        pan_file = db.Column(db.String(255), nullable=True)
-        designation = db.Column(db.String(100), nullable=True)  # e.g., 'Agent', 'Manager'
-        role = db.Column(db.String(50), default='user')  # 'customer', 'agent', 'admin'
-        reference_agent = db.Column(db.String(100), nullable=True)  # Reference agent for agents
-        agent_team = db.Column(db.String(100), nullable=True)  # Team for agents
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    dob = db.Column(db.Date, nullable=True)
+    gender = db.Column(db.String(20), nullable=True)
+    adhar = db.Column(db.String(20), unique=True, nullable=False)
+    pan = db.Column(db.String(20), unique=True, nullable=False)
+    aadhaar_file = db.Column(db.LargeBinary, nullable=True)  # Store file as binary  # Store file as binary
+    pan_file = db.Column(db.LargeBinary, nullable=True)  # Store file as binary
+    designation = db.Column(db.String(100), nullable=True)  # e.g., 'Agent', 'Manager'
+    role = db.Column(db.String(50), default='user')  # 'customer', 'agent', 'admin'
+    reference_agent = db.Column(db.String(100), nullable=True)  # Reference agent for agents
+    agent_team = db.Column(db.String(100), nullable=True)  # Team for agents
+    photo = db.Column(db.LargeBinary, nullable=True)  # Store photo as binary
