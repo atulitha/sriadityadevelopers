@@ -77,32 +77,32 @@
         }
 
         .photo-upload-group {
-            position: relative;
-            height: 320px; /* Increased height */
-            min-width: 160px;
-            min-height: 220px;
-            background: rgba(0,0,0,0.18);
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
-            padding: 24px 10px 24px 10px; /* Increased vertical padding */
-            margin-top: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
+    position: relative;
+    height: 400px; /* Increased height */
+    min-width: 180px;
+    min-height: 300px;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    padding: 32px 14px 32px 14px; /* More padding */
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
 .photo-preview-container {
     position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 180px;
-    margin-bottom: 10px;
+    height: 220px; /* Increased height */
+    margin-bottom: 18px;
 }
 .photo-preview-img {
-    width: 140px;
-    height: 180px;
+    width: 160px;
+    height: 210px;
     object-fit: cover;
     border-radius: 5px;
     background: transparent;
@@ -111,12 +111,8 @@
     margin-top: 20px;
     margin-bottom: 8px;
 }
-.photo-remove-btn {
-    display: none;
-    position: absolute;
-    top: 14px;
-    right: 8px;
-    z-index: 3;
+.form-control-file {
+    margin-top: 18px; /* Space between file input and preview */
 }
     </style>
 </head>
@@ -248,15 +244,10 @@
                                                              src="assets/img/photo-placeholder.png"
                                                              alt="Photo Preview"
                                                              class="photo-preview-img"/>
-                                                        <button type="button" id="remove_photo"
-                                                                class="btn btn-sm btn-outline-danger photo-remove-btn"
-                                                                aria-label="Remove photo">
-                                                            Remove
-                                                        </button>
                                                     </div>
                                                     <input class="form-control-file" id="photo_file"
                                                            name="photo_file"
-                                                           type="file" accept="image/png, image/jpeg" required
+                                                           type="file" accept="image/png, image/jpeg"
                                                            aria-describedby="photoHelp"/>
                                                     <small id="photoHelp" class="form-text text-muted">
                                                         Max size: 2MB. JPG or PNG only.
