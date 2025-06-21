@@ -56,14 +56,31 @@ def register_agent():
             return jsonify({'status': 'error', 'message': 'Invalid request'}), 400
 
     if request.method == 'POST':
-        data = request.get_json()
-        # print(data)
-        # Validate the registration data
-        validation_result = validate_agent_data(data)
-        if validation_result['status'] == 'error':
-            return jsonify(validation_result), 400
-
         try:
+            data = request.form.to_dict()
+            # Add file data if present
+            if 'aadhaarFile' in request.files:
+                print('aadhaarFile')
+                data['aadhaarFile'] = request.files['aadhaarFile']
+                data['aadhaarFile'].save('static/uploads/')
+            if 'panFile' in request.files:
+                print('panFile')
+                data['panFile'] = request.files['panFile']
+
+            validation_result = validate_agent_data(data)
+            if validation_result['status'] == 'error':
+                return jsonify(validation_result), 400
+            print(data)
+            for x in request.files:
+                print(x, request.files[x])
+            photo = request.files['photo_file']
+            photo_path = 'static/uploads/' + photo.filename
+            photo.save(photo_path)
+            aadhaar_file = request.files['aadhaar_file']
+            aadhaar_file.save('static/uploads/' + aadhaar_file.filename)
+            pan_file = request.files['pan_file']
+            pan_file.save('static/uploads/' + pan_file.filename)
+
             # Create new agent user
             hashed_password = generate_password_hash(data['password'])
 
@@ -80,8 +97,8 @@ def register_agent():
                 adhar=data['aadhaar'],
                 pan=data['pan'],
                 role='agent',
-                aadhaar_file=data.get('aadhaarFile', None),
-                pan_file=data.get('panFile', None),
+                aadhaar_file=data.get('aadhaar_file', None),
+                pan_file=data.get('pan_file', None),
             )
             db.session.add(agent)
             db.session.commit()
@@ -100,20 +117,3 @@ def register_agent():
             }), 500
 
     # GET request returns form data structure
-    return jsonify({
-        'status': 'ok',
-        'form_fields': {
-            'firstName': '',
-            'lastName': '',
-            'email': '',
-            'password': '',
-            'confirmPassword': '',
-            'dob': '',
-            'gender': ['male', 'female', 'other'],
-            'designation': '',
-            'referenceAgent': '',
-            'agentTeam': '',
-            'aadhaar': '',
-            'pan': ''
-        }
-    })
