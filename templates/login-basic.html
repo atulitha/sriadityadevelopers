@@ -19,25 +19,15 @@
             background: transparent !important;
             color: #232946;
         }
-
         input.form-control::placeholder {
-            color: rgba(35, 41, 70, 0.5);
+            color: rgba(35,41,70,0.5);
             opacity: 1;
         }
     </style>
 
 </head>
-<body class="bg-primary">
-<section style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; overflow: hidden;">
-    <img src="assets/img/loginbackground.png"
-         alt="Background"
-         style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 0;">
-    <video autoplay muted loop playsinline
-           style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 1;">
-        <source src="assets/img/loginintro.webm" type="video/webm">
-        <!-- If video fails, image is already shown -->
-    </video>
-</section>
+<body class="bg-primary"
+      style="background: url('assets/img/background2k .jpg') no-repeat center center fixed; background-size: cover;">
 <div id="layoutAuthentication">
     <div id="layoutAuthentication_content">
         <main>
@@ -57,8 +47,7 @@
                                             Email <span style="color: red;">*</span>
                                         </label>
                                         <input class="form-control py-4" id="inputEmailAddress" name="email"
-                                               type="email" placeholder="Enter email address" required
-                                               style=" background: transparent; color:white"/>
+                                               type="email" placeholder="Enter email address"  required style=" background: transparent; color:white;"/>
                                         <div id="emailError" style="color: red; font-size: 0.9em; display: none;">Please
                                             enter a valid email address.
                                         </div>
