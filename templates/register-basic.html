@@ -38,25 +38,20 @@
             margin: 0;
             padding: 0;
             overflow: auto;
+            background-image: url('assets/img/abg9.png'); /* Corrected property name */
+            background-size: cover; /* Ensures the image covers the entire background */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-attachment: fixed; /* Keeps the background fixed during scrolling */
         }
 
-        #background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1; /* Ensure video is behind other elements */
-        }
-
-        .form-left {
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            min-height: 100vh;
-            margin-top: 50px;
-        }
+       .form-left {
+           display: flex;
+           justify-content: flex-end; /* Aligns content to the right */
+           align-items: flex-start;
+           min-height: 100vh;
+           margin-top: 50px;
+       }
 
         @media (max-width: 991.98px) {
             .form-left {
@@ -65,11 +60,34 @@
         }
 
         /* Change text color to button color */
-        .card-body, .card-header, .card-footer,
-        .card-header h3,
-        label,
-        select.form-control,
-        textarea.form-control,
+        .card-body {
+            color: #007bff !important; /* Button color */
+        }
+
+        .card-header {
+            color: white !important; /* Button color */
+        }
+
+        .card-footer {
+            color: #007bff !important; /* Button color */
+        }
+
+        .card-header h3 {
+            color: white !important; /* Button color */
+        }
+
+        label {
+            color: white !important; /* Button color */
+        }
+
+        select.form-control {
+            color: #007bff !important; /* Button color */
+        }
+
+        textarea.form-control {
+            color: #007bff !important; /* Button color */
+        }
+
         option {
             color: #007bff !important; /* Button color */
         }
@@ -83,19 +101,9 @@
             border-color: #007bff !important; /* Match border color to button */
         }
 
-        /* Set placeholder color to black */
-        input.form-control::placeholder,
-        textarea.form-control::placeholder {
-            color: #000 !important; /* Black placeholder color */
-            opacity: 1; /* Ensure visibility */
-        }
     </style>
 </head>
 <body class="nav-fixed">
-<video id="background-video" autoplay muted>
-    <source src="assets/img/abg4.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
 <nav class="topnav navbar navbar-expand shadow navbar-light bg-transparent" id="sidenavAccordion">
     <a class="navbar-brand d-none d-sm-block" href="index.html" style="color: white"> <-- Back to Home Page</a>
 </nav>
