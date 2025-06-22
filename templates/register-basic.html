@@ -17,9 +17,8 @@
     <style>
         /* Make card transparent with glass effect */
         .card.shadow-lg {
-            background: rgba(255, 255, 255, 0.3) !important; /* Adjust alpha for transparency */
-            backdrop-filter: blur(0px); /* Apply blur effect */
-            box-shadow: none !important;
+            background: rgba(255, 255, 255, 0.1) !important; /* Adjust alpha for transparency */
+            backdrop-filter: blur(-10px); /* Apply blur effect */
             border: none !important;
         }
 
@@ -45,6 +44,52 @@
             background-attachment: fixed; /* Keeps the background fixed during scrolling */
         }
 
+         /* Change field background and text color */
+    select.form-control {
+        background: rgba(240, 240, 240, 0.8); /* Light gray background */
+        backdrop-filter: blur(5px); /* Apply blur effect */
+        border: 1px solid #007bff; /* Border color matching button */
+        color: #333; /* Dark text color */
+        border-radius: 8px; /* Rounded corners */
+        padding: 8px; /* Padding for better appearance */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    select.form-control:focus {
+        outline: none; /* Remove default focus outline */
+        border-color: #0056b3; /* Change border color on focus */
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect on focus */
+    }
+
+    input.form-control,
+    textarea.form-control {
+        background-color: rgba(240, 240, 240, 0.8) !important; /* Light gray background */
+        color: #333 !important; /* Dark text color */
+        backdrop-filter: blur(5px); /* Apply blur effect */
+        border-color: #007bff !important; /* Match border color to button */
+    }
+    /* Default outline color */
+    input.form-control,
+    select.form-control,
+    textarea.form-control {
+        border: 2px white; /* Default border color */
+        border-radius: 8px; /* Rounded corners */
+    }
+
+    /* Outline color on focus */
+    input.form-control:focus,
+    select.form-control:focus,
+    textarea.form-control:focus {
+        border-color: white; /* Green border color on focus */
+        box-shadow: 0 0 8px rgba(40, 167, 69, 0.5); /* Glow effect */
+        outline: none; /* Remove default outline */
+    }
+
+    option {
+        background-color: rgba(240, 240, 240, 0.5); /* Light gray background for options */
+        color: black !important; /* Dark text color */
+    }
+
        .form-left {
            display: flex;
            justify-content: flex-end; /* Aligns content to the right */
@@ -61,7 +106,7 @@
 
         /* Change text color to button color */
         .card-body {
-            color: #007bff !important; /* Button color */
+            color: white !important; /* Button color */
         }
 
         .card-header {
@@ -81,15 +126,15 @@
         }
 
         select.form-control {
-            color: #007bff !important; /* Button color */
+            color: black !important; /* Button color */
         }
 
         textarea.form-control {
-            color: #007bff !important; /* Button color */
+            color: white !important; /* Button color */
         }
 
         option {
-            color: #007bff !important; /* Button color */
+            color: white !important; /* Button color */
         }
 
         /* Set text input color to black */
