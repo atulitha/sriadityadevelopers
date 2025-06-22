@@ -126,7 +126,28 @@ def test():
                 'plots_ng': [{'value': 'plot1', 'text': 'Plot 1', 'size': 300},
                              {'value': 'plot2', 'text': 'Plot 2', 'size': 320}],
                 'plots_pns': [{'value': 'plot1', 'text': 'Plot 1', 'size': 350},
-                              {'value': 'plot2', 'text': 'Plot 2', 'size': 370}]}}
+                              {'value': 'plot2', 'text': 'Plot 2', 'size': 370}],
+
+                'projects': [
+                    {
+                        "name": "Aditya Enclave"
+                    },
+                    {
+                        "name": "Aditya Heights"
+                    },
+                    {
+                        "name": "Aditya Meadows"
+                    },
+                    {
+                        "name": "Aditya Greens"
+                    },
+                    {
+                        "name": "Aditya Pearl"
+                    }
+                ],
+
+            }
+                       }
         if key in sample_data:
             return jsonify({'status': 'ok', key: sample_data[key]})
         return jsonify({'status': 'ok', **sample_data})

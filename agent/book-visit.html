@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Register-Sri Aditya Developers</title>
+    <title>Book visit-Sri Aditya Developers</title>
     <link href="css/styles.css" rel="stylesheet"/>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.png"/>
     <script data-search-pseudo-elements defer
@@ -47,19 +47,14 @@
                                             class="form-control py-4" id="inputEmailAddress" name="email" type="email"
                                             aria-describedby="emailHelp" placeholder="Enter email address" required/>
                                     </div>
-                                    <div class="form-group"><label class="small mb-1" for="mobile">Mobile number</label><input
-                                            class="form-control py-4" id="mobile" name="mobile" type="text"
+                                    <div class="form-group"><label class="small mb-1" for="phone">Mobile number</label><input
+                                            class="form-control py-4" id="phone" name="mobile" type="text"
                                             pattern="^\d{10}$" maxlength="10" placeholder="mobile number" required/>
                                     </div>
                                     <div class="form-group">
                                         <label class="small mb-1" for="project-name">Project Name </label>
                                         <select class="form-control" id="project-name" name="projectName" required>
                                             <option value="">Select Project</option>
-                                            <option>Aditya Enclave</option>
-                                            <option>Aditya Heights</option>
-                                            <option>Aditya Meadows</option>
-                                            <option>Aditya Greens</option>
-                                            <option>Aditya Pearl</option>
                                         </select>
                                     </div>
                                     <div class="form-group"><label class="small mb-1" for="plot-number">Plot
@@ -69,8 +64,8 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="visitdate">Date of visit</label>
-                                            <input class="form-control py-4" id="visitdate" name="visitDate"
+                                            <label class="small mb-1" for="dateOfVisit">Date of visit</label>
+                                            <input class="form-control py-4" id="dateOfVisit" name="visitDate"
                                                    type="date"
                                                    required/>
                                         </div>
@@ -138,6 +133,28 @@
                 messageDiv.textContent = 'An error occurred. Please try again.';
             });
     });
+</script>
+<script>
+    fetch('/test?key=projects')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'ok' && Array.isArray(data.projects)) {
+                const select = document.getElementById('projects');
+                select.innerHTML = '<option value="">Select project</option>';
+                data.Designation.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id || item.name;
+                    option.textContent = item.name;
+                    select.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
 </script>
 <script src="js/validate.js"></script>
 </body>
