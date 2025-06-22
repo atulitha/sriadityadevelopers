@@ -269,7 +269,7 @@ def init_db():
 
         # Create Visits
         visits = [
-            visit(
+            Visit(
                 customer_id=customers[0].id,
                 plot_id=plots[0].id,
                 agent_id=agents[0].id,
