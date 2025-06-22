@@ -114,7 +114,7 @@ class Visit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'), nullable=False)
     plot_id = db.Column(db.Integer, db.ForeignKey('plots.id'), nullable=False)
-    agent_id = db.Column(db.Integer, db.ForeignKey('agents.id'), nullable=False)
+    agent_id = db.Column(db.Integer, db.ForeignKey('agents.id'), nullable=True)
     visit_date = db.Column(db.Date, default=datetime.utcnow)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)

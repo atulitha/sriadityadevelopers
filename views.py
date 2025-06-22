@@ -20,7 +20,7 @@ def register_agent():
             if key == 'Designation':
                 designations = db.session.query(User.designation).distinct().all()
                 unique_designations = [d[0] for d in designations if d[0] is not None]
-                unique_designations.remove("Director")
+                # unique_designations.remove("Director")
                 unique_designations.sort()
                 data = []
                 for designation in unique_designations:

@@ -78,7 +78,7 @@ def login():
         session['role'] = getattr(user, 'role', 'user')
         return jsonify({'status': 'ok',
                         'user': {'id': user.id, 'email': user.email, 'role': getattr(user, 'role', None),
-                                 'name': user.name}})
+                                 'name': user.first_name + ' ' + user.last_name}}), 200
     else:
         return jsonify({'status': 'error', 'message': 'Invalid username or password'}), 401
 

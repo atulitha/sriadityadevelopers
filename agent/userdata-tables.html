@@ -1,1425 +1,1022 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="booknowport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Dashboard - SB Admin Pro</title>
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
-        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="nav-fixed">
-        <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-            <a class="navbar-brand d-none d-sm-block" href="index.html">Sri Adithya Developers</a><img class="dropdown-user-img" src="/assets/img/siradithya.jpg" style="width: 60px; height: 58px;" /><button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="book-site-visit.html"><i data-feather="menu"></i></button>
-            <form class="form-inline mr-auto d-none d-lg-block"><input class="form-control form-control-solid mr-sm-2" type="search" placeholder="Search" aria-label="Search" /></form>
-            <ul class="navbar-nav align-items-center ml-auto">
-                <li class="nav-item dropdown no-caret mr-3">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        ><div class="d-inline d-md-none font-weight-500">Docs</div>
-                        <div class="d-none d-md-inline font-weight-500">Documentation</div>
-                        <i class="fas fa-chevron-right dropdown-arrow"></i
-                    ></a>
-                    <div class="dropdown-menu dropdown-menu-right py-0 o-hidden mr-n15 mr-lg-0 animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
-                        <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank"
-                            ><div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="book"></i></div>
-                            <div>
-                                <div class="small text-gray-500">Documentation</div>
-                                Usage instructions and reference
-                            </div></a>
-                        <div class="dropdown-divider m-0"></div>
-                        <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components" target="_blank"
-                            ><div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="code"></i></div>
-                            <div>
-                                <div class="small text-gray-500">Components</div>
-                                Code snippets and reference
-                            </div></a
-                        >
-                        <div class="dropdown-divider m-0"></div>
-                        <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog" target="_blank"
-                            ><div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="file-text"></i></div>
-                            <div>
-                                <div class="small text-gray-500">Changelog</div>
-                                Updates and changes
-                            </div></a
-                        >
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="booknowport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Dashboard - SB Admin Pro</title>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+          crossorigin="anonymous"/>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png"/>
+    <script data-search-pseudo-elements defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
+            crossorigin="anonymous"></script>
+</head>
+<body class="nav-fixed">
+<nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
+    <a class="navbar-brand d-none d-sm-block" href="index.html">Sri Adithya Developers</a><img class="dropdown-user-img"
+                                                                                               src="/assets/img/siradithya.jpg"
+                                                                                               style="width: 60px; height: 58px;"/>
+    <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle"
+            href="book-site-visit.html"><i data-feather="menu"></i></button>
+    <form class="form-inline mr-auto d-none d-lg-block"><input class="form-control form-control-solid mr-sm-2"
+                                                               type="search" placeholder="Search" aria-label="Search"/>
+    </form>
+    <ul class="navbar-nav align-items-center ml-auto">
+        <li class="nav-item dropdown no-caret mr-3">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            >
+                <div class="d-inline d-md-none font-weight-500">Docs</div>
+                <div class="d-none d-md-inline font-weight-500">Documentation</div>
+                <i class="fas fa-chevron-right dropdown-arrow"></i
+                ></a>
+            <div class="dropdown-menu dropdown-menu-right py-0 o-hidden mr-n15 mr-lg-0 animated--fade-in-up"
+                 aria-labelledby="navbarDropdownDocs">
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank"
+                >
+                    <div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="book"></i></div>
+                    <div>
+                        <div class="small text-gray-500">Documentation</div>
+                        Usage instructions and reference
                     </div>
-                </li>
-                <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="bell"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownAlerts">
-                        <h6 class="dropdown-header dropdown-notifications-header"><i class="mr-2" data-feather="bell"></i>Alerts Center</h6>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!"
-                            ><div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 29, 2019</div>
-                                <div class="dropdown-notifications-item-content-text">This is an alert message. It's nothing serious, but it requires your attention.</div>
-                            </div></a
-                        ><a class="dropdown-item dropdown-notifications-item" href="#!"
-                            ><div class="dropdown-notifications-item-icon bg-info"><i data-feather="bar-chart"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 22, 2019</div>
-                                <div class="dropdown-notifications-item-content-text">A new monthly report is ready. Click here to booknow!</div>
-                            </div></a
-                        ><a class="dropdown-item dropdown-notifications-item" href="#!"
-                            ><div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 8, 2019</div>
-                                <div class="dropdown-notifications-item-content-text">Critical system failure, systems shutting down.</div>
-                            </div></a
-                        ><a class="dropdown-item dropdown-notifications-item" href="#!"
-                            ><div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 2, 2019</div>
-                                <div class="dropdown-notifications-item-content-text">New user request. Woody has requested access to the organization.</div>
-                            </div></a
-                        ><a class="dropdown-item dropdown-notifications-footer" href="#!">booknow All Alerts</a>
+                </a>
+                <div class="dropdown-divider m-0"></div>
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components"
+                   target="_blank"
+                >
+                    <div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="code"></i></div>
+                    <div>
+                        <div class="small text-gray-500">Components</div>
+                        Code snippets and reference
                     </div>
-                </li>
-                <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="mail"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
-                        <h6 class="dropdown-header dropdown-notifications-header"><i class="mr-2" data-feather="mail"></i>Message Center</h6>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!"
-                            ><img class="dropdown-notifications-item-img" src="/assets/img/siradithya.jpg" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Emily Fowler · 58m</div>
-                            </div></a
-                        ><a class="dropdown-item dropdown-notifications-item" href="#!"
-                            ><img class="dropdown-notifications-item-img" src="https://source.unsplash.com/4ytMf8MgJlY/60x60" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Diane Chambers · 2d</div>
-                            </div></a
-                        ><a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
+                </a
+                >
+                <div class="dropdown-divider m-0"></div>
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog"
+                   target="_blank"
+                >
+                    <div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="file-text"></i></div>
+                    <div>
+                        <div class="small text-gray-500">Changelog</div>
+                        Updates and changes
                     </div>
-                </li>
-                <li class="nav-item dropdown no-caret mr-3 dropdown-user">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="/assets/img/siradithya.jpg"/></a>
-                    <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-                        <h6 class="dropdown-header d-flex align-items-center">
-                            <img class="dropdown-user-img" src="/assets/img/siradithya.jpg"/>
-                            <div class="dropdown-user-details">
-                                <div class="dropdown-user-details-name">Valerie Luna</div>
-                                <div class="dropdown-user-details-email">vluna@aol.com</div>
-                            </div>
-                        </h6>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#!"
-                            ><div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                            Account</a
-                        ><a class="dropdown-item" href="#!"
-                            ><div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                            Logout</a
-                        >
+                </a
+                >
+            </div>
+        </li>
+        <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts"
+               href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><i data-feather="bell"></i></a>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                 aria-labelledby="navbarDropdownAlerts">
+                <h6 class="dropdown-header dropdown-notifications-header"><i class="mr-2" data-feather="bell"></i>Alerts
+                    Center</h6>
+                <a class="dropdown-item dropdown-notifications-item" href="#!"
+                >
+                    <div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
+                    <div class="dropdown-notifications-item-content">
+                        <div class="dropdown-notifications-item-content-details">December 29, 2019</div>
+                        <div class="dropdown-notifications-item-content-text">This is an alert message. It's nothing
+                            serious, but it requires your attention.
+                        </div>
                     </div>
-                </li>
-            </ul>
+                </a
+                ><a class="dropdown-item dropdown-notifications-item" href="#!"
+            >
+                <div class="dropdown-notifications-item-icon bg-info"><i data-feather="bar-chart"></i></div>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-details">December 22, 2019</div>
+                    <div class="dropdown-notifications-item-content-text">A new monthly report is ready. Click here to
+                        booknow!
+                    </div>
+                </div>
+            </a
+            ><a class="dropdown-item dropdown-notifications-item" href="#!"
+            >
+                <div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-details">December 8, 2019</div>
+                    <div class="dropdown-notifications-item-content-text">Critical system failure, systems shutting
+                        down.
+                    </div>
+                </div>
+            </a
+            ><a class="dropdown-item dropdown-notifications-item" href="#!"
+            >
+                <div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-details">December 2, 2019</div>
+                    <div class="dropdown-notifications-item-content-text">New user request. Woody has requested access
+                        to the organization.
+                    </div>
+                </div>
+            </a
+            ><a class="dropdown-item dropdown-notifications-footer" href="#!">booknow All Alerts</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages"
+               href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><i data-feather="mail"></i></a>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                 aria-labelledby="navbarDropdownMessages">
+                <h6 class="dropdown-header dropdown-notifications-header"><i class="mr-2" data-feather="mail"></i>Message
+                    Center</h6>
+                <a class="dropdown-item dropdown-notifications-item" href="#!"
+                ><img class="dropdown-notifications-item-img" src="/assets/img/siradithya.jpg"/>
+                    <div class="dropdown-notifications-item-content">
+                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                            officia deserunt mollit anim id est laborum.
+                        </div>
+                        <div class="dropdown-notifications-item-content-details">Emily Fowler · 58m</div>
+                    </div>
+                </a
+                ><a class="dropdown-item dropdown-notifications-item" href="#!"
+            ><img class="dropdown-notifications-item-img" src="https://source.unsplash.com/4ytMf8MgJlY/60x60"/>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                        mollit anim id est laborum.
+                    </div>
+                    <div class="dropdown-notifications-item-content-details">Diane Chambers · 2d</div>
+                </div>
+            </a
+            ><a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-caret mr-3 dropdown-user">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
+               href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><img class="img-fluid" src="/assets/img/siradithya.jpg"/></a>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                 aria-labelledby="navbarDropdownUserImage">
+                <h6 class="dropdown-header d-flex align-items-center">
+                    <img class="dropdown-user-img" src="/assets/img/siradithya.jpg"/>
+                    <div class="dropdown-user-details">
+                        <div class="dropdown-user-details-name">Valerie Luna</div>
+                        <div class="dropdown-user-details-email">vluna@aol.com</div>
+                    </div>
+                </h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#!"
+                >
+                    <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
+                    Account</a
+                ><a class="dropdown-item" href="#!"
+            >
+                <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                Logout</a
+            >
+            </div>
+        </li>
+    </ul>
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sidenav shadow-right sidenav-light">
+
+            <div class="sidenav-footer">
+                <div class="sidenav-footer-content">
+                    <div class="sidenav-footer-subtitle">Display:</div>
+                    <div class="sidenav-footer-title">User Data</div>
+                </div>
+            </div>
         </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sidenav shadow-right sidenav-light">
-
-                    <div class="sidenav-footer">
-                        <div class="sidenav-footer-content">
-                            <div class="sidenav-footer-subtitle">Display:</div>
-                            <div class="sidenav-footer-title">User Data</div>
-                        </div>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+                <div class="container-fluid">
+                    <div class="page-header-content">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="filter"></i></div>
+                            <span>Customer Site Visit Records  </span>
+                        </h1>
+                        <div class="page-header-subtitle"></div>
                     </div>
-                </nav>
+                </div>
             </div>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
-                        <div class="container-fluid">
-                            <div class="page-header-content">
-                                <h1 class="page-header-title">
-                                    <div class="page-header-icon"><i data-feather="filter"></i></div>
-                                    <span>Customer Site Visit Records  </span>
-                                </h1>
-                                <div class="page-header-subtitle"></div>
-                            </div>
-                        </div>
+            <div class="container-fluid mt-n10">
+                <div class="card mb-4">
+                    <div class="card-header">Customer Records</div>
+                    <div class="card-body">
+                        <div class="datatable table-responsive">
+                            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>Address</th>
+                                    <th>Project</th>
+                                    <th>Plot Number</th>
+                                    <th>Site Visit date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                    <th>Start date</th>
+                                    <th>Salary</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                <tr>
+                                    <td>Customer1</td>
+                                    <td>9742904220</td>
+                                    <td>East Marvin, Pennsylvania</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 96D</td>
+                                    <td>2025-06-02</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer2</td>
+                                    <td>9305331814</td>
+                                    <td>Underwoodfort, Wyoming</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 88D</td>
+                                    <td>2025-06-03</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer3</td>
+                                    <td>9867747414</td>
+                                    <td>East Henry, Oklahoma</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 83D</td>
+                                    <td>2025-06-02</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer4</td>
+                                    <td>9749236166</td>
+                                    <td>Johnsonmouth, New Jersey</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 10D</td>
+                                    <td>2025-06-07</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer5</td>
+                                    <td>9894399726</td>
+                                    <td>West Jeffrey, Arkansas</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 53C</td>
+                                    <td>2025-05-29</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer6</td>
+                                    <td>9274621529</td>
+                                    <td>Christopherville, Missouri</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 10C</td>
+                                    <td>2025-06-01</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer7</td>
+                                    <td>9126402560</td>
+                                    <td>North Jennifer, Oregon</td>
+                                    <td>Aditya Enclave</td>
+                                    <td>Plot 74D</td>
+                                    <td>2025-05-23</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer8</td>
+                                    <td>9312290516</td>
+                                    <td>Owensmouth, Kansas</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 90C</td>
+                                    <td>2025-06-02</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer9</td>
+                                    <td>9547187015</td>
+                                    <td>Lake Brittney, North Dakota</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 66B</td>
+                                    <td>2025-05-22</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer10</td>
+                                    <td>9140500061</td>
+                                    <td>Ambertown, Montana</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 94A</td>
+                                    <td>2025-06-01</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer11</td>
+                                    <td>9549763901</td>
+                                    <td>Robertburgh, Tennessee</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 67A</td>
+                                    <td>2025-05-24</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer12</td>
+                                    <td>9580465594</td>
+                                    <td>Lake Charles, Maine</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 4C</td>
+                                    <td>2025-06-07</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer13</td>
+                                    <td>9426860703</td>
+                                    <td>Burnettburgh, Texas</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 97A</td>
+                                    <td>2025-06-03</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer14</td>
+                                    <td>9987355070</td>
+                                    <td>Krystalmouth, Maine</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 69B</td>
+                                    <td>2025-06-03</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer15</td>
+                                    <td>9254144984</td>
+                                    <td>Philliptown, Rhode Island</td>
+                                    <td>Aditya Enclave</td>
+                                    <td>Plot 23B</td>
+                                    <td>2025-06-10</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer16</td>
+                                    <td>9756012559</td>
+                                    <td>Ramirezville, Mississippi</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 92D</td>
+                                    <td>2025-05-30</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer17</td>
+                                    <td>9880252548</td>
+                                    <td>Mitchellburgh, Alabama</td>
+                                    <td>Aditya Enclave</td>
+                                    <td>Plot 20C</td>
+                                    <td>2025-06-11</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer18</td>
+                                    <td>9886522390</td>
+                                    <td>East Kevin, Alaska</td>
+                                    <td>Aditya Enclave</td>
+                                    <td>Plot 67B</td>
+                                    <td>2025-06-06</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer19</td>
+                                    <td>9424543760</td>
+                                    <td>Hallbooknow, Michigan</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 93A</td>
+                                    <td>2025-06-09</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer20</td>
+                                    <td>9132211476</td>
+                                    <td>Chloeland, West Virginia</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 2A</td>
+                                    <td>2025-06-07</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer21</td>
+                                    <td>9143424810</td>
+                                    <td>Brittanybury, South Dakota</td>
+                                    <td>Aditya Enclave</td>
+                                    <td>Plot 51A</td>
+                                    <td>2025-05-24</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer22</td>
+                                    <td>9300283282</td>
+                                    <td>West Jaybury, North Carolina</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 97C</td>
+                                    <td>2025-05-25</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer23</td>
+                                    <td>9495860475</td>
+                                    <td>Andersonside, Hawaii</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 47D</td>
+                                    <td>2025-05-30</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer24</td>
+                                    <td>9884470105</td>
+                                    <td>South Catherine, California</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 81D</td>
+                                    <td>2025-06-07</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer25</td>
+                                    <td>9442016237</td>
+                                    <td>South William, Virginia</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 62C</td>
+                                    <td>2025-06-04</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer26</td>
+                                    <td>9199176836</td>
+                                    <td>Jeromeville, New York</td>
+                                    <td>Aditya Enclave</td>
+                                    <td>Plot 96A</td>
+                                    <td>2025-06-06</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer27</td>
+                                    <td>9954360991</td>
+                                    <td>Paulfort, Texas</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 19B</td>
+                                    <td>2025-05-30</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer28</td>
+                                    <td>9815567581</td>
+                                    <td>Lake Tiffanybury, Florida</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 50C</td>
+                                    <td>2025-05-31</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer29</td>
+                                    <td>9549149034</td>
+                                    <td>South Stephanieshire, Montana</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 59B</td>
+                                    <td>2025-06-04</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer30</td>
+                                    <td>9279713776</td>
+                                    <td>Lake Cynthiashire, Indiana</td>
+                                    <td>Aditya Enclave</td>
+                                    <td>Plot 87B</td>
+                                    <td>2025-06-08</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer31</td>
+                                    <td>9981215402</td>
+                                    <td>Adamchester, South Dakota</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 98A</td>
+                                    <td>2025-05-28</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer32</td>
+                                    <td>9678585434</td>
+                                    <td>Timothyville, Oregon</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 12C</td>
+                                    <td>2025-06-06</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer33</td>
+                                    <td>9576845008</td>
+                                    <td>North Valerie, Alaska</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 81D</td>
+                                    <td>2025-05-29</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer34</td>
+                                    <td>9230674558</td>
+                                    <td>Traceyfurt, Virginia</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 58B</td>
+                                    <td>2025-06-02</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer35</td>
+                                    <td>9967647761</td>
+                                    <td>West Cynthia, Rhode Island</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 11B</td>
+                                    <td>2025-05-24</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer36</td>
+                                    <td>9875115811</td>
+                                    <td>New Marc, Kentucky</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 29B</td>
+                                    <td>2025-05-25</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer37</td>
+                                    <td>9722351577</td>
+                                    <td>Meganside, Indiana</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 90D</td>
+                                    <td>2025-05-28</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer38</td>
+                                    <td>9968382081</td>
+                                    <td>Angelachester, Wisconsin</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 30A</td>
+                                    <td>2025-05-30</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer39</td>
+                                    <td>9931311695</td>
+                                    <td>North Bridget, Nebraska</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 40D</td>
+                                    <td>2025-05-25</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer40</td>
+                                    <td>9669557782</td>
+                                    <td>Wendytown, North Dakota</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 69D</td>
+                                    <td>2025-06-07</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer41</td>
+                                    <td>9947123253</td>
+                                    <td>Lake Davidmouth, Iowa</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 10B</td>
+                                    <td>2025-06-09</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer42</td>
+                                    <td>9313553294</td>
+                                    <td>Woodville, Iowa</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 15A</td>
+                                    <td>2025-05-26</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer43</td>
+                                    <td>9941032479</td>
+                                    <td>Valerieville, Georgia</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 85B</td>
+                                    <td>2025-06-04</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer44</td>
+                                    <td>9836240778</td>
+                                    <td>East Deanna, Rhode Island</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 97A</td>
+                                    <td>2025-06-11</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer45</td>
+                                    <td>9488940932</td>
+                                    <td>Ericfurt, Vermont</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 1D</td>
+                                    <td>2025-06-02</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer46</td>
+                                    <td>9809281984</td>
+                                    <td>Flemington, Oklahoma</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 6D</td>
+                                    <td>2025-05-22</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer47</td>
+                                    <td>9686085245</td>
+                                    <td>Brandonshire, Oregon</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 65B</td>
+                                    <td>2025-06-10</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer48</td>
+                                    <td>9289728382</td>
+                                    <td>Port Sarahville, Michigan</td>
+                                    <td>Aditya Enclave</td>
+                                    <td>Plot 26D</td>
+                                    <td>2025-05-27</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer49</td>
+                                    <td>9960375412</td>
+                                    <td>Lake Kathleenland, North Carolina</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 14A</td>
+                                    <td>2025-06-04</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer50</td>
+                                    <td>9253252653</td>
+                                    <td>East Frank, New Mexico</td>
+                                    <td>Aditya Enclave</td>
+                                    <td>Plot 33C</td>
+                                    <td>2025-05-30</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer51</td>
+                                    <td>9443723030</td>
+                                    <td>Melissaville, New Mexico</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 14B</td>
+                                    <td>2025-06-08</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer52</td>
+                                    <td>9765587441</td>
+                                    <td>South Jessicaberg, New Hampshire</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 98C</td>
+                                    <td>2025-06-01</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer53</td>
+                                    <td>9999390086</td>
+                                    <td>Jasonmouth, Connecticut</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 14B</td>
+                                    <td>2025-06-03</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer54</td>
+                                    <td>9429803156</td>
+                                    <td>Andrewton, North Carolina</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 54D</td>
+                                    <td>2025-05-30</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer55</td>
+                                    <td>9340930110</td>
+                                    <td>North Douglas, Hawaii</td>
+                                    <td>Aditya Greens</td>
+                                    <td>Plot 87B</td>
+                                    <td>2025-05-23</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer56</td>
+                                    <td>9525925682</td>
+                                    <td>Ellisland, Illinois</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 8A</td>
+                                    <td>2025-05-24</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer57</td>
+                                    <td>9656449818</td>
+                                    <td>Heatherbooknow, Wyoming</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 52C</td>
+                                    <td>2025-06-09</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer58</td>
+                                    <td>9325828994</td>
+                                    <td>North Zacharymouth, Florida</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 14B</td>
+                                    <td>2025-06-08</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer59</td>
+                                    <td>9524056684</td>
+                                    <td>Hoodtown, Idaho</td>
+                                    <td>Aditya Meadows</td>
+                                    <td>Plot 40A</td>
+                                    <td>2025-06-04</td>
+                                    <td><span class="badge bg-success">Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer60</td>
+                                    <td>9451868217</td>
+                                    <td>Warrenton, Connecticut</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 73A</td>
+                                    <td>2025-05-23</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer61</td>
+                                    <td>9529400856</td>
+                                    <td>Phillipston, Vermont</td>
+                                    <td>Aditya Heights</td>
+                                    <td>Plot 29B</td>
+                                    <td>2025-05-27</td>
+                                    <td><span class="badge bg-warning">Scheduled</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Customer62</td>
+                                    <td>9816759457</td>
+                                    <td>Williamshaven, Michigan</td>
+                                    <td>Aditya Pearl</td>
+                                    <td>Plot 13A</td>
+                                    <td>2025-06-10</td>
+                                    <td><span class="badge bg-danger">Not Visited</span></td>
+                                    <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
+                                </tr>
+
+
+                                <td>
+                                    <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i
+                                            data-feather="more-vertical"></i></button>
+                                    <button class="btn btn-datatable btn-icon btn-transparent-dark"><i
+                                            data-feather="trash-2"></i></button>
+                                </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered table-hover">
+        </main>
+        <footer class="footer mt-auto footer-light">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 small">Copyright &copy; Your Website 2025</div>
+                    <div class="col-md-6 text-md-right small">
+                        <a href="#!">Privacy Policy</a>
+                        &middot;
+                        <a href="#!">Terms &amp; Conditions</a>
                     </div>
-                    <div class="container-fluid mt-n10">
-                        <div class="card mb-4">
-                            <div class="card-header">Customer Records </div>
-                            <div class="card-body">
-                                <div class="datatable table-responsive">
-                                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Mobile Number</th>
-                                                <th>Address</th>
-                                                <th>Project</th>
-                                                <th>Plot Number</th>
-                                                <th>Site Visit date</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr>
-                                            <td>Customer1</td>
-                                            <td>9742904220</td>
-                                            <td>East Marvin, Pennsylvania</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 96D</td>
-                                            <td>2025-06-02</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer2</td>
-                                            <td>9305331814</td>
-                                            <td>Underwoodfort, Wyoming</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 88D</td>
-                                            <td>2025-06-03</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer3</td>
-                                            <td>9867747414</td>
-                                            <td>East Henry, Oklahoma</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 83D</td>
-                                            <td>2025-06-02</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer4</td>
-                                            <td>9749236166</td>
-                                            <td>Johnsonmouth, New Jersey</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 10D</td>
-                                            <td>2025-06-07</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer5</td>
-                                            <td>9894399726</td>
-                                            <td>West Jeffrey, Arkansas</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 53C</td>
-                                            <td>2025-05-29</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer6</td>
-                                            <td>9274621529</td>
-                                            <td>Christopherville, Missouri</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 10C</td>
-                                            <td>2025-06-01</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer7</td>
-                                            <td>9126402560</td>
-                                            <td>North Jennifer, Oregon</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 74D</td>
-                                            <td>2025-05-23</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer8</td>
-                                            <td>9312290516</td>
-                                            <td>Owensmouth, Kansas</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 90C</td>
-                                            <td>2025-06-02</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer9</td>
-                                            <td>9547187015</td>
-                                            <td>Lake Brittney, North Dakota</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 66B</td>
-                                            <td>2025-05-22</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer10</td>
-                                            <td>9140500061</td>
-                                            <td>Ambertown, Montana</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 94A</td>
-                                            <td>2025-06-01</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer11</td>
-                                            <td>9549763901</td>
-                                            <td>Robertburgh, Tennessee</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 67A</td>
-                                            <td>2025-05-24</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer12</td>
-                                            <td>9580465594</td>
-                                            <td>Lake Charles, Maine</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 4C</td>
-                                            <td>2025-06-07</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer13</td>
-                                            <td>9426860703</td>
-                                            <td>Burnettburgh, Texas</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 97A</td>
-                                            <td>2025-06-03</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer14</td>
-                                            <td>9987355070</td>
-                                            <td>Krystalmouth, Maine</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 69B</td>
-                                            <td>2025-06-03</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer15</td>
-                                            <td>9254144984</td>
-                                            <td>Philliptown, Rhode Island</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 23B</td>
-                                            <td>2025-06-10</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer16</td>
-                                            <td>9756012559</td>
-                                            <td>Ramirezville, Mississippi</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 92D</td>
-                                            <td>2025-05-30</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer17</td>
-                                            <td>9880252548</td>
-                                            <td>Mitchellburgh, Alabama</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 20C</td>
-                                            <td>2025-06-11</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer18</td>
-                                            <td>9886522390</td>
-                                            <td>East Kevin, Alaska</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 67B</td>
-                                            <td>2025-06-06</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer19</td>
-                                            <td>9424543760</td>
-                                            <td>Hallbooknow, Michigan</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 93A</td>
-                                            <td>2025-06-09</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer20</td>
-                                            <td>9132211476</td>
-                                            <td>Chloeland, West Virginia</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 2A</td>
-                                            <td>2025-06-07</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer21</td>
-                                            <td>9143424810</td>
-                                            <td>Brittanybury, South Dakota</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 51A</td>
-                                            <td>2025-05-24</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer22</td>
-                                            <td>9300283282</td>
-                                            <td>West Jaybury, North Carolina</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 97C</td>
-                                            <td>2025-05-25</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer23</td>
-                                            <td>9495860475</td>
-                                            <td>Andersonside, Hawaii</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 47D</td>
-                                            <td>2025-05-30</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer24</td>
-                                            <td>9884470105</td>
-                                            <td>South Catherine, California</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 81D</td>
-                                            <td>2025-06-07</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer25</td>
-                                            <td>9442016237</td>
-                                            <td>South William, Virginia</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 62C</td>
-                                            <td>2025-06-04</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer26</td>
-                                            <td>9199176836</td>
-                                            <td>Jeromeville, New York</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 96A</td>
-                                            <td>2025-06-06</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer27</td>
-                                            <td>9954360991</td>
-                                            <td>Paulfort, Texas</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 19B</td>
-                                            <td>2025-05-30</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer28</td>
-                                            <td>9815567581</td>
-                                            <td>Lake Tiffanybury, Florida</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 50C</td>
-                                            <td>2025-05-31</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer29</td>
-                                            <td>9549149034</td>
-                                            <td>South Stephanieshire, Montana</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 59B</td>
-                                            <td>2025-06-04</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer30</td>
-                                            <td>9279713776</td>
-                                            <td>Lake Cynthiashire, Indiana</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 87B</td>
-                                            <td>2025-06-08</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer31</td>
-                                            <td>9981215402</td>
-                                            <td>Adamchester, South Dakota</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 98A</td>
-                                            <td>2025-05-28</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer32</td>
-                                            <td>9678585434</td>
-                                            <td>Timothyville, Oregon</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 12C</td>
-                                            <td>2025-06-06</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer33</td>
-                                            <td>9576845008</td>
-                                            <td>North Valerie, Alaska</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 81D</td>
-                                            <td>2025-05-29</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer34</td>
-                                            <td>9230674558</td>
-                                            <td>Traceyfurt, Virginia</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 58B</td>
-                                            <td>2025-06-02</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer35</td>
-                                            <td>9967647761</td>
-                                            <td>West Cynthia, Rhode Island</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 11B</td>
-                                            <td>2025-05-24</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer36</td>
-                                            <td>9875115811</td>
-                                            <td>New Marc, Kentucky</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 29B</td>
-                                            <td>2025-05-25</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer37</td>
-                                            <td>9722351577</td>
-                                            <td>Meganside, Indiana</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 90D</td>
-                                            <td>2025-05-28</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer38</td>
-                                            <td>9968382081</td>
-                                            <td>Angelachester, Wisconsin</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 30A</td>
-                                            <td>2025-05-30</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer39</td>
-                                            <td>9931311695</td>
-                                            <td>North Bridget, Nebraska</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 40D</td>
-                                            <td>2025-05-25</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer40</td>
-                                            <td>9669557782</td>
-                                            <td>Wendytown, North Dakota</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 69D</td>
-                                            <td>2025-06-07</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer41</td>
-                                            <td>9947123253</td>
-                                            <td>Lake Davidmouth, Iowa</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 10B</td>
-                                            <td>2025-06-09</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer42</td>
-                                            <td>9313553294</td>
-                                            <td>Woodville, Iowa</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 15A</td>
-                                            <td>2025-05-26</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer43</td>
-                                            <td>9941032479</td>
-                                            <td>Valerieville, Georgia</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 85B</td>
-                                            <td>2025-06-04</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer44</td>
-                                            <td>9836240778</td>
-                                            <td>East Deanna, Rhode Island</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 97A</td>
-                                            <td>2025-06-11</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer45</td>
-                                            <td>9488940932</td>
-                                            <td>Ericfurt, Vermont</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 1D</td>
-                                            <td>2025-06-02</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer46</td>
-                                            <td>9809281984</td>
-                                            <td>Flemington, Oklahoma</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 6D</td>
-                                            <td>2025-05-22</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer47</td>
-                                            <td>9686085245</td>
-                                            <td>Brandonshire, Oregon</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 65B</td>
-                                            <td>2025-06-10</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer48</td>
-                                            <td>9289728382</td>
-                                            <td>Port Sarahville, Michigan</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 26D</td>
-                                            <td>2025-05-27</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer49</td>
-                                            <td>9960375412</td>
-                                            <td>Lake Kathleenland, North Carolina</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 14A</td>
-                                            <td>2025-06-04</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer50</td>
-                                            <td>9253252653</td>
-                                            <td>East Frank, New Mexico</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 33C</td>
-                                            <td>2025-05-30</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer51</td>
-                                            <td>9443723030</td>
-                                            <td>Melissaville, New Mexico</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 14B</td>
-                                            <td>2025-06-08</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer52</td>
-                                            <td>9765587441</td>
-                                            <td>South Jessicaberg, New Hampshire</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 98C</td>
-                                            <td>2025-06-01</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer53</td>
-                                            <td>9999390086</td>
-                                            <td>Jasonmouth, Connecticut</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 14B</td>
-                                            <td>2025-06-03</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer54</td>
-                                            <td>9429803156</td>
-                                            <td>Andrewton, North Carolina</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 54D</td>
-                                            <td>2025-05-30</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer55</td>
-                                            <td>9340930110</td>
-                                            <td>North Douglas, Hawaii</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 87B</td>
-                                            <td>2025-05-23</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer56</td>
-                                            <td>9525925682</td>
-                                            <td>Ellisland, Illinois</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 8A</td>
-                                            <td>2025-05-24</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer57</td>
-                                            <td>9656449818</td>
-                                            <td>Heatherbooknow, Wyoming</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 52C</td>
-                                            <td>2025-06-09</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer58</td>
-                                            <td>9325828994</td>
-                                            <td>North Zacharymouth, Florida</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 14B</td>
-                                            <td>2025-06-08</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer59</td>
-                                            <td>9524056684</td>
-                                            <td>Hoodtown, Idaho</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 40A</td>
-                                            <td>2025-06-04</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer60</td>
-                                            <td>9451868217</td>
-                                            <td>Warrenton, Connecticut</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 73A</td>
-                                            <td>2025-05-23</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer61</td>
-                                            <td>9529400856</td>
-                                            <td>Phillipston, Vermont</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 29B</td>
-                                            <td>2025-05-27</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer62</td>
-                                            <td>9816759457</td>
-                                            <td>Williamshaven, Michigan</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 13A</td>
-                                            <td>2025-06-10</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer63</td>
-                                            <td>9332389558</td>
-                                            <td>Roberttown, North Dakota</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 54C</td>
-                                            <td>2025-06-06</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer64</td>
-                                            <td>9963001125</td>
-                                            <td>Davidfort, Virginia</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 54B</td>
-                                            <td>2025-05-25</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer65</td>
-                                            <td>9324476951</td>
-                                            <td>North Angelchester, Kentucky</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 89D</td>
-                                            <td>2025-05-22</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer66</td>
-                                            <td>9574547202</td>
-                                            <td>Vaughnhaven, Idaho</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 25D</td>
-                                            <td>2025-05-26</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer67</td>
-                                            <td>9810234244</td>
-                                            <td>Millerville, New Jersey</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 36D</td>
-                                            <td>2025-06-11</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer68</td>
-                                            <td>9574958557</td>
-                                            <td>Meganbooknow, Idaho</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 68D</td>
-                                            <td>2025-06-07</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer69</td>
-                                            <td>9230109081</td>
-                                            <td>South Jasonberg, Vermont</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 23D</td>
-                                            <td>2025-05-26</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer70</td>
-                                            <td>9525067958</td>
-                                            <td>Lake Ashleyberg, Oklahoma</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 71B</td>
-                                            <td>2025-05-30</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer71</td>
-                                            <td>9737215942</td>
-                                            <td>Turnerton, Kansas</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 57B</td>
-                                            <td>2025-06-09</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer72</td>
-                                            <td>9764013751</td>
-                                            <td>Courtneyport, Wyoming</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 57C</td>
-                                            <td>2025-06-03</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer73</td>
-                                            <td>9556620725</td>
-                                            <td>South Cherylmouth, South Carolina</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 72C</td>
-                                            <td>2025-05-23</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer74</td>
-                                            <td>9265188304</td>
-                                            <td>Port Susanville, Oklahoma</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 23D</td>
-                                            <td>2025-06-07</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer75</td>
-                                            <td>9716167268</td>
-                                            <td>North Michelleport, Virginia</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 25C</td>
-                                            <td>2025-05-24</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer76</td>
-                                            <td>9778239728</td>
-                                            <td>Shanefort, Missouri</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 15D</td>
-                                            <td>2025-06-05</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer77</td>
-                                            <td>9172286169</td>
-                                            <td>New Christopherstad, Minnesota</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 26D</td>
-                                            <td>2025-05-23</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer78</td>
-                                            <td>9188455479</td>
-                                            <td>Lake Katherine, Pennsylvania</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 36C</td>
-                                            <td>2025-05-29</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer79</td>
-                                            <td>9731380949</td>
-                                            <td>North Emily, Pennsylvania</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 95B</td>
-                                            <td>2025-05-31</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer80</td>
-                                            <td>9914375351</td>
-                                            <td>Kevinhaven, Missouri</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 6B</td>
-                                            <td>2025-05-31</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer81</td>
-                                            <td>9199266654</td>
-                                            <td>West Robertland, Minnesota</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 91D</td>
-                                            <td>2025-06-11</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer82</td>
-                                            <td>9715647109</td>
-                                            <td>Andersonburgh, Rhode Island</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 70D</td>
-                                            <td>2025-05-30</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer83</td>
-                                            <td>9658192797</td>
-                                            <td>West Scottville, New York</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 40D</td>
-                                            <td>2025-06-09</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer84</td>
-                                            <td>9861353909</td>
-                                            <td>Marymouth, Massachusetts</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 94A</td>
-                                            <td>2025-05-26</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer85</td>
-                                            <td>9111153838</td>
-                                            <td>Port Kaylashire, Washington</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 18B</td>
-                                            <td>2025-05-24</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer86</td>
-                                            <td>9878196077</td>
-                                            <td>New Alexborough, West Virginia</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 30D</td>
-                                            <td>2025-06-09</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer87</td>
-                                            <td>9303055017</td>
-                                            <td>Douglasmouth, Rhode Island</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 19A</td>
-                                            <td>2025-06-05</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer88</td>
-                                            <td>9138029927</td>
-                                            <td>Rodriguezberg, Tennessee</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 92C</td>
-                                            <td>2025-06-02</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer89</td>
-                                            <td>9857605526</td>
-                                            <td>Jeffreymouth, Pennsylvania</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 44D</td>
-                                            <td>2025-06-09</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer90</td>
-                                            <td>9439904334</td>
-                                            <td>East Amandabooknow, West Virginia</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 60C</td>
-                                            <td>2025-06-10</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer91</td>
-                                            <td>9597710144</td>
-                                            <td>Lake Justin, Arkansas</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 97D</td>
-                                            <td>2025-05-29</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer92</td>
-                                            <td>9697721454</td>
-                                            <td>Stevensside, New York</td>
-                                            <td>Aditya Greens</td>
-                                            <td>Plot 53D</td>
-                                            <td>2025-05-31</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer93</td>
-                                            <td>9302201357</td>
-                                            <td>Lake Alexfurt, Hawaii</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 30D</td>
-                                            <td>2025-06-05</td>
-                                            <td><span class="badge bg-success">Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer94</td>
-                                            <td>9897083045</td>
-                                            <td>Clarkhaven, Wisconsin</td>
-                                            <td>Aditya Meadows</td>
-                                            <td>Plot 34A</td>
-                                            <td>2025-06-05</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer95</td>
-                                            <td>9796079542</td>
-                                            <td>Lake James, Iowa</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 67B</td>
-                                            <td>2025-06-09</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer96</td>
-                                            <td>9393188030</td>
-                                            <td>Jamesshire, Oklahoma</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 76B</td>
-                                            <td>2025-06-03</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer97</td>
-                                            <td>9613164123</td>
-                                            <td>North Colleen, Virginia</td>
-                                            <td>Aditya Heights</td>
-                                            <td>Plot 8C</td>
-                                            <td>2025-05-27</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer98</td>
-                                            <td>9154771159</td>
-                                            <td>South Matthewmouth, Maryland</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 65B</td>
-                                            <td>2025-06-07</td>
-                                            <td><span class="badge bg-danger">Not Visited</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer99</td>
-                                            <td>9103630683</td>
-                                            <td>Williamston, Hawaii</td>
-                                            <td>Aditya Enclave</td>
-                                            <td>Plot 46D</td>
-                                            <td>2025-05-30</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Customer100</td>
-                                            <td>9821078475</td>
-                                            <td>Danielhaven, Oklahoma</td>
-                                            <td>Aditya Pearl</td>
-                                            <td>Plot 31B</td>
-                                            <td>2025-05-28</td>
-                                            <td><span class="badge bg-warning">Scheduled</span></td>
-                                            <td><a href="book-site-visit.html" class="btn btn-sm btn-primary">booknow</a></td>
-                                        </tr>
-
-                                                <td><div class="badge badge-secondary badge-pill">Part-time</div></td>
-                                                <td>
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="more-vertical"></i></button><button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table> -->
-                                    <table class="table table-bordered table-hover">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-icon mb-4">
-                            <div class="row no-gutters">
-                                <div class="col-auto card-icon-aside bg-primary"><i class="mr-1 text-white-50" data-feather="alert-triangle"></i></div>
-                                <div class="col">
-                                    <div class="card-body py-5">
-                                        <h5 class="card-title">Third-Party Documentation Available</h5>
-                                        <p class="card-text">DataTables is a third party plugin that is used to generate the demo table above. For more information about how to use DataTables with your project, please visit the official DataTables documentation.</p>
-                                        <a class="btn btn-primary btn-sm" href="https://datatables.net/" target="_blank"><i class="mr-1" data-feather="external-link"></i>Visit DataTables Docs</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-                <footer class="footer mt-auto footer-light">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2025</div>
-                            <div class="col-md-6 text-md-right small">
-                                <a href="#!">Privacy Policy</a>
-                                &middot;
-                                <a href="#!">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                </div>
             </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/datatables-demo.js"></script>
-    </body>
+        </footer>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script src="assets/demo/datatables-demo.js"></script>
+</body>
 </html>
