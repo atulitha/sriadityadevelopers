@@ -112,42 +112,48 @@ def test():
             return jsonify({'status': 'error', 'message': 'Unsupported Content-Type'}), 415
     if request.method == 'GET':
         key = request.args.get('key')
-        sample_data = {'agents': [{'id': 1, 'name': 'Self Registration'}, {'id': 2, 'name': 'Agent Jhon'},
-                                  {'id': 3, 'name': 'Agent Smith'}],
-                       'sub1Options': {
-                           'nandagokulam': [{'value': 'villas_ng', 'text': 'Luxury Villas'},
-                                            {'value': 'Flats_ng', 'text': 'Luxury Flats'},
-                                            {'value': 'plots_ng', 'text': 'Plots'}],
-                           'panasapadu': [{'value': 'plots_pns', 'text': 'Plots'}]}, 'sub2Options': {
-                'villas_ng': [{'value': 'villa1', 'text': 'Villa 1-East facing', 'size': 2500},
-                              {'value': 'villa2', 'text': 'Villa 2-West facing', 'size': 2600}],
-                'Flats_ng': [{'value': 'flat1', 'text': 'Flat no 101-East facing', 'size': 1200},
-                             {'value': 'flat2', 'text': 'Flat no 102-West facing', 'size': 1250}],
-                'plots_ng': [{'value': 'plot1', 'text': 'Plot 1', 'size': 300},
-                             {'value': 'plot2', 'text': 'Plot 2', 'size': 320}],
-                'plots_pns': [{'value': 'plot1', 'text': 'Plot 1', 'size': 350},
-                              {'value': 'plot2', 'text': 'Plot 2', 'size': 370}],
-
-                'projects': [
-                    {
-                        "name": "Aditya Enclave"
-                    },
-                    {
-                        "name": "Aditya Heights"
-                    },
-                    {
-                        "name": "Aditya Meadows"
-                    },
-                    {
-                        "name": "Aditya Greens"
-                    },
-                    {
-                        "name": "Aditya Pearl"
-                    }
+        sample_data = {
+            'agents': [
+                {'id': 1, 'name': 'Self Registration'},
+                {'id': 2, 'name': 'Agent Jhon'},
+                {'id': 3, 'name': 'Agent Smith'}
+            ],
+            'sub1Options': {
+                'nandagokulam': [
+                    {'value': 'villas_ng', 'text': 'Luxury Villas'},
+                    {'value': 'Flats_ng', 'text': 'Luxury Flats'},
+                    {'value': 'plots_ng', 'text': 'Plots'}
                 ],
-
-            }
-                       }
+                'panasapadu': [
+                    {'value': 'plots_pns', 'text': 'Plots'}
+                ]
+            },
+            'sub2Options': {
+                'villas_ng': [
+                    {'value': 'villa1', 'text': 'Villa 1-East facing', 'size': 2500},
+                    {'value': 'villa2', 'text': 'Villa 2-West facing', 'size': 2600}
+                ],
+                'Flats_ng': [
+                    {'value': 'flat1', 'text': 'Flat no 101-East facing', 'size': 1200},
+                    {'value': 'flat2', 'text': 'Flat no 102-West facing', 'size': 1250}
+                ],
+                'plots_ng': [
+                    {'value': 'plot1', 'text': 'Plot 1', 'size': 300},
+                    {'value': 'plot2', 'text': 'Plot 2', 'size': 320}
+                ],
+                'plots_pns': [
+                    {'value': 'plot1', 'text': 'Plot 1', 'size': 350},
+                    {'value': 'plot2', 'text': 'Plot 2', 'size': 370}
+                ]
+            },
+            'projects': [
+                {"id": 1, "name": "Aditya Enclave"},
+                {"id": 2, "name": "Aditya Heights"},
+                {"id": 3, "name": "Aditya Meadows"},
+                {"id": 4, "name": "Aditya Greens"},
+                {"id": 5, "name": "Aditya Pearl"}
+            ]
+        }
         if key in sample_data:
             return jsonify({'status': 'ok', key: sample_data[key]})
         return jsonify({'status': 'ok', **sample_data})
