@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 
 from dbmodels.create import (
     db, Customer, Agent, Project, Plot,
-    booking, visit, feedback, User
+    booking, Visit, feedback, User
 )
 
 app = Flask(__name__)

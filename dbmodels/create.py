@@ -109,7 +109,7 @@ class booking(db.Model):
     agent = db.relationship('Agent', backref='bookings', lazy=True)
 
 
-class visit(db.Model):
+class Visit(db.Model):
     __tablename__ = 'visits'
     id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'), nullable=False)
@@ -155,3 +155,4 @@ class User(db.Model):
     reference_agent = db.Column(db.String(100), nullable=True)  # Reference agent for agents
     agent_team = db.Column(db.String(100), nullable=True)  # Team for agents
     photo = db.Column(db.LargeBinary, nullable=True)  # Store photo as binary
+    mobile = db.Column(db.String(20), unique=True, nullable=True)
