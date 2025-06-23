@@ -44,59 +44,60 @@
             background-attachment: fixed;
         }
 
-         /* Change field background and text color */
-    select.form-control {
-        background: rgba(240, 240, 240, 0.8); /* Light gray background */
-        backdrop-filter: blur(5px); /* Apply blur effect */
-        border: 1px solid #007bff; /* Border color matching button */
-        color: #333; /* Dark text color */
-        border-radius: 8px; /* Rounded corners */
-        padding: 8px; /* Padding for better appearance */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    }
+        /* Change field background and text color */
+        select.form-control {
+            background: rgba(240, 240, 240, 0.8); /* Light gray background */
+            backdrop-filter: blur(5px); /* Apply blur effect */
+            border: 1px solid #007bff; /* Border color matching button */
+            color: #333; /* Dark text color */
+            border-radius: 8px; /* Rounded corners */
+            padding: 8px; /* Padding for better appearance */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
 
-    select.form-control:focus {
-        outline: none; /* Remove default focus outline */
-        border-color: #0056b3; /* Change border color on focus */
-        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect on focus */
-    }
+        select.form-control:focus {
+            outline: none; /* Remove default focus outline */
+            border-color: #0056b3; /* Change border color on focus */
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect on focus */
+        }
 
-    input.form-control,
-    textarea.form-control {
-        background-color: rgba(240, 240, 240, 0.8) !important; /* Light gray background */
-        color: #333 !important; /* Dark text color */
-        backdrop-filter: blur(5px); /* Apply blur effect */
-        border-color: #007bff !important; /* Match border color to button */
-    }
-    /* Default outline color */
-    input.form-control,
-    select.form-control,
-    textarea.form-control {
-        border: 2px white; /* Default border color */
-        border-radius: 8px; /* Rounded corners */
-    }
+        input.form-control,
+        textarea.form-control {
+            background-color: rgba(240, 240, 240, 0.8) !important; /* Light gray background */
+            color: #333 !important; /* Dark text color */
+            backdrop-filter: blur(5px); /* Apply blur effect */
+            border-color: #007bff !important; /* Match border color to button */
+        }
 
-    /* Outline color on focus */
-    input.form-control:focus,
-    select.form-control:focus,
-    textarea.form-control:focus {
-        border-color: white; /* Green border color on focus */
-        box-shadow: 0 0 8px rgba(40, 167, 69, 0.5); /* Glow effect */
-        outline: none; /* Remove default outline */
-    }
+        /* Default outline color */
+        input.form-control,
+        select.form-control,
+        textarea.form-control {
+            border: 2px solid white; /* Default border color */
+            border-radius: 8px; /* Rounded corners */
+        }
 
-    option {
-        background-color: rgba(240, 240, 240, 0.5); /* Light gray background for options */
-        color: #333 !important; /* Dark text color */
-    }
+        /* Outline color on focus */
+        input.form-control:focus,
+        select.form-control:focus,
+        textarea.form-control:focus {
+            border-color: white; /* Green border color on focus */
+            box-shadow: 0 0 8px rgba(40, 167, 69, 0.5); /* Glow effect */
+            outline: none; /* Remove default outline */
+        }
 
-       .form-left {
-           display: flex;
-           justify-content: flex-end; /* Aligns content to the right */
-           align-items: flex-start;
-           min-height: 100vh;
-           margin-top: 50px;
-       }
+        option {
+            background-color: rgba(240, 240, 240, 0.5); /* Light gray background for options */
+            color: #333 !important; /* Dark text color */
+        }
+
+        .form-left {
+            display: flex;
+            justify-content: flex-end; /* Aligns content to the right */
+            align-items: flex-start;
+            min-height: 100vh;
+            margin-top: 50px;
+        }
 
         @media (max-width: 991.98px) {
             .form-left {
@@ -288,8 +289,10 @@
                                     <!-- reference of director for agent -->
                                     <div class="col-7">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="Reference_agent">Reference of director for agent</label>
-                                            <input class="form-control" id="Reference_agent" type="text" placeholder="Enter reference" required />
+                                            <label class="small mb-1" for="Reference_agent">Reference of director for
+                                                agent</label>
+                                            <input class="form-control" id="Reference_agent" type="text"
+                                                   placeholder="Enter reference" required/>
                                         </div>
                                     </div>
                                     <!-- Agent team display -->
@@ -412,26 +415,32 @@
                 // No need to set Content-Type; browser will set it to multipart/form-data
             });
 
-            if (response.ok) {
+            let responseText = '';
+            try {
+                responseText = await response.text();
+            } catch (e) {
+                responseText = '';
+            }
+
+            if (response.ok && responseText.includes('Registration successful!')) {
                 alert('Registration successful!');
             } else {
-                let errorMsg = 'Registration failed.';
+                let errorMsg = 'Registration failed.\n';
                 try {
-                    const data = await response.json();
+                    // Try to parse as JSON if possible
+                    const data = JSON.parse(responseText);
                     if (data && (data.error || data.message)) {
                         errorMsg += ' ' + (data.error || data.message);
                     } else {
                         errorMsg += ' (No error message from server)';
                     }
                 } catch (e) {
-                    const text = await response.text();
-                    errorMsg += ` (Status: ${response.status})\n${text}`;
+                    errorMsg += ` (Status: ${response.status})\n${responseText}`;
                 }
                 alert(errorMsg);
             }
         }
-    )
-    ;
+    ); // <-- fixed parenthesis
 
     // Populate Designation dropdown
     fetch('/register-agent?key=Designation')
@@ -444,28 +453,6 @@
                 const select = document.getElementById('designation');
                 select.innerHTML = '<option value="">Select Designation</option>';
                 data.Designation.forEach(item => {
-                    const option = document.createElement('option');
-                    option.value = item.id || item.name;
-                    option.textContent = item.name;
-                    select.appendChild(option);
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
-
-    // Populate Reference of director for agent dropdown
-    fetch('/register-agent?key=directors')
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-        })
-        .then(data => {
-            if (data.status === 'ok' && Array.isArray(data.directors)) {
-                const select = document.getElementById('Reference_agent');
-                select.innerHTML = '<option value="">Select Reference</option>';
-                data.directors.forEach(item => {
                     const option = document.createElement('option');
                     option.value = item.id || item.name;
                     option.textContent = item.name;

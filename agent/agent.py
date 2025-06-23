@@ -31,35 +31,19 @@ def serveStaticResource(resource):
     return send_from_directory('static/', resource)
 
 
-@agent.route('/users')
-def list_users():
-    # Sample data - in real app, this would come from a database
-    users = [
-        {'id': 1, 'name': 'agent User', 'email': 'agent@example.com'},
-        {'id': 2, 'name': 'Regular User', 'email': 'user@example.com'}
-    ]
-    return render_template('users.html', users=users)
-
-
-@agent.route('/users.json')
-def list_users_json():
+@agent.route('/users', methods=['GET'])
+def get_all_users():
+    """
+    Get all users as JSON.
+    """
     users = User.query.all()
-    return jsonify({
-        'status': 'ok',
-        'data': [{
+    return jsonify([
+        {
             'id': user.id,
             'email': user.email,
-            'name': f"{user.name}",
-        } for user in users]
-    })
-
-
-@agent.route('/users_api_format')
-def users_api_format():
-    """
-    :return:
-    """
-    return render_template('user_api.html')
+            'name': user.name
+        } for user in users
+    ])
 
 
 @agent.route('/book-site-visit.html', methods=['GET'])
@@ -95,6 +79,7 @@ def userdata_tables():
     This page allows the agent to book a site visit.
     """
     return render_template('userdata-tables.html')
+
 
 @agent.route('/<pagename>')
 def serve_page(pagename):  # Changed from 'admin' to 'serve_page'

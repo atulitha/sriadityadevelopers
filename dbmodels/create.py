@@ -8,7 +8,7 @@ db = SQLAlchemy()
 class Customer(db.Model):
     __tablename__ = 'customers'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Link to users table
+    user_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=False)  # Link to users.u_id
     first_name = db.Column(db.String(100), nullable=False)
     middle_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100), nullable=False)
@@ -31,7 +31,7 @@ class Customer(db.Model):
 class Admin(db.Model):
     __tablename__ = 'admins'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=False)  # Link to users.u_id
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
     user = db.relationship('User', backref='admin', lazy=True)
@@ -40,7 +40,7 @@ class Admin(db.Model):
 class Agent(db.Model):
     __tablename__ = 'agents'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Link to users table
+    user_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=False)  # Link to users.u_id
     first_name = db.Column(db.String(100), nullable=False)
     middle_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100), nullable=False)
@@ -71,7 +71,7 @@ class Project(db.Model):
     location = db.Column(db.String(200))
     start_date = db.Column(db.Date, default=datetime.utcnow)
     end_date = db.Column(db.Date)
-    status = db.Column(db.String(50), default='ongoing')  # 'ongoing', 'completed', 'on hold'
+    status = db.Column(db.String(50), default='ongoing')  # 'ongoing', 'completed', 'planning'
     total_area = db.Column(db.Float)  # in sq ft or meters
     developer = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -150,9 +150,10 @@ class User(db.Model):
     pan = db.Column(db.String(20), unique=True, nullable=False)
     aadhaar_file = db.Column(db.LargeBinary, nullable=True)  # Store file as binary  # Store file as binary
     pan_file = db.Column(db.LargeBinary, nullable=True)  # Store file as binary
-    designation = db.Column(db.String(100), nullable=True)  # e.g., 'Agent', 'Manager'
+    designation = db.Column(db.String(100), nullable=True)  # e.g., 'Director', 'Manager', 'Team Lead', 'Senior Agent', 'Agent'
     role = db.Column(db.String(50), default='user')  # 'customer', 'agent', 'admin'
     reference_agent = db.Column(db.String(100), nullable=True)  # Reference agent for agents
     agent_team = db.Column(db.String(100), nullable=True)  # Team for agents
     photo = db.Column(db.LargeBinary, nullable=True)  # Store photo as binary
     mobile = db.Column(db.String(20), unique=True, nullable=True)
+    u_id = db.Column(db.String(20), nullable=False)
