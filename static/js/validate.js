@@ -8,6 +8,48 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
+    //Id validation
+const combinedInput = document.getElementById('inputCombined');
+const combinedError = document.getElementById('combinedError');
+
+if (combinedInput) {
+    combinedInput.addEventListener('input', function () {
+        const prefixPatterns = {
+            'CS': 12, // CS requires 12 characters
+            'AG': 8,  // AG requires 8 characters
+            'MG': 8,  // MG requires 8 characters
+            'TL': 8,  // TL requires 8 characters
+            'DR': 8,  // DR requires 8 characters
+            'MD': 8   // MD requires 8 characters
+        };
+
+        // Convert input to uppercase
+        this.value = this.value.toUpperCase();
+        const inputValue = this.value.trim();
+        const regex = /^([A-Z]{2})-(\d+)$/; // Format: Prefix-Number
+        const match = inputValue.match(regex);
+
+        if (match) {
+            const prefix = match[1];
+            const number = match[2];
+
+            if (prefixPatterns[prefix] && inputValue.length === prefixPatterns[prefix]) {
+                combinedError.style.display = 'none';
+                this.setCustomValidity('');
+            } else {
+                combinedError.textContent = `Invalid format. Prefix "${prefix}" requires ${prefixPatterns[prefix]} characters.`;
+                combinedError.style.display = 'block';
+                this.setCustomValidity('Invalid format.');
+            }
+        } else {
+            combinedError.textContent = 'Invalid format. Use the format: Prefix-Number (e.g., CS-123456789012).';
+            combinedError.style.display = 'block';
+            this.setCustomValidity('Invalid format.');
+        }
+    });
+}
+
+
 
     // Aadhaar validation
     const adharInput = document.getElementById('adhar');
@@ -445,4 +487,129 @@ document.addEventListener('DOMContentLoaded', function () {
             this.classList.add('is-valid');
         });
     }
+    // agentid validation
+    const agentIdInput = document.getElementById('agentid');
+    const AGENT_ID_PREFIX = 'AG-';
+    const agentIdPattern = /^AG-\d{10}$/;
+
+    if (agentIdInput) {
+        // Set maxlength to 10 for digits only
+        agentIdInput.setAttribute('maxlength', '10');
+
+        // Insert fixed prefix as a visually left-aligned label if not already present
+        let agPrefixSpan = document.getElementById('agent-id-prefix');
+        if (!agPrefixSpan) {
+            agPrefixSpan = document.createElement('span');
+            agPrefixSpan.id = 'agent-id-prefix';
+            agPrefixSpan.textContent = AGENT_ID_PREFIX;
+            agPrefixSpan.style.marginRight = '4px';
+            agPrefixSpan.style.fontWeight = 'bold';
+            agPrefixSpan.style.display = 'inline-block';
+            agPrefixSpan.style.verticalAlign = 'middle';
+
+            // Wrap input and prefix in a container for better alignment
+            const agWrapper = document.createElement('div');
+            agWrapper.style.display = 'flex';
+            agWrapper.style.alignItems = 'center';
+            agWrapper.style.gap = '4px';
+
+            agentIdInput.parentNode.insertBefore(agWrapper, agentIdInput);
+            agWrapper.appendChild(agPrefixSpan);
+            agWrapper.appendChild(agentIdInput);
+        }
+
+        // Style input to align with prefix
+        agentIdInput.style.flex = '1 1 auto';
+        agentIdInput.style.display = 'inline-block';
+
+        agentIdInput.addEventListener('input', function () {
+            // Only allow digits, max 10
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+
+        agentIdInput.addEventListener('blur', function () {
+            const digits = this.value.trim();
+            const agentId = AGENT_ID_PREFIX + digits;
+            if (!agentIdPattern.test(agentId)) {
+                agentIdInput.setCustomValidity('Agent ID must be AG- followed by exactly 10 digits.');
+            } else {
+                agentIdInput.setCustomValidity('');
+            }
+        });
+    }
+
+    // Customer ID validation (fixed prefix 'CS-')
+    const customerIdInput = document.getElementById('customer-id');
+    const customerDetailsDiv = document.getElementById('customer-id-details');
+    const firstNameInput = document.getElementById('first-name');
+    const lastNameInput = document.getElementById('last-name');
+    const CUSTOMER_ID_PREFIX = 'CS-';
+    const customerIdPattern = /^CS-\d{10}$/;
+
+    if (customerIdInput) {
+        // Set maxlength to 10 for digits only
+        customerIdInput.setAttribute('maxlength', '10');
+
+        // Insert fixed prefix as a visually left-aligned label if not already present
+        let prefixSpan = document.getElementById('customer-id-prefix');
+        if (!prefixSpan) {
+            prefixSpan = document.createElement('span');
+            prefixSpan.id = 'customer-id-prefix';
+            prefixSpan.textContent = CUSTOMER_ID_PREFIX;
+            prefixSpan.style.marginRight = '4px';
+            prefixSpan.style.fontWeight = 'bold';
+            prefixSpan.style.display = 'inline-block';
+            prefixSpan.style.verticalAlign = 'middle';
+
+            // Wrap input and prefix in a container for better alignment
+            const wrapper = document.createElement('div');
+            wrapper.style.display = 'flex';
+            wrapper.style.alignItems = 'center';
+            wrapper.style.gap = '4px';
+
+            customerIdInput.parentNode.insertBefore(wrapper, customerIdInput);
+            wrapper.appendChild(prefixSpan);
+            wrapper.appendChild(customerIdInput);
+        }
+
+        // Style input to align with prefix
+        customerIdInput.style.flex = '1 1 auto';
+        customerIdInput.style.display = 'inline-block';
+
+        customerIdInput.addEventListener('input', function () {
+            // Only allow digits, max 10
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+
+        customerIdInput.addEventListener('blur', function () {
+            const digits = this.value.trim();
+            const customerId = CUSTOMER_ID_PREFIX + digits;
+            if (customerIdPattern.test(customerId)) {
+                fetch(`/get-customer-details?id=${customerId}`)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.status === 'success' && data.customer) {
+                            if (customerDetailsDiv) customerDetailsDiv.style.display = 'block';
+                            if (firstNameInput) firstNameInput.value = data.customer.firstName;
+                            if (lastNameInput) lastNameInput.value = data.customer.lastName;
+                        } else {
+                            if (customerDetailsDiv) customerDetailsDiv.style.display = 'none';
+                            alert('Customer not found');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                        if (customerDetailsDiv) customerDetailsDiv.style.display = 'none';
+                        alert('An error occurred while fetching customer details');
+                    });
+            } else {
+                if (customerDetailsDiv) customerDetailsDiv.style.display = 'none';
+                alert('Invalid Customer ID format. Enter exactly 10 digits after CS-.');
+            }
+        });
+    }
+
 });

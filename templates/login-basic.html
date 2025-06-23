@@ -54,20 +54,20 @@
                             </div>
                             <div class="card-body">
                                 <form id="loginForm" action="javascript:void(0);">
-                                    <div class="form-group">
-                                        <!-- Email field with required asterisk -->
-                                        <label class="small mb-1" for="inputEmailAddress">
-                                            Email <span style="color: red;">*</span>
-                                        </label>
-                                        <input class="form-control py-4" id="inputEmailAddress" name="email"
-                                               type="email" placeholder="Enter email address" required
-                                               style=" background: transparent; color:white"/>
-                                        <div id="emailError" style="color: red; font-size: 0.9em; display: none;">Please
-                                            enter a valid email address.
+                                        <!-- Code input -->
+                                        <div class="form-group row">
+                                        <div class="col md-12">
+                                            <label class="small mb-1" for="inputCombined">Code and Number <span style="color: red;">*</span></label>
+                                            <input class="form-control py-4" id="inputCombined" name="combined" type="text" placeholder="Enter Code and Number (e.g., CS-1234567890)" required/>
+                                            <div id="combinedError" style="color: red; font-size: 0.9em; display: none;">
+                                                Invalid format. Please follow the correct prefix and number format.
+                                            </div>
                                         </div>
+                                    </div>
 
-                                        <!-- Password field with required asterisk -->
-                                        <label class="small mb-1" for="inputPassword">
+                                    <!-- Password field with required asterisk -->
+                                    <div class="form-group">
+                                        <label class="col-mb-6" for="inputPassword">
                                             Password <span style="color: red;">*</span>
                                         </label>
                                         <input class="form-control py-4" id="inputPassword" name="password"
@@ -75,46 +75,47 @@
                                         <div id="passwordError" style="color: red; font-size: 0.9em; display: none;">
                                             Password must be 8-32 characters and include letters, numbers, and symbols.
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" id="rememberPasswordCheck"
-                                                       type="checkbox"/>
-                                                <label class="custom-control-label" for="rememberPasswordCheck">Remember
-                                                    password</label>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" id="rememberPasswordCheck"
+                                                   type="checkbox"/>
+                                            <label class="custom-control-label" for="rememberPasswordCheck">Remember
+                                                password</label>
                                         </div>
-                                        <div style="padding: 1.5em 1em; border-radius: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-top: 1.5em;">
-                                            <div class="form-group d-flex align-items-center justify-content-between mb-2">
-                                                <a class="small" href="password-basic.html">Forgot Password?</a>
-                                                <button type="submit" class="btn btn-primary">Login</button>
-                                            </div>
-                                            <div id="loginError"
-                                                 style="color: red; font-size: 1em; display: none; text-align: center;">
-                                                Invalid username or password.
-                                            </div>
-                                            <div style="text-align: center; margin: 1.5em 0 1em 0;">
-                                                <span style="font-size: 0.9em; font-weight: 500; letter-spacing: 0.04em; background: linear-gradient(90deg, #3a8dde, #1fc8db); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;">or register as</span>
-                                                <div style="height: 0.5px; background: linear-gradient(90deg, #e3eafc 0%, #c8e6fa 100%); margin: 0.7em auto 1em auto; width: 55%;"></div>
-                                            </div>
-                                            <div style="text-align: center;">
-                                                <button type="button"
-                                                        class="btn btn-sm mr-2"
-                                                        style="background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%); color: #fff; border: none; border-radius: 25px; padding: 0.5rem 1.7rem; font-weight: 500; font-size: 1em; box-shadow: 0 2px 8px rgba(37,99,235,0.10); transition: box-shadow 0.2s, transform 0.2s;"
-                                                        onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 4px 16px rgba(37,99,235,0.18)';"
-                                                        onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 2px 8px rgba(37,99,235,0.10)';"
-                                                        onclick="window.location.href='register-basic.html'">
-                                                    <i class="fas fa-user-tie"></i> Agent
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-sm"
-                                                        style="background: linear-gradient(90deg, #0ea5e9 0%, #0369a1 100%); color: #fff; border: none; border-radius: 25px; padding: 0.5rem 1.7rem; font-weight: 500; font-size: 1em; box-shadow: 0 2px 8px rgba(14,165,233,0.10); transition: box-shadow 0.2s, transform 0.2s;"
-                                                        onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 4px 16px rgba(14,165,233,0.18)';"
-                                                        onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 2px 8px rgba(14,165,233,0.10)';"
-                                                        onclick="window.location.href='register-Client-form.html'">
-                                                    <i class="fas fa-user"></i> Client
-                                                </button>
-                                            </div>
+                                    </div>
+                                    <div style="padding: 1.5em 1em; border-radius: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-top: 1.5em;">
+                                        <div class="form-group d-flex align-items-center justify-content-between mb-2">
+                                            <a class="small" href="password-basic.html">Forgot Password?</a>
+                                            <button type="submit" class="btn btn-primary">Login</button>
                                         </div>
+                                        <div id="loginError"
+                                             style="color: red; font-size: 1em; display: none; text-align: center;">
+                                            Invalid username or password.
+                                        </div>
+                                        <div style="text-align: center; margin: 1.5em 0 1em 0;">
+                                            <span style="font-size: 0.9em; font-weight: 500; letter-spacing: 0.04em; background: linear-gradient(90deg, #3a8dde, #1fc8db); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;">or register as</span>
+                                            <div style="height: 0.5px; background: linear-gradient(90deg, #e3eafc 0%, #c8e6fa 100%); margin: 0.7em auto 1em auto; width: 55%;"></div>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <button type="button"
+                                                    class="btn btn-sm mr-2"
+                                                    style="background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%); color: #fff; border: none; border-radius: 25px; padding: 0.5rem 1.7rem; font-weight: 500; font-size: 1em; box-shadow: 0 2px 8px rgba(37,99,235,0.10); transition: box-shadow 0.2s, transform 0.2s;"
+                                                    onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 4px 16px rgba(37,99,235,0.18)';"
+                                                    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 2px 8px rgba(37,99,235,0.10)';"
+                                                    onclick="window.location.href='register-basic.html'">
+                                                <i class="fas fa-user-tie"></i> Agent
+                                            </button>
+                                            <button type="button"
+                                                    class="btn btn-sm"
+                                                    style="background: linear-gradient(90deg, #0ea5e9 0%, #0369a1 100%); color: #fff; border: none; border-radius: 25px; padding: 0.5rem 1.7rem; font-weight: 500; font-size: 1em; box-shadow: 0 2px 8px rgba(14,165,233,0.10); transition: box-shadow 0.2s, transform 0.2s;"
+                                                    onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 4px 16px rgba(14,165,233,0.18)';"
+                                                    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 2px 8px rgba(14,165,233,0.10)';"
+                                                    onclick="window.location.href='register-Client-form.html'">
+                                                <i class="fas fa-user"></i> Client
+                                            </button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>

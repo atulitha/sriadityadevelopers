@@ -36,12 +36,12 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: auto;
+            overflow-y: auto;
             background-image: url('assets/img/abg9.png'); /* Corrected property name */
             background-size: cover; /* Ensures the image covers the entire background */
             background-position: center; /* Centers the image */
             background-repeat: no-repeat; /* Prevents the image from repeating */
-            background-attachment: fixed; /* Keeps the background fixed during scrolling */
+            background-attachment: fixed;
         }
 
          /* Change field background and text color */
@@ -87,7 +87,7 @@
 
     option {
         background-color: rgba(240, 240, 240, 0.5); /* Light gray background for options */
-        color: black !important; /* Dark text color */
+        color: #333 !important; /* Dark text color */
     }
 
        .form-left {
@@ -288,12 +288,8 @@
                                     <!-- reference of director for agent -->
                                     <div class="col-7">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="Reference_agent">Reference of
-                                                director
-                                                for agent</label>
-                                            <select class="form-control" id="Reference_agent" required>
-                                                <option value="">Select Reference</option>
-                                            </select>
+                                            <label class="small mb-1" for="Reference_agent">Reference of director for agent</label>
+                                            <input class="form-control" id="Reference_agent" type="text" placeholder="Enter reference" required />
                                         </div>
                                     </div>
                                     <!-- Agent team display -->
