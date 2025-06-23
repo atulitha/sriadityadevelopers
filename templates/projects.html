@@ -16,6 +16,26 @@
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
             crossorigin="anonymous"></script>
+    <style>
+        .sidenav-list li {
+            list-style: none; /* Removes default list styling */
+            color: #2c3e50; /* Sets a professional dark text color */
+            padding: 12px 20px; /* Adjusts padding for better spacing */
+            margin-bottom: 8px; /* Adds consistent spacing between items */
+            background-color: #ffffff; /* Sets a clean white background */
+            border-radius: 6px; /* Slightly rounds the corners */
+            border-left: 4px solid #0056b3; /* Uses a more subtle blue for the border */
+            padding-right: 20px; /* Ensures padding on the right for text alignment */
+            font-size: 14px; /* Sets a standard font size */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+        }
+
+        .sidenav-list li:hover {
+            background-color: #f0f8ff; /* Changes background on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhances shadow on hover */
+        }
+    </style>
 </head>
 <body class="nav-fixed">
 <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
@@ -175,12 +195,10 @@
                 <a class="dropdown-item" href="#!"
                 >
                     <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                    Account</a
-                ><a class="dropdown-item" href="#!"
-            >
+                    Account</a>
+                <a class="dropdown-item" href="#!">
                 <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                Logout</a
-            >
+                Logout</a>
             </div>
         </li>
     </ul>
@@ -188,55 +206,34 @@
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
         <nav class="sidenav shadow-right sidenav-light">
-            <div class="sidenav-header">
-                <h2 class="sidenav-title">Project List</h2>
-            </div>
-            <div class="sidenav-footer">
-                <div class="sidenav-footer-content">
-                    <p class="sidenav-footer-subtitle">Logged in as:</p>
-                    <h3 class="sidenav-footer-title">Agent</h3>
+            <div class="sidenav-content">
+                <div class="user-info" style="padding: 15px; background-color: #f0f0f0;">
+                    <p class="sidenav-footer-subtitle">Logged in as: Agent</p>
+                </div>
+                <div class="project-list" style="padding: 15px;">
+                    <h5 class="sidenav-title">Project List</h5>
                     <ul class="sidenav-list">
-                        <li><a href="#!" class="sidenav-link">Aditya Enclave</a></li>
-                        <li><a href="#!" class="sidenav-link">Aditya Heights</a></li>
-                        <li><a href="#!" class="sidenav-link">Aditya Meadows</a></li>
-                        <li><a href="#!" class="sidenav-link">Aditya Greens</a></li>
-                        <li><a href="#!" class="sidenav-link">Aditya Pearl</a></li>
+                        <li>
+                            <a href="Aditya Enclave.html" class="sidenav-link">Aditya Enclave</a>
+                        </li>
+                        <li>
+                            <a href="Aditya Heights.html" class="sidenav-link">Aditya Heights</a>
+                        </li>
+                        <li>
+                            <a href="Aditya Meadows.html" class="sidenav-link">Aditya Meadows</a>
+                        </li>
+                        <li>
+                            <a href="Aditya Greens.html" class="sidenav-link">Aditya Greens</a>
+                        </li>
+                        <li>
+                            <a href="Aditya Pearl.html" class="sidenav-link">Aditya Pearl</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid mt-5">
-                <header class="page-header d-flex justify-content-between align-items-center mb-4">
-                    <div>
-                        <h1 class="page-title">Welcome, Agent</h1>
-                        <p class="page-subtitle text-muted">
-                            <span class="font-weight-bold text-primary">Friday</span> &middot; May 20, 2025 &middot; 12:16 PM
-                        </p>
-                    </div>
-                </header>
-            </div>
-        </main>
-    </div>
 </div>
-        </main>
-<footer class="footer mt-auto footer-light">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 small">Copyright &copy; Sri Aditya Developers</div>
-            <div class="col-md-6 text-md-right small">
-                <a href="#!">Privacy Policy</a>
-                &middot;
-                <a href="#!">Terms &amp; Conditions</a>
-            </div>
-        </div>
-    </div>
-</footer>
-</div>
-</div>
--->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
