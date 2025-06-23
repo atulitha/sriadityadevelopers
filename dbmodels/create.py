@@ -146,8 +146,8 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     dob = db.Column(db.Date, nullable=True)
     gender = db.Column(db.String(20), nullable=True)
-    adhar = db.Column(db.String(20), unique=True, nullable=False)
-    pan = db.Column(db.String(20), unique=True, nullable=False)
+    adhar = db.Column(db.String(20), unique=True, nullable=True)
+    pan = db.Column(db.String(20), unique=True, nullable=True)
     aadhaar_file = db.Column(db.LargeBinary, nullable=True)  # Store file as binary  # Store file as binary
     pan_file = db.Column(db.LargeBinary, nullable=True)  # Store file as binary
     designation = db.Column(db.String(100), nullable=True)  # e.g., 'Director', 'Manager', 'Team Lead', 'Senior Agent', 'Agent'
@@ -157,3 +157,4 @@ class User(db.Model):
     photo = db.Column(db.LargeBinary, nullable=True)  # Store photo as binary
     mobile = db.Column(db.String(20), unique=True, nullable=True)
     u_id = db.Column(db.String(20), nullable=False)
+    address = db.Column(db.String(300), nullable=True)

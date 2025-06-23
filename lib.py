@@ -36,10 +36,9 @@ def validate_agent_data(data):
         return {'status': 'error', 'message': 'Invalid email format'}
 
     # Check if reference agent format is valid
-    # Validate reference agent and email existence at the same time
     errors = ""
 
-    if not User.query.filter_by(reference_agent=data['referenceAgent']).first():
+    if data['referenceAgent'] and not User.query.filter_by(u_id=data['referenceAgent']).first():
         errors += "Reference agent does not exist.\n"
 
     if User.query.filter_by(email=data['email']).first():
@@ -47,6 +46,41 @@ def validate_agent_data(data):
 
     if errors:
         return {'status': 'error', 'message': errors.strip()}
+
+    return {'status': 'ok'}
+
+
+def validate_customer_data(data):
+    required_fields = [
+        'first_name', 'last_name', 'email', 'phone', 'password', 'confirm_password',
+        'dob', 'gender', 'address'
+    ]
+    # Check required fields
+    for field in required_fields:
+        if not data.get(field):
+            return {'status': 'error', 'message': f'Missing field: {field}'}
+
+    # Password validation
+    if data['password'] != data['confirm_password']:
+        return {'status': 'error', 'message': 'Passwords do not match'}
+    if len(data['password']) < 8:
+        return {'status': 'error', 'message': 'Password must be at least 8 characters'}
+
+    # Email validation
+    if not re.match(r'^[^@]+@[^@]+\.[^@]+$', data['email']):
+        return {'status': 'error', 'message': 'Invalid email format'}
+
+    # Phone validation
+    if not re.match(r'^\d{10}$', data['phone']):
+        return {'status': 'error', 'message': 'Phone number must be exactly 10 digits'}
+
+    # Email uniqueness
+    if User.query.filter_by(email=data['email']).first():
+        return {'status': 'error', 'message': 'Email already registered'}
+
+    # Phone uniqueness (use 'mobile' field in User)
+    if User.query.filter_by(mobile=data['phone']).first():
+        return {'status': 'error', 'message': 'Phone number already registered'}
 
     return {'status': 'ok'}
 

@@ -5,7 +5,7 @@ from flask import jsonify, request
 from werkzeug.security import generate_password_hash
 
 from dbmodels.create import db, User
-from lib import validate_agent_data
+from lib import validate_agent_data, validate_customer_data
 
 
 def register_agent():
@@ -60,16 +60,15 @@ def register_agent():
     if request.method == 'POST':
         try:
             data = request.form.to_dict()
-            reference_agent = data['referenceAgent']
+            print(data)
+            reference_agent = data.get('referenceAgent', '')
             # Add file data if present
             if 'aadhaarFile' in request.files:
-                # print('aadhaarFile')
                 data['aadhaarFile'] = request.files['aadhaarFile']
                 data['aadhaarFile'].save('static/uploads/')
             if 'panFile' in request.files:
-                # print('panFile')
                 data['panFile'] = request.files['panFile']
-            if not (isinstance(reference_agent, str) and re.match(r'^(ag|md|mg)-\d{6}$', reference_agent.lower())):
+            if reference_agent.strip() and not (isinstance(reference_agent, str) and re.match(r'^(ag|md|mg)-\d{6}$', reference_agent.lower())):
                 return jsonify({'status': 'error', 'message': 'Invalid reference agent'}), 400
 
             validation_result = validate_agent_data(data)
@@ -137,9 +136,9 @@ def register_agent():
                 gender=data['gender'],
                 designation=data['designation'],
                 reference_agent=reference_agent,
-                agent_team=data['agentTeam'],
-                adhar=data['aadhaar'],
-                pan=data['pan'],
+                agent_team=data.get('agent_team'),
+                adhar=data.get('aadhaar'),
+                pan=data.get('pan'),
                 role='agent',
                 aadhaar_file=aadhaar_file_bytes,
                 pan_file=pan_file_bytes,
@@ -174,23 +173,23 @@ def register_customer():
     if request.method == 'POST':
         try:
             data = request.form.to_dict()
+            print("Received data for customer registration:\n", data)
+            # Use validate_customer_data for validation
+            validation_result = validate_customer_data(data)
+            if validation_result['status'] == 'error':
+                return jsonify(validation_result), 400
+
             # Extract fields from form
-            first_name = data.get('firstName')
-            last_name = data.get('lastName')
+            first_name = data.get('first_name')
+            last_name = data.get('last_name')
             email = data.get('email')
-            phone = data.get('phone')
+            phone = data.get('phone')  # keep for validation, but use as 'mobile' in User
             password = data.get('password')
             dob = data.get('dob')
             gender = data.get('gender')
-            reference_agent = data.get('referenceAgent')
-            project = data.get('project')
-            date_of_visit = data.get('dateOfVisit')
+            reference_agent = data.get('reference_agent')
+            # project and date_of_visit are not User fields
             address = data.get('address')
-
-            # Validate required fields
-            required_fields = [first_name, last_name, email, phone, password, dob, gender, address]
-            if not all(required_fields):
-                return jsonify({'status': 'error', 'message': 'Missing required fields'}), 400
 
             # Handle photo upload
             if 'photo_file' not in request.files:
@@ -221,18 +220,16 @@ def register_customer():
                 last_num = 0
             new_uid = f"{prefix}-{last_num + 1:06d}"
 
-            # Create new customer user
+            # Create new customer user (remove project and date_of_visit)
             customer = User(
                 first_name=first_name,
                 last_name=last_name,
                 email=email,
-                phone=phone,
+                mobile=phone,  # <-- store phone as mobile
                 password=hashed_password,
                 dob=datetime.strptime(dob, '%Y-%m-%d').date(),
                 gender=gender,
                 reference_agent=reference_agent,
-                project=project,
-                date_of_visit=datetime.strptime(date_of_visit, '%Y-%m-%d').date() if date_of_visit else None,
                 address=address,
                 role='customer',
                 photo=photo_file_bytes,
