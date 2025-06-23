@@ -35,9 +35,18 @@ def validate_agent_data(data):
     if not re.match(r'^[^@]+@[^@]+\.[^@]+$', data['email']):
         return {'status': 'error', 'message': 'Invalid email format'}
 
-    # Check if email already exists
+    # Check if reference agent format is valid
+    # Validate reference agent and email existence at the same time
+    errors = ""
+
+    if not User.query.filter_by(reference_agent=data['referenceAgent']).first():
+        errors += "Reference agent does not exist.\n"
+
     if User.query.filter_by(email=data['email']).first():
-        return {'status': 'error', 'message': 'Email already registered'}
+        errors += "Email already registered.\n"
+
+    if errors:
+        return {'status': 'error', 'message': errors.strip()}
 
     return {'status': 'ok'}
 
