@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -122,7 +122,7 @@
 <body>
 <body class="nav-fixed">
 <nav class="topnav navbar navbar-expand shadow navbar-light bg-transparent" id="sidenavAccordion">
-    <a class="navbar-brand d-none d-sm-block" href="index.html" style="color: white;"> <-- Back to    Home Page</a>
+    <a class="navbar-brand d-none d-sm-block" href="index.html" style="color: white;"> &lt;-- Back to Home Page</a>
 </nav>
 <main>
     <div id="layoutAuthentication">
@@ -135,7 +135,7 @@
                                 <h2 class="font-weight-light my-4">Client Registration Form</h2>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form id="registerForm" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -143,6 +143,7 @@
                                                     Name</label>
                                                 <input class="form-control py-4"
                                                        id="inputFirstName"
+                                                       name="first_name"
                                                        type="text"
                                                        placeholder="Enter first name"
                                                        pattern="^[A-Za-z]+$"
@@ -156,7 +157,9 @@
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputLastName">Last Name</label>
                                                 <input class="form-control py-4"
-                                                       id="inputLastName" type="text"
+                                                       id="inputLastName"
+                                                       name="last_name"
+                                                       type="text"
                                                        placeholder="Enter last name"
                                                        pattern="^[A-Za-z]+$"
                                                        inputmode="text"
@@ -203,6 +206,7 @@
                                                 <label class="small mb-1" for="inputPassword">Password</label>
                                                 <input class="form-control py-4"
                                                        id="inputPassword"
+                                                       name="password"
                                                        type="password"
                                                        placeholder="Enter password"
                                                        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,24}$"
@@ -215,21 +219,24 @@
                                                 <label class="small mb-1" for="inputConfirmPassword">Confirm
                                                     Password</label>
                                                 <input class="form-control py-4" id="inputConfirmPassword"
-                                                       type="password" placeholder="Confirm password"/>
+                                                       name="confirm_password"
+                                                       type="password" placeholder="Confirm password" required/>
                                                 <div id="confirmPasswordError"
                                                      style="display:none;color:red;"></div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row justify-content-left">
+                                    <div class="row justify-content-start">
                                         <p style="color:white;"> Password must be 8-24 characters,include
                                             letters,numbers,and special symbols.</p>
                                     </div>
                                     <!-- Date of Birth -->
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="dob">Date of Birth</label>
-                                            <input class="form-control py-4" id="dob" type="date" required/>
+                                    <div class="form-row">
+                                        <div class="col-md-7">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="dob">Date of Birth</label>
+                                                <input class="form-control py-4" id="dob" name="dob" type="date" required/>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Gender Field Row -->
@@ -256,7 +263,7 @@
                                                 </label>
                                                 <div class="photo-preview-container">
                                                     <img id="photo_preview"
-                                                         src="assets/img/photo-placeholder.png"
+                                                         src="assets/img/profile-pic.svg"
                                                          alt="Photo Preview"
                                                          class="photo-preview-img"/>
                                                 </div>
@@ -273,45 +280,24 @@
                                         </div>
                                     </div>
                                     <!-- reference of director for agent -->
-                                    <div class="col-7">
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="Reference_agent">Reference of
-                                                agent</label>
-                                            <select class="form-control" id="Reference_agent" required>
-                                                <option value="">Select Reference optional</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- Venture Dropdown Field -->
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="projects">Projects</label>
-                                            <select class="form-control" id="projects" name="Projects" required>
-                                                <option value="">Select Project</option>
-                                                <option value="Sree Pavitra Avenue">Sree Pavitra Avenue</option>
-                                                <option value="Subhakari Homes">Subhakari Homes</option>
-                                                <option value="Amogha Smart City">Amogha Smart City</option>
-                                                <option value="Panasapadu">Panasapadu</option>
-                                                <option value="Nanda Gokulam">Nanda Gokulam</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- Date of Visit -->
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="dateOfVisit">Date of Visit</label>
-                                            <input class="form-control py-4" id="dateOfVisit" type="date"
-                                                   required/>
+                                    <div class="form-row">
+                                        <div class="col-7">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="Reference_agent">Reference of agent</label>
+                                                <input class="form-control" id="Reference_agent" name="reference_agent" type="text" placeholder="Enter agent reference (optional)" />
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Address Field -->
-                                    <div class="form-group col-12">
-                                        <label class="small mb-1" for="address">Address</label>
-                                        <textarea class="form-control" id="address" name="address" rows="3"
-                                                  maxlength="128" placeholder="Enter your address"
-                                                  required></textarea>
-                                        <div id="addressError"
-                                             style="display:none;color:red;font-size:0.9em;"></div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label class="small mb-1" for="address">Address</label>
+                                            <textarea class="form-control" id="address" name="address" rows="3"
+                                                      maxlength="128" placeholder="Enter your address"
+                                                      required></textarea>
+                                            <div id="addressError"
+                                                 style="display:none;color:red;font-size:0.9em;"></div>
+                                        </div>
                                     </div>
                                     <!-- Terms and Conditions -->
                                     <div class="form-group mt-4 mb-0">
@@ -323,14 +309,15 @@
                                 </form>
                             </div>
                             <div class="card-footer text-center">
-                                <div class="small"><a href="login-basic.html"></a></div>
+                                <div class="small"><a href="login-basic.html">Already have an account? Login</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 </main>
-</div>
 <div id="layoutAuthentication_footer">
     <footer class="footer mt-auto footer-dark">
         <div class="container-fluid">
@@ -345,70 +332,43 @@
         </div>
     </footer>
 </div>
-</div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>
 <script src="js/validate.js"></script>
 <script>
-    document.querySelector('form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        function getValue(id) {
-            const el = document.getElementById(id);
-            return el ? el.value : '';
-        }
-
-        const data = {
-            firstName: getValue('inputFirstName'),
-            lastName: getValue('inputLastName'),
-            email: getValue('inputEmailAddress'),
-            phone: getValue('phone'),
-            password: getValue('inputPassword'),
-            confirmPassword: getValue('inputConfirmPassword'),
-            dob: getValue('dob'),
-            gender: getValue('gender'),
-            referenceAgent: getValue('Reference_agent'),
-            // File uploads are not included in JSON; handle separately if needed
-        };
-
-        const response = await fetch('/test', {
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    try {
+        const response = await fetch('/register-customer', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            body: formData
         });
-
-        if (response.ok) {
+        const responseText = await response.text();
+        if (response.ok && responseText.includes('Registration successful!')) {
             alert('Registration successful!');
-            // Optionally redirect
         } else {
-            alert('Registration failed.');
+            let errorMsg = 'Registration failed.\n';
+            try {
+                // Try to parse as JSON if possible
+                const data = JSON.parse(responseText);
+                if (data && (data.error || data.message)) {
+                    errorMsg += ' ' + (data.error || data.message);
+                } else {
+                    errorMsg += ' (No error message from server)';
+                }
+            } catch (e) {
+                errorMsg += ` (Status: ${response.status})\n${responseText}`;
+            }
+            alert(errorMsg);
         }
-    });
-</script>
-<script>
-    fetch('/test?key=agents')
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => {
-        if (data.status === 'ok' && Array.isArray(data.agents)) {
-          const select = document.getElementById('Reference_agent');
-          data.agents.forEach(agent => {
-            const option = document.createElement('option');
-            option.value = agent.id;
-            option.textContent = agent.name;
-            select.appendChild(option);
-          });
-        }
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
-      });
+    } catch (err) {
+        alert('Registration failed. Network or server error.');
+    }
+});
 </script>
 </body>
 </html>

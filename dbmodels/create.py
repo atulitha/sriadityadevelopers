@@ -8,30 +8,17 @@ db = SQLAlchemy()
 class Customer(db.Model):
     __tablename__ = 'customers'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Link to users table
-    first_name = db.Column(db.String(100), nullable=False)
-    middle_name = db.Column(db.String(100))
-    last_name = db.Column(db.String(100), nullable=False)
-    age = db.Column(db.Integer)
-    address = db.Column(db.String(200))
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    phone = db.Column(db.String(20), unique=True, nullable=False)
-    adhar = db.Column(db.String(20), unique=True, nullable=False)
-    pan = db.Column(db.String(20), unique=True, nullable=False)
+    user_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=False)  # Link to users.u_id
     interested_project = db.Column(db.String(150))
     interested_plot = db.Column(db.String(50))
     booking_status = db.Column(db.String(50), default='interested')  # interested, booked, cancelled
-    password = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow)
-    role = db.Column(db.String(50), default='customer')
     user = db.relationship('User', backref='customer', lazy=True)
 
 
 class Admin(db.Model):
     __tablename__ = 'admins'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=False)  # Link to users.u_id
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
     user = db.relationship('User', backref='admin', lazy=True)
@@ -40,7 +27,7 @@ class Admin(db.Model):
 class Agent(db.Model):
     __tablename__ = 'agents'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Link to users table
+    user_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=False)  # Link to users.u_id
     first_name = db.Column(db.String(100), nullable=False)
     middle_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100), nullable=False)
@@ -71,7 +58,7 @@ class Project(db.Model):
     location = db.Column(db.String(200))
     start_date = db.Column(db.Date, default=datetime.utcnow)
     end_date = db.Column(db.Date)
-    status = db.Column(db.String(50), default='ongoing')  # 'ongoing', 'completed', 'on hold'
+    status = db.Column(db.String(50), default='ongoing')  # 'ongoing', 'completed', 'planning'
     total_area = db.Column(db.Float)  # in sq ft or meters
     developer = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -109,19 +96,21 @@ class booking(db.Model):
     agent = db.relationship('Agent', backref='bookings', lazy=True)
 
 
-class visit(db.Model):
+class Visit(db.Model):
     __tablename__ = 'visits'
     id = db.Column(db.Integer, primary_key=True)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'), nullable=False)
+    customer_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=False)  # Link to users.u_id where role='customer'
     plot_id = db.Column(db.Integer, db.ForeignKey('plots.id'), nullable=False)
-    agent_id = db.Column(db.Integer, db.ForeignKey('agents.id'), nullable=False)
+    agent_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=True)  # Link to users.u_id where role='agent'
     visit_date = db.Column(db.Date, default=datetime.utcnow)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
-    customer = db.relationship('Customer', backref='visits', lazy=True)
+    customer = db.relationship('User', backref='visits', lazy=True, foreign_keys=[customer_id])
+    agent = db.relationship('User', backref='agent_visits', lazy=True, foreign_keys=[agent_id])
     purpose = db.Column(db.String(200))  # purpose of the visit
     feedback = db.Column(db.Text)  # feedback from the visit
-    status = db.Column(db.String(50), default='scheduled')  # 'scheduled', 'completed', 'cancelled'
+    status = db.Column(db.String(50), default='scheduled')  # 'scheduled', 'completed', 'cancelled'0
+
 
 
 class feedback(db.Model):
@@ -138,19 +127,23 @@ class feedback(db.Model):
 
 
 class User(db.Model):
-        __tablename__ = 'users'
-        id = db.Column(db.Integer, primary_key=True)
-        first_name = db.Column(db.String(100), nullable=False)
-        last_name = db.Column(db.String(100), nullable=False)
-        email = db.Column(db.String(120), unique=True, nullable=False)
-        password = db.Column(db.String(255), nullable=False)
-        dob = db.Column(db.Date, nullable=True)
-        gender = db.Column(db.String(20), nullable=True)
-        adhar = db.Column(db.String(20), unique=True, nullable=False)
-        pan = db.Column(db.String(20), unique=True, nullable=False)
-        aadhaar_file = db.Column(db.String(255), nullable=True)
-        pan_file = db.Column(db.String(255), nullable=True)
-        designation = db.Column(db.String(100), nullable=True)  # e.g., 'Agent', 'Manager'
-        role = db.Column(db.String(50), default='user')  # 'customer', 'agent', 'admin'
-        reference_agent = db.Column(db.String(100), nullable=True)  # Reference agent for agents
-        agent_team = db.Column(db.String(100), nullable=True)  # Team for agents
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    dob = db.Column(db.Date, nullable=True)
+    gender = db.Column(db.String(20), nullable=True)
+    adhar = db.Column(db.String(20), unique=True, nullable=True)
+    pan = db.Column(db.String(20), unique=True, nullable=True)
+    aadhaar_file = db.Column(db.LargeBinary, nullable=True)  # Store file as binary  # Store file as binary
+    pan_file = db.Column(db.LargeBinary, nullable=True)  # Store file as binary
+    designation = db.Column(db.String(100), nullable=True)  # e.g., 'Director', 'Manager', 'Team Lead', 'Senior Agent', 'Agent'
+    role = db.Column(db.String(50), default='user')  # 'customer', 'agent', 'admin'
+    reference_agent = db.Column(db.String(100), nullable=True)  # Reference agent for agents
+    agent_team = db.Column(db.String(100), nullable=True)  # Team for agents
+    photo = db.Column(db.LargeBinary, nullable=True)  # Store photo as binary
+    mobile = db.Column(db.String(20), unique=True, nullable=True)
+    u_id = db.Column(db.String(20), nullable=False)
+    address = db.Column(db.String(300), nullable=True)

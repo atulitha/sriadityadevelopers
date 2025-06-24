@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Register-Sri Aditya Developers</title>
+    <title>Book visit-Sri Aditya Developers</title>
     <link href="css/styles.css" rel="stylesheet"/>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.png"/>
     <script data-search-pseudo-elements defer
@@ -26,51 +26,56 @@
                             <div class="card-header justify-content-center"><h4 class="font-weight-light my-1">
                                 book-site-visit</h4></div>
                             <div class="card-body">
-                                <div id="message" class="alert" style="display: none;"></div>
+                                <div id="message" class="alert" style="display: none;" role="alert" aria-live="polite"></div>
                                 <form id="siteVisitForm">
-                                    <div class="form-row">
-                                        <div class="col-md-6">
-                                            <div class="form-group"><label class="small mb-1" for="inputFirstName">First
-                                                Name</label><input class="form-control py-4" id="inputFirstName"
-                                                                   name="firstName" type="text"
-                                                                   placeholder="Enter first name" required/></div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group"><label class="small mb-1" for="inputLastName">Last
-                                                Name</label><input class="form-control py-4" id="inputLastName"
-                                                                   name="lastName" type="text"
-                                                                   placeholder="Enter last name" required/></div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="customer-id" class="font-weight-bold">Customer ID</label>
+                                        <input
+                                            type="text"
+                                            id="customer-id"
+                                            name="customerId"
+                                            maxlength="10"
+                                            class="form-control"
+                                            placeholder="Enter Customer ID"
+                                            required
+                                            aria-label="Customer ID"
+                                            autocomplete="off" />
                                     </div>
-                                    <div class="form-group"><label class="small mb-1"
-                                                                   for="inputEmailAddress">Email</label><input
-                                            class="form-control py-4" id="inputEmailAddress" name="email" type="email"
-                                            aria-describedby="emailHelp" placeholder="Enter email address" required/>
+                                    <div class="form-group">
+                                        <label for="agentid" class="font-weight-bold">Agent ID</label>
+                                        <input
+                                            type="text"
+                                            id="agentid"
+                                            name="agentId"
+                                            maxlength="10"
+                                            class="form-control"
+                                            placeholder="Enter Agent ID"
+                                            required
+                                            aria-label="Agent ID"
+                                            autocomplete="off" />
                                     </div>
-                                    <div class="form-group"><label class="small mb-1" for="mobile">Mobile number</label><input
-                                            class="form-control py-4" id="mobile" name="mobile" type="text"
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="phone">Mobile number</label>
+                                        <input
+                                            class="form-control py-4" id="phone" name="mobile" type="text"
                                             pattern="^\d{10}$" maxlength="10" placeholder="mobile number" required/>
                                     </div>
                                     <div class="form-group">
                                         <label class="small mb-1" for="project-name">Project Name </label>
                                         <select class="form-control" id="project-name" name="projectName" required>
                                             <option value="">Select Project</option>
-                                            <option>Aditya Enclave</option>
-                                            <option>Aditya Heights</option>
-                                            <option>Aditya Meadows</option>
-                                            <option>Aditya Greens</option>
-                                            <option>Aditya Pearl</option>
                                         </select>
                                     </div>
-                                    <div class="form-group"><label class="small mb-1" for="plot-number">Plot
-                                        Number</label><input class="form-control py-3" id="plot-number"
-                                                             name="plotNumber" type="text" placeholder="plot-number"
-                                                             required/>
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="plot-number">Plot Number</label>
+                                        <input class="form-control py-3" id="plot-number"
+                                               name="plotNumber" type="text" placeholder="plot-number"
+                                               required/>
                                     </div>
                                     <div class="col-md-7">
                                         <div class="form-group">
-                                            <label class="small mb-1" for="visitdate">Date of visit</label>
-                                            <input class="form-control py-4" id="visitdate" name="visitDate"
+                                            <label class="small mb-1" for="dateOfVisit">Date of visit</label>
+                                            <input class="form-control py-4" id="dateOfVisit" name="visitDate"
                                                    type="date"
                                                    required/>
                                         </div>
@@ -138,6 +143,28 @@
                 messageDiv.textContent = 'An error occurred. Please try again.';
             });
     });
+</script>
+<script>
+    fetch('/test?key=projects')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'ok' && Array.isArray(data.projects)) {
+                    const select = document.getElementById('project-name');
+                    select.innerHTML = '<option value="">Select Project</option>';
+                    data.projects.forEach(item => {
+                        const option = document.createElement('option');
+                        option.value = item.id || item.name;
+                        option.textContent = item.name;
+                        select.appendChild(option);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
 </script>
 <script src="js/validate.js"></script>
 </body>

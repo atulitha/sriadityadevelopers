@@ -1,6 +1,9 @@
 import jinja2
 from flask import Flask, render_template, send_from_directory, jsonify, request, session
 from werkzeug.security import check_password_hash
+from flask_session import Session
+
+from pymemcache.client.base import Client as MemcacheClient  # <-- Use pymemcache
 
 import views
 from admin.admin import admin
@@ -17,10 +20,22 @@ UPLOAD_FOLDER = 'static/uploads'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# --- Flask-Session config for Filesystem (development) ---
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_FILE_DIR'] = './flask_session'  # Optional: custom session file dir
+app.config['SESSION_PERMANENT'] = False
+
+# If you want to use Memcached in production, use:
+# from pymemcache.client.base import Client as MemcacheClient
+# app.config['SESSION_TYPE'] = 'memcached'
+# app.config['SESSION_MEMCACHED'] = MemcacheClient(('127.0.0.1', 11211))
+
 # --- Security: Session cookie settings ---
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-app.config['SESSION_COOKIE_SECURE'] = True  # Set to True in production with HTTPS
+app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production with HTTPS
+
+Session(app)  # <-- Initialize Flask-Session
 
 db.init_app(app)
 app.register_blueprint(admin)
@@ -54,14 +69,6 @@ def not_found(e):
     return '<strong>Page Not Found!</strong>', 404
 
 
-@app.route('/users.json', methods=['GET'])
-@api_security
-def list_users_json():
-    users = User.query.all()
-    return jsonify(
-        {'status': 'ok', 'data': [{'id': user.id, 'email': user.email, 'name': f"{user.name}", } for user in users]})
-
-
 @app.route('/login', methods=['POST'])
 def login():
     if not request.is_json:
@@ -72,22 +79,36 @@ def login():
     # Validate input
     if not email or not password:
         return jsonify({'status': 'error', 'message': 'Missing credentials'}), 400
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(u_id=email.lower()).first()
     if user and check_password_hash(user.password, password):
         session['user_id'] = user.id
         session['role'] = getattr(user, 'role', 'user')
         return jsonify({'status': 'ok',
                         'user': {'id': user.id, 'email': user.email, 'role': getattr(user, 'role', None),
-                                 'name': user.name}})
+                                 'name': user.first_name + ' ' + user.last_name}}), 200
     else:
+        print("Invalid login attempt for user:", data)
         return jsonify({'status': 'error', 'message': 'Invalid username or password'}), 401
 
 
-@app.route('/logout', methods=['POST'])
+@app.route("/get_name", methods=['GET'])
+@api_security
+def get_name():
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
+    user = db.session.get(User, user_id)
+    if not user:
+        return jsonify({'status': 'error', 'message': 'User not found'}), 404
+    return jsonify({'status': 'ok', 'name': f"{user.first_name} {user.last_name}"})
+
+
+@app.route('/logout', methods=['GET'])
 @api_security
 def logout():
     session.pop('user_id', None)
     session.pop('role', None)
+    print('User logged out')
     return jsonify({'status': 'ok', 'message': 'Logged out'})
 
 
@@ -111,24 +132,48 @@ def test():
             return jsonify({'status': 'error', 'message': 'Unsupported Content-Type'}), 415
     if request.method == 'GET':
         key = request.args.get('key')
-        sample_data = {'agents': [{'id': 1, 'name': 'Self Registration'}, {'id': 2, 'name': 'Agent Jhon'},
-                                  {'id': 3, 'name': 'Agent Smith'}],
-                       'directors': [{'id': 1, 'name': 'Director Brown'}, {'id': 2, 'name': 'Director White'}],
-                       'teams': [{'id': 1, 'name': 'Team Alpha'}, {'id': 2, 'name': 'Team Beta'}],
-                       'Designation': [{'id': 'Manager', 'name': 'Manager'}, {'id': 'Executive', 'name': 'Executive'}],
-                       'sub1Options': {
-                           'nandagokulam': [{'value': 'villas_ng', 'text': 'Luxury Villas'},
-                                            {'value': 'Flats_ng', 'text': 'Luxury Flats'},
-                                            {'value': 'plots_ng', 'text': 'Plots'}],
-                           'panasapadu': [{'value': 'plots_pns', 'text': 'Plots'}]}, 'sub2Options': {
-                'villas_ng': [{'value': 'villa1', 'text': 'Villa 1-East facing', 'size': 2500},
-                              {'value': 'villa2', 'text': 'Villa 2-West facing', 'size': 2600}],
-                'Flats_ng': [{'value': 'flat1', 'text': 'Flat no 101-East facing', 'size': 1200},
-                             {'value': 'flat2', 'text': 'Flat no 102-West facing', 'size': 1250}],
-                'plots_ng': [{'value': 'plot1', 'text': 'Plot 1', 'size': 300},
-                             {'value': 'plot2', 'text': 'Plot 2', 'size': 320}],
-                'plots_pns': [{'value': 'plot1', 'text': 'Plot 1', 'size': 350},
-                              {'value': 'plot2', 'text': 'Plot 2', 'size': 370}]}}
+        sample_data = {
+            'agents': [
+                {'id': 1, 'name': 'Self Registration'},
+                {'id': 2, 'name': 'Agent Jhon'},
+                {'id': 3, 'name': 'Agent Smith'}
+            ],
+            'sub1Options': {
+                'nandagokulam': [
+                    {'value': 'villas_ng', 'text': 'Luxury Villas'},
+                    {'value': 'Flats_ng', 'text': 'Luxury Flats'},
+                    {'value': 'plots_ng', 'text': 'Plots'}
+                ],
+                'panasapadu': [
+                    {'value': 'plots_pns', 'text': 'Plots'}
+                ]
+            },
+            'sub2Options': {
+                'villas_ng': [
+                    {'value': 'villa1', 'text': 'Villa 1-East facing', 'size': 2500},
+                    {'value': 'villa2', 'text': 'Villa 2-West facing', 'size': 2600}
+                ],
+                'Flats_ng': [
+                    {'value': 'flat1', 'text': 'Flat no 101-East facing', 'size': 1200},
+                    {'value': 'flat2', 'text': 'Flat no 102-West facing', 'size': 1250}
+                ],
+                'plots_ng': [
+                    {'value': 'plot1', 'text': 'Plot 1', 'size': 300},
+                    {'value': 'plot2', 'text': 'Plot 2', 'size': 320}
+                ],
+                'plots_pns': [
+                    {'value': 'plot1', 'text': 'Plot 1', 'size': 350},
+                    {'value': 'plot2', 'text': 'Plot 2', 'size': 370}
+                ]
+            },
+            'projects': [
+                {"id": 1, "name": "Aditya Enclave"},
+                {"id": 2, "name": "Aditya Heights"},
+                {"id": 3, "name": "Aditya Meadows"},
+                {"id": 4, "name": "Aditya Greens"},
+                {"id": 5, "name": "Aditya Pearl"}
+            ]
+        }
         if key in sample_data:
             return jsonify({'status': 'ok', key: sample_data[key]})
         return jsonify({'status': 'ok', **sample_data})
@@ -145,6 +190,7 @@ def handle_exception(e):
 
 
 app.add_url_rule('/register-agent', '/register_agent', view_func=views.register_agent, methods=['GET', 'POST'])
+app.add_url_rule('/register-customer', '/register_customer', view_func=views.register_customer, methods=['GET', 'POST'])
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000, threaded=True)
