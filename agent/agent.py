@@ -1,7 +1,6 @@
 # blueprints/agent.py
-from flask import Blueprint, render_template, request, jsonify, send_from_directory
+from flask import Blueprint, render_template, send_from_directory
 
-from dbmodels.create import User
 from lib import api_security
 from . import booking
 from . import leads
@@ -21,32 +20,9 @@ def agent_index():
     return render_template('agent-dashboard.html')
 
 
-@agent.route('/settings', methods=['GET', 'POST'])
-def settings():
-    if request.method == 'POST':
-        # Handle settings update
-        return jsonify({'status': 'success'})
-    return render_template('settings.html')
-
-
 @agent.route('/<path:resource>')
 def serveStaticResource(resource):
     return send_from_directory('static/', resource)
-
-
-@agent.route('/users', methods=['GET'])
-def get_all_users():
-    """
-    Get all users as JSON.
-    """
-    users = User.query.all()
-    return jsonify([
-        {
-            'id': user.u_id,
-            'email': user.email,
-            'name': user.first_name + ' ' + user.last_name,
-        } for user in users
-    ])
 
 
 @agent.route('/book-site-visit.html', methods=['GET'])
