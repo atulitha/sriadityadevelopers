@@ -9,22 +9,9 @@ class Customer(db.Model):
     __tablename__ = 'customers'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=False)  # Link to users.u_id
-    first_name = db.Column(db.String(100), nullable=False)
-    middle_name = db.Column(db.String(100))
-    last_name = db.Column(db.String(100), nullable=False)
-    age = db.Column(db.Integer)
-    address = db.Column(db.String(200))
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    phone = db.Column(db.String(20), unique=True, nullable=False)
-    adhar = db.Column(db.String(20), unique=True, nullable=False)
-    pan = db.Column(db.String(20), unique=True, nullable=False)
     interested_project = db.Column(db.String(150))
     interested_plot = db.Column(db.String(50))
     booking_status = db.Column(db.String(50), default='interested')  # interested, booked, cancelled
-    password = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow)
-    role = db.Column(db.String(50), default='customer')
     user = db.relationship('User', backref='customer', lazy=True)
 
 

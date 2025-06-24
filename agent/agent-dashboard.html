@@ -202,7 +202,7 @@
             <div class="container-fluid mt-5">
                 <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
                     <div class="mr-4 mb-3 mb-sm-0">
-                        <h1 class="mb-0">Hi Agent </h1>
+                        <h1 class="mb-0" id="agent-greeting">Hi Agent </h1>
                         <div class="small"><span class="font-weight-500 text-primary">Friday</span> &middot; may
                             20, 2025 &middot; 12:16 PM
                         </div>
@@ -322,7 +322,7 @@
                         <div class="card bg-warning text-white mb-4">
                             <div class="card-body">Leads</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="/agent/userdata-tables.html">View</a>
+                                <a class="small text-white stretched-link" href="/agent/leads.html">View</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
@@ -336,15 +336,15 @@
                             </div>
                         </div>
                     </div>
-                    <!--                    <div class="col-xl-3 col-md-6">-->
-                    <!--                        <div class="card bg-primary text-white mb-4">-->
-                    <!--                            <div class="card-body">Adithya enclave</div>-->
-                    <!--                            <div class="card-footer d-flex align-items-center justify-content-between">-->
-                    <!--                                <a class="small text-white stretched-link" href="https://www.sriadityadevelopers.com/adityawebsite/project.php" target="_blank">View</a>-->
-                    <!--                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
+<!--                                        <div class="col-xl-3 col-md-6">-->
+<!--                                            <div class="card bg-primary text-white mb-4">-->
+<!--                                                <div class="card-body">Adithya enclave</div>-->
+<!--                                                <div class="card-footer d-flex align-items-center justify-content-between">-->
+<!--                                                    <a class="small text-white stretched-link" href="https://www.sriadityadevelopers.com/adityawebsite/project.php" target="_blank">View</a>-->
+<!--                                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                     <div class="row">
                         <div class="col-lg-4 col-xl-3 mb-4">
                             <div class="card bg-secondary o-visible mb-4">
@@ -429,7 +429,6 @@
         </footer>
     </div>
 </div>
--->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
@@ -437,5 +436,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="assets/demo/chart-area-demo.js"></script>
 <script src="assets/demo/chart-bar-demo.js"></script>
+<script>
+    // Fetch agent name and update greeting
+    fetch('/get_name')
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.name) {
+                document.getElementById('agent-greeting').textContent = 'Hi ' + data.name;
+            }
+        })
+        .catch(() => {
+            // fallback: do nothing, keep default
+        });
+</script>
 </body>
 </html>

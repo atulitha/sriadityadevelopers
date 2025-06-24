@@ -2,13 +2,16 @@
 from flask import Blueprint, render_template, request, jsonify, send_from_directory
 
 from dbmodels.create import User
+from lib import api_security
 from . import booking
+from . import leads
 
 agent = Blueprint('agent', __name__, url_prefix='/agent',
                   template_folder='./', static_folder='static')
 
 
 @agent.route('/')
+@api_security
 def agent_index():
     """
     Agent index page.
@@ -39,14 +42,15 @@ def get_all_users():
     users = User.query.all()
     return jsonify([
         {
-            'id': user.id,
+            'id': user.u_id,
             'email': user.email,
-            'name': user.name
+            'name': user.first_name + ' ' + user.last_name,
         } for user in users
     ])
 
 
 @agent.route('/book-site-visit.html', methods=['GET'])
+@api_security
 def book_site_visit():
     """
     Book a site visit.
@@ -59,9 +63,11 @@ def book_site_visit():
 # If booking.book_site_visit is a view function, register it as a route like this:
 agent.add_url_rule('/book-visit', view_func=booking.book_visit, methods=['GET', 'POST'])
 agent.add_url_rule('/dashboad2', view_func=booking.book_visit, methods=['GET', 'POST'])
+agent.add_url_rule('/leads', view_func=leads.leads, methods=['GET', 'POST'])
 
 
 @agent.route('/plotdata-tables1.html', methods=['GET'])
+@api_security
 def plotdata_tables():
     """
     Book a site visit.
@@ -71,16 +77,7 @@ def plotdata_tables():
     return render_template('plotdata-tables1.html')
 
 
-@agent.route('/userdata-tables.html', methods=['GET'])
-def userdata_tables():
-    """
-    Book a site visit.
-
-    This page allows the agent to book a site visit.
-    """
-    return render_template('userdata-tables.html')
-
-
 @agent.route('/<pagename>')
+@api_security
 def serve_page(pagename):  # Changed from 'admin' to 'serve_page'
     return render_template(pagename)

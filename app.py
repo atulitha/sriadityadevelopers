@@ -83,8 +83,19 @@ def login():
         print("Invalid login attempt for user:", data)
         return jsonify({'status': 'error', 'message': 'Invalid username or password'}), 401
 
+@app.route("/get_name", methods=['GET'])
+@api_security
+def get_name():
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
+    user = db.session.get(User, user_id)
+    if not user:
+        return jsonify({'status': 'error', 'message': 'User not found'}), 404
+    return jsonify({'status': 'ok', 'name': f"{user.first_name} {user.last_name}"})
 
-@app.route('/logout', methods=['POST'])
+
+@app.route('/logout', methods=['GET'])
 @api_security
 def logout():
     session.pop('user_id', None)
