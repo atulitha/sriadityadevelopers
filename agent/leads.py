@@ -21,7 +21,7 @@ def leads():
                 'plot': customer.interested_plot if customer and customer.interested_plot else 'None',
                 # Get site_visit from visits table by customer_id (not user_id)
                 'site_visit': (
-                    (visit.visit_date if visit else None)
+                    visit.visit_date.strftime('%Y-%m-%d') if visit and visit.visit_date else None
                 ),
                 'u_id': user.u_id if user.u_id else None,
             }
