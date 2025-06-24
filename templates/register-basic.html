@@ -37,7 +37,7 @@
             margin: 0;
             padding: 0;
             overflow-y: auto;
-            background-image: url('assets/img/abg9.png'); /* Corrected property name */
+            background-image: url('/assets/img/abg9.png'); /* Corrected property name */
             background-size: cover; /* Ensures the image covers the entire background */
             background-position: center; /* Centers the image */
             background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -86,10 +86,11 @@
             outline: none; /* Remove default outline */
         }
 
-        /* Match client selection option background and text color */
+        /* Glass effect for select options */
         option {
-            background-color: rgba(0,0,0,0.15) !important; /* Match client: dark translucent */
+            background: rgba(30, 30, 30, 0.25) !important; /* Glassy dark translucent */
             color: #fff !important; /* White text */
+            backdrop-filter: blur(4px); /* Glass effect (supported browsers) */
         }
 
         .form-left {
@@ -128,14 +129,10 @@
         }
 
         select.form-control {
-            color: black !important; /* Button color */
+            /* Remove: color: black !important; */
         }
 
         textarea.form-control {
-            color: white !important; /* Button color */
-        }
-
-        option {
             color: white !important; /* Button color */
         }
 

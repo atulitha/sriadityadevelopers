@@ -20,7 +20,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # --- Security: Session cookie settings ---
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-app.config['SESSION_COOKIE_SECURE'] = True  # Set to True in production with HTTPS
+app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production with HTTPS
 
 db.init_app(app)
 app.register_blueprint(admin)
@@ -72,7 +72,7 @@ def login():
     # Validate input
     if not email or not password:
         return jsonify({'status': 'error', 'message': 'Missing credentials'}), 400
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(u_id=email.lower()).first()
     if user and check_password_hash(user.password, password):
         session['user_id'] = user.id
         session['role'] = getattr(user, 'role', 'user')
@@ -80,6 +80,7 @@ def login():
                         'user': {'id': user.id, 'email': user.email, 'role': getattr(user, 'role', None),
                                  'name': user.first_name + ' ' + user.last_name}}), 200
     else:
+        print("Invalid login attempt for user:", data)
         return jsonify({'status': 'error', 'message': 'Invalid username or password'}), 401
 
 

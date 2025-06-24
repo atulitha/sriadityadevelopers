@@ -249,7 +249,7 @@ def init_db():
                 agent_counters['md'] += 1
                 u_id_map['md'].append(u_id)
             else:
-                u_id = f"ag-{idx+1:06d}"  # fallback
+                u_id = f"ag-{idx + 1:06d}"  # fallback
 
             user = User(
                 first_name=agent_info['first_name'],
@@ -370,7 +370,7 @@ def init_db():
         # Assign reference_agent alternately between the two agents
         agent_u_ids = u_id_map['ag']
         for idx, cust_info in enumerate(customer_users):
-            u_id = f"cs-{idx+1:010d}"
+            u_id = f"cs-{idx + 1:010d}"
             reference_agent = agent_u_ids[idx % len(agent_u_ids)] if agent_u_ids else None
             user = User(
                 first_name=cust_info['first_name'],

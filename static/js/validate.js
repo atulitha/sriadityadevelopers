@@ -15,12 +15,12 @@ const combinedError = document.getElementById('combinedError');
 if (combinedInput) {
     combinedInput.addEventListener('input', function () {
         const prefixPatterns = {
-            'CS': 12, // CS requires 12 characters
-            'AG': 8,  // AG requires 8 characters
-            'MG': 8,  // MG requires 8 characters
-            'TL': 8,  // TL requires 8 characters
-            'DR': 8,  // DR requires 8 characters
-            'MD': 8   // MD requires 8 characters
+            'CS': 13, // CS requires 12 characters
+            'AG': 9,  // AG requires 8 characters
+            'MG': 9,  // MG requires 8 characters
+            'TL': 9,  // TL requires 8 characters
+            'DR': 9,  // DR requires 8 characters
+            'MD': 9,   // MD requires 8 characters
         };
 
         // Convert input to uppercase
