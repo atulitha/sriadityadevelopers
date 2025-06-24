@@ -1,10 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Dashboard - Sri Aditya Developers</title>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+          crossorigin="anonymous"/>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png"/>
+    <script data-search-pseudo-elements defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
+            crossorigin="anonymous"></script>
+    <style>
+        .sidenav-list li {
+            list-style: none; /* Removes default list styling */
+            color: #2c3e50; /* Sets a professional dark text color */
+            padding: 12px 20px; /* Adjusts padding for better spacing */
+            margin-bottom: 16px; /* Adds more spacing between items */
+            background-color: #ffffff; /* Sets a clean white background */
+            border-radius: 6px; /* Slightly rounds the corners */
+            border-left: 4px solid #0056b3; /* Uses a more subtle blue for the border */
+            padding-right: 20px; /* Ensures padding on the right for text alignment */
+            padding-left: 10px; /* Moves the text closer to the left */
+            font-size: 16px; /* Sets a standard font size */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+            text-align: left; /* Aligns text to the left */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+        }
+        .card {
+        border: 1px solid #ccc; /* Adds a light gray border */
+        border-radius: 8px; /* Rounds the corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+        margin-bottom: 16px; /* Adds spacing between cards */
+    }
+      .card:hover {
+            transform: translateY(-10px); /* Moves the card up slightly */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhances shadow for floating effect */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+        }
+      e>
+    </style>
 </head>
-<body>
-
+<body class="nav-fixed">
+<nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
+    <a class="navbar-brand d-none d-sm-block" href="../templates/index.html">Sri Adithya Developers</a><img
+        class="dropdown-user-img"
+        src="/assets/img/siradithya.jpg"
+        style="width: 60px; height: 58px;"/>
+    <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
+            data-feather="menu"></i></button>
+    <form class="form-inline mr-auto d-none d-lg-block"><input class="form-control form-control-solid mr-sm-2"
+                                                               type="search" placeholder="Search" aria-label="Search"/>
+    </form>
+    <ul class="navbar-nav align-items-center ml-auto">
+        <li class="nav-item dropdown no-caret mr-3">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            >
+                <div class="d-inline d-md-none font-weight-500">Docs</div>
+                <div class="d-none d-md-inline font-weight-500">Documentation</div>
+                <i class="fas fa-chevron-right dropdown-arrow"></i
+                ></a>
+            <div class="dropdown-menu dropdown-menu-right py-0 o-hidden mr-n15 mr-lg-0 animated--fade-in-up"
+                 aria-labelledby="navbarDropdownDocs">
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank"
+                >
+                    <div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="book"></i></div>
+                    <div>
+                        <div class="small text-gray-500">Documentation</div>
+                        Usage instructions and reference
+                    </div>
+                </a>
+                <div class="dropdown-divider m-0"></div>
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components"
+                   target="_blank">
+                    <div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="code"></i></div>
+                    <div>
+                        <div class="small text-gray-500">Components</div>
+                        Code snippets and reference
+                    </div>
+                </a>
+                <div class="dropdown-divider m-0"></div>
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog"
+                   target="_blank"
+                >
+                    <div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="file-text"></i></div>
+                    <div>
+                        <div class="small text-gray-500">Changelog</div>
+                        Updates and changes
+                    </div>
+                </a
+                >
+            </div>
+        </li>
+        <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts"
+               href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><i data-feather="bell"></i></a>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                 aria-labelledby="navbarDropdownAlerts">
+                <h6 class="dropdown-header dropdown-notifications-header"><i class="mr-2" data-feather="bell"></i>Alerts
+                    Center</h6>
+                <a class="dropdown-item dropdown-notifications-item" href="#!"
+                >
+                    <div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
+                    <div class="dropdown-notifications-item-content">
+                        <div class="dropdown-notifications-item-content-details">December 29, 2019</div>
+                        <div class="dropdown-notifications-item-content-text">This is an alert message. It's nothing
+                            serious, but it requires your attention.
+                        </div>
+                    </div>
+                </a
+                ><a class="dropdown-item dropdown-notifications-item" href="#!"
+            >
+                <div class="dropdown-notifications-item-icon bg-info"><i data-feather="bar-chart"></i></div>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-details">December 22, 2019</div>
+                    <div class="dropdown-notifications-item-content-text">A new monthly report is ready. Click here to
+                        view!
+                    </div>
+                </div>
+            </a
+            ><a class="dropdown-item dropdown-notifications-item" href="#!">
+                <div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-details">December 8, 2019</div>
+                    <div class="dropdown-notifications-item-content-text">Critical system failure, systems shutting
+                        down.
+                    </div>
+                </div>
+            </a>
+                <a class="dropdown-item dropdown-notifications-item" href="#!">
+                    <div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
+                    <div class="dropdown-notifications-item-content">
+                        <div class="dropdown-notifications-item-content-details">December 2, 2019</div>
+                        <div class="dropdown-notifications-item-content-text">New user request. Woody has requested
+                            access
+                            to the organization.
+                        </div>
+                    </div>
+                </a
+                ><a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages"
+               href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><i data-feather="mail"></i></a>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                 aria-labelledby="navbarDropdownMessages">
+                <h6 class="dropdown-header dropdown-notifications-header"><i class="mr-2" data-feather="mail"></i>Message
+                    Center</h6>
+                <a class="dropdown-item dropdown-notifications-item" href="#!"
+                ><img class="dropdown-notifications-item-img" src="/assets/img/siradithya.jpg"/>
+                    <div class="dropdown-notifications-item-content">
+                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                            officia deserunt mollit anim id est laborum.
+                        </div>
+                        <div class="dropdown-notifications-item-content-details">Emily Fowler · 58m</div>
+                    </div>
+                </a
+                ><a class="dropdown-item dropdown-notifications-item" href="#!"
+            ><img class="dropdown-notifications-item-img" src="https://source.unsplash.com/4ytMf8MgJlY/60x60"/>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                        mollit anim id est laborum.
+                    </div>
+                    <div class="dropdown-notifications-item-content-details">Diane Chambers · 2d</div>
+                </div>
+            </a
+            ><a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-caret mr-3 dropdown-user">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
+               href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><img class="img-fluid" src="/assets/img/siradithya.jpg"/></a>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                 aria-labelledby="navbarDropdownUserImage">
+                <h6 class="dropdown-header d-flex align-items-center">
+                    <img class="dropdown-user-img" src="/assets/img/siradithya.jpg"/>
+                    <div class="dropdown-user-details">
+                        <div class="dropdown-user-details-name">Valerie Luna</div>
+                        <div class="dropdown-user-details-email">vluna@aol.com</div>
+                    </div>
+                </h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#!"
+                >
+                    <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
+                    Account</a>
+                <a class="dropdown-item" href="#!">
+                    <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                    Logout</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<div id="layoutSidenav" style="display: flex; flex-direction: row; height: 100vh;">
+    <div id="layoutSidenav_nav">
+        <nav class="sidenav shadow-right sidenav-light">
+            <div class="sidenav-content">
+                <div class="user-info" style="padding: 15px; background-color: #f0f0f0;">
+                    <p class="sidenav-footer-subtitle">Logged in as: Agent</p>
+                </div>
+                <div class="project-list" style="padding: 15px;">
+                    <h5 class="sidenav-title">Project List</h5>
+                    <ul class="sidenav-list">
+                        <li>
+                            <a  class="sidenav-link">Aditya Enclave</a>
+                        </li>
+                        <li>
+                            <a  class="sidenav-link">Aditya Heights</a>
+                        </li>
+                        <li>
+                            <a  class="sidenav-link">Aditya Meadows</a>
+                        </li>
+                        <li>
+                            <a  class="sidenav-link">Aditya Greens</a>
+                        </li>
+                        <li>
+                            <a  class="sidenav-link">Aditya Pearl</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="assets/demo/chart-area-demo.js"></script>
+<script src="assets/demo/chart-bar-demo.js"></script>
 </body>
 </html>
