@@ -239,7 +239,7 @@ def register_customer():
             db.session.commit()
             return jsonify({
                 'status': 'ok',
-                'message': f'Customer registered successfully\ncustomer_id {customer.u_id}',
+                'message': f'Customer registered successfully\ncustomer id {customer.u_id}',
             })
 
         except Exception as e:
