@@ -21,13 +21,15 @@
             list-style: none; /* Removes default list styling */
             color: #2c3e50; /* Sets a professional dark text color */
             padding: 12px 20px; /* Adjusts padding for better spacing */
-            margin-bottom: 8px; /* Adds consistent spacing between items */
+            margin-bottom: 16px; /* Adds more spacing between items */
             background-color: #ffffff; /* Sets a clean white background */
             border-radius: 6px; /* Slightly rounds the corners */
             border-left: 4px solid #0056b3; /* Uses a more subtle blue for the border */
             padding-right: 20px; /* Ensures padding on the right for text alignment */
-            font-size: 14px; /* Sets a standard font size */
+            padding-left: 10px; /* Moves the text closer to the left */
+            font-size: 16px; /* Sets a standard font size */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+            text-align: left; /* Aligns text to the left */
             transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
         }
 
@@ -35,6 +37,12 @@
             background-color: #f0f8ff; /* Changes background on hover */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhances shadow on hover */
         }
+        .card {
+        border: 1px solid #ccc; /* Adds a light gray border */
+        border-radius: 8px; /* Rounds the corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+        margin-bottom: 16px; /* Adds spacing between cards */
+    }
     </style>
 </head>
 <body class="nav-fixed">
@@ -117,8 +125,7 @@
                     </div>
                 </div>
             </a
-            ><a class="dropdown-item dropdown-notifications-item" href="#!"
-            >
+            ><a class="dropdown-item dropdown-notifications-item" href="#!">
                 <div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i>
                 </div>
                 <div class="dropdown-notifications-item-content">
@@ -127,18 +134,18 @@
                         down.
                     </div>
                 </div>
-            </a
-            ><a class="dropdown-item dropdown-notifications-item" href="#!"
-            >
-                <div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
-                <div class="dropdown-notifications-item-content">
-                    <div class="dropdown-notifications-item-content-details">December 2, 2019</div>
-                    <div class="dropdown-notifications-item-content-text">New user request. Woody has requested access
-                        to the organization.
+            </a>
+                <a class="dropdown-item dropdown-notifications-item" href="#!">
+                    <div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
+                    <div class="dropdown-notifications-item-content">
+                        <div class="dropdown-notifications-item-content-details">December 2, 2019</div>
+                        <div class="dropdown-notifications-item-content-text">New user request. Woody has requested
+                            access
+                            to the organization.
+                        </div>
                     </div>
-                </div>
-            </a
-            ><a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
+                </a
+                ><a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
             </div>
         </li>
         <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
@@ -197,13 +204,13 @@
                     <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                     Account</a>
                 <a class="dropdown-item" href="#!">
-                <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                Logout</a>
+                    <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                    Logout</a>
             </div>
         </li>
     </ul>
 </nav>
-<div id="layoutSidenav">
+<div id="layoutSidenav" style="display: flex; flex-direction: row; height: 100vh;">
     <div id="layoutSidenav_nav">
         <nav class="sidenav shadow-right sidenav-light">
             <div class="sidenav-content">
@@ -232,6 +239,76 @@
                 </div>
             </div>
         </nav>
+    </div>
+    <div id="mainContentContainer" style="flex: 1; padding-left: 250px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; margin: 8px;">
+        <div id="mainContent" style="padding: 25px;">
+            <h1 style="padding-top:45px;font-size:40px; ">Projects</h1>
+            <div class="card card-icon mb-3">
+                <div class="row no-gutters">
+                    <div class="col-auto card-icon-aside bg-primary">
+                        <img class="img-fluid" src="path/to/image" alt="Aditya Enclave">
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-5">
+                            <h5 class="card-title">Aditya Enclave</h5>
+                            <p class="card-text">Description for Aditya Enclave.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-icon mb-3">
+                <div class="row no-gutters">
+                    <div class="col-auto card-icon-aside bg-primary">
+                        <img class="img-fluid" src="path/to/image" alt="Aditya Heights">
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-5">
+                            <h5 class="card-title">Aditya Heights</h5>
+                            <p class="card-text">Description for Aditya Heights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-icon mb-3">
+                <div class="row no-gutters">
+                    <div class="col-auto card-icon-aside bg-primary">
+                        <img class="img-fluid" src="path/to/image" alt="Aditya Meadows">
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-5">
+                            <h5 class="card-title">Aditya Meadows</h5>
+                            <p class="card-text">Description for Aditya Meadows.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-icon mb-3">
+                <div class="row no-gutters">
+                    <div class="col-auto card-icon-aside bg-primary">
+                        <img class="img-fluid" src="path/to/image" alt="Aditya Greens">
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-5">
+                            <h5 class="card-title">Aditya Greens</h5>
+                            <p class="card-text">Description for Aditya Greens.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-icon mb-3">
+                <div class="row no-gutters">
+                    <div class="col-auto card-icon-aside bg-primary">
+                        <img class="img-fluid" src="path/to/image" alt="Aditya Pearl">
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-5">
+                            <h5 class="card-title">Aditya Pearl</h5>
+                            <p class="card-text">Description for Aditya Pearl.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
