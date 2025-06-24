@@ -32,17 +32,18 @@
             text-align: left; /* Aligns text to the left */
             transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
         }
-
-        .sidenav-list li:hover {
-            background-color: #f0f8ff; /* Changes background on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhances shadow on hover */
-        }
         .card {
         border: 1px solid #ccc; /* Adds a light gray border */
         border-radius: 8px; /* Rounds the corners */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
         margin-bottom: 16px; /* Adds spacing between cards */
     }
+      .card:hover {
+            transform: translateY(-10px); /* Moves the card up slightly */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhances shadow for floating effect */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+        }
+      e>
     </style>
 </head>
 <body class="nav-fixed">
@@ -221,19 +222,19 @@
                     <h5 class="sidenav-title">Project List</h5>
                     <ul class="sidenav-list">
                         <li>
-                            <a href="Aditya Enclave.html" class="sidenav-link">Aditya Enclave</a>
+                            <a  class="sidenav-link">Aditya Enclave</a>
                         </li>
                         <li>
-                            <a href="Aditya Heights.html" class="sidenav-link">Aditya Heights</a>
+                            <a  class="sidenav-link">Aditya Heights</a>
                         </li>
                         <li>
-                            <a href="Aditya Meadows.html" class="sidenav-link">Aditya Meadows</a>
+                            <a  class="sidenav-link">Aditya Meadows</a>
                         </li>
                         <li>
-                            <a href="Aditya Greens.html" class="sidenav-link">Aditya Greens</a>
+                            <a  class="sidenav-link">Aditya Greens</a>
                         </li>
                         <li>
-                            <a href="Aditya Pearl.html" class="sidenav-link">Aditya Pearl</a>
+                            <a  class="sidenav-link">Aditya Pearl</a>
                         </li>
                     </ul>
                 </div>
@@ -242,72 +243,82 @@
     </div>
     <div id="mainContentContainer" style="flex: 1; padding-left: 250px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; margin: 8px;">
         <div id="mainContent" style="padding: 25px;">
-            <h1 style="padding-top:45px;font-size:40px; ">Projects</h1>
-            <div class="card card-icon mb-3">
-                <div class="row no-gutters">
-                    <div class="col-auto card-icon-aside bg-primary">
-                        <img class="img-fluid" src="path/to/image" alt="Aditya Enclave">
-                    </div>
-                    <div class="col">
-                        <div class="card-body py-5">
-                            <h5 class="card-title">Aditya Enclave</h5>
-                            <p class="card-text">Description for Aditya Enclave.</p>
+            <h1 style="padding-top:45px;font-size:40px;">Projects</h1>
+            <a href="Aditya Enclave.html" style="text-decoration: none; color: inherit;">
+                <div class="card card-icon mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-auto card-icon-aside bg-primary">
+                            <img class="img-fluid" src="path/to/image" alt="Aditya Enclave">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-5">
+                                <h5 class="card-title">Aditya Enclave</h5>
+                                <p class="card-text">Description for Aditya Enclave.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card card-icon mb-3">
-                <div class="row no-gutters">
-                    <div class="col-auto card-icon-aside bg-primary">
-                        <img class="img-fluid" src="path/to/image" alt="Aditya Heights">
-                    </div>
-                    <div class="col">
-                        <div class="card-body py-5">
-                            <h5 class="card-title">Aditya Heights</h5>
-                            <p class="card-text">Description for Aditya Heights.</p>
+            </a>
+            <a href="Aditya Heights.html" style="text-decoration: none; color: inherit;">
+                <div class="card card-icon mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-auto card-icon-aside bg-primary">
+                            <img class="img-fluid" src="path/to/image" alt="Aditya Heights">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-5">
+                                <h5 class="card-title">Aditya Heights</h5>
+                                <p class="card-text">Description for Aditya Heights.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card card-icon mb-3">
-                <div class="row no-gutters">
-                    <div class="col-auto card-icon-aside bg-primary">
-                        <img class="img-fluid" src="path/to/image" alt="Aditya Meadows">
-                    </div>
-                    <div class="col">
-                        <div class="card-body py-5">
-                            <h5 class="card-title">Aditya Meadows</h5>
-                            <p class="card-text">Description for Aditya Meadows.</p>
+            </a>
+            <a href="Aditya Meadows.html" style="text-decoration: none; color: inherit;">
+                <div class="card card-icon mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-auto card-icon-aside bg-primary">
+                            <img class="img-fluid" src="path/to/image" alt="Aditya Meadows">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-5">
+                                <h5 class="card-title">Aditya Meadows</h5>
+                                <p class="card-text">Description for Aditya Meadows.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card card-icon mb-3">
-                <div class="row no-gutters">
-                    <div class="col-auto card-icon-aside bg-primary">
-                        <img class="img-fluid" src="path/to/image" alt="Aditya Greens">
-                    </div>
-                    <div class="col">
-                        <div class="card-body py-5">
-                            <h5 class="card-title">Aditya Greens</h5>
-                            <p class="card-text">Description for Aditya Greens.</p>
+            </a>
+            <a href="Aditya Greens.html" style="text-decoration: none; color: inherit;">
+                <div class="card card-icon mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-auto card-icon-aside bg-primary">
+                            <img class="img-fluid" src="path/to/image" alt="Aditya Greens">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-5">
+                                <h5 class="card-title">Aditya Greens</h5>
+                                <p class="card-text">Description for Aditya Greens.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card card-icon mb-3">
-                <div class="row no-gutters">
-                    <div class="col-auto card-icon-aside bg-primary">
-                        <img class="img-fluid" src="path/to/image" alt="Aditya Pearl">
-                    </div>
-                    <div class="col">
-                        <div class="card-body py-5">
-                            <h5 class="card-title">Aditya Pearl</h5>
-                            <p class="card-text">Description for Aditya Pearl.</p>
+            </a>
+            <a href="Aditya Pearl.html" style="text-decoration: none; color: inherit;">
+                <div class="card card-icon mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-auto card-icon-aside bg-primary">
+                            <img class="img-fluid" src="path/to/image" alt="Aditya Pearl">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-5">
+                                <h5 class="card-title">Aditya Pearl</h5>
+                                <p class="card-text">Description for Aditya Pearl.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
