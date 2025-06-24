@@ -1,6 +1,9 @@
 import jinja2
 from flask import Flask, render_template, send_from_directory, jsonify, request, session
 from werkzeug.security import check_password_hash
+from flask_session import Session
+
+from pymemcache.client.base import Client as MemcacheClient  # <-- Use pymemcache
 
 import views
 from admin.admin import admin
@@ -17,10 +20,22 @@ UPLOAD_FOLDER = 'static/uploads'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# --- Flask-Session config for Filesystem (development) ---
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_FILE_DIR'] = './flask_session'  # Optional: custom session file dir
+app.config['SESSION_PERMANENT'] = False
+
+# If you want to use Memcached in production, use:
+# from pymemcache.client.base import Client as MemcacheClient
+# app.config['SESSION_TYPE'] = 'memcached'
+# app.config['SESSION_MEMCACHED'] = MemcacheClient(('127.0.0.1', 11211))
+
 # --- Security: Session cookie settings ---
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production with HTTPS
+
+Session(app)  # <-- Initialize Flask-Session
 
 db.init_app(app)
 app.register_blueprint(admin)
@@ -54,14 +69,6 @@ def not_found(e):
     return '<strong>Page Not Found!</strong>', 404
 
 
-@app.route('/users.json', methods=['GET'])
-@api_security
-def list_users_json():
-    users = User.query.all()
-    return jsonify(
-        {'status': 'ok', 'data': [{'id': user.id, 'email': user.email, 'name': f"{user.name}", } for user in users]})
-
-
 @app.route('/login', methods=['POST'])
 def login():
     if not request.is_json:
@@ -82,6 +89,7 @@ def login():
     else:
         print("Invalid login attempt for user:", data)
         return jsonify({'status': 'error', 'message': 'Invalid username or password'}), 401
+
 
 @app.route("/get_name", methods=['GET'])
 @api_security

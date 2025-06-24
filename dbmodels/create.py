@@ -99,16 +99,18 @@ class booking(db.Model):
 class Visit(db.Model):
     __tablename__ = 'visits'
     id = db.Column(db.Integer, primary_key=True)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'), nullable=False)
+    customer_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=False)  # Link to users.u_id where role='customer'
     plot_id = db.Column(db.Integer, db.ForeignKey('plots.id'), nullable=False)
-    agent_id = db.Column(db.Integer, db.ForeignKey('agents.id'), nullable=True)
+    agent_id = db.Column(db.String(20), db.ForeignKey('users.u_id'), nullable=True)  # Link to users.u_id where role='agent'
     visit_date = db.Column(db.Date, default=datetime.utcnow)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
-    customer = db.relationship('Customer', backref='visits', lazy=True)
+    customer = db.relationship('User', backref='visits', lazy=True, foreign_keys=[customer_id])
+    agent = db.relationship('User', backref='agent_visits', lazy=True, foreign_keys=[agent_id])
     purpose = db.Column(db.String(200))  # purpose of the visit
     feedback = db.Column(db.Text)  # feedback from the visit
-    status = db.Column(db.String(50), default='scheduled')  # 'scheduled', 'completed', 'cancelled'
+    status = db.Column(db.String(50), default='scheduled')  # 'scheduled', 'completed', 'cancelled'0
+
 
 
 class feedback(db.Model):

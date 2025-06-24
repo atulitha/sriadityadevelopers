@@ -1,8 +1,11 @@
+# This file depends on dbmodels/create.py for all model definitions and the db instance.
+
 from datetime import datetime, timedelta
 
 from flask import Flask
 from werkzeug.security import generate_password_hash
 
+# Import models and db instance from create.py
 from dbmodels.create import (
     db, Customer, Agent, Project, Plot,
     booking, Visit, feedback, User
@@ -23,7 +26,9 @@ def create_db():
 
 def init_db():
     with app.app_context():
-        # Create Agents and Users
+        # Sample data below uses models imported from create.py
+
+        # --- Agents and Users ---
         agents = []
         agent_users = [
             # 2 Directors
@@ -267,7 +272,8 @@ def init_db():
                 reference_agent=None,
                 agent_team=agent_info.get('agent_team', None),
                 mobile=agent_info.get('phone', None),
-                u_id=u_id
+                u_id=u_id,
+                address=agent_info.get('Address', None)  # User model uses 'address'
             )
             db.session.add(user)
             db.session.commit()
@@ -279,7 +285,7 @@ def init_db():
                 position=agent_info.get('designation', 'Agent'),
                 office=agent_info['office'],
                 age=agent_info['age'],
-                Address=agent_info['Address'],
+                Address=agent_info['Address'],  # Agent model uses 'Address'
                 start_date=agent_info['start_date'],
                 percentage=agent_info['percentage'],
                 sales=agent_info['sales'],
@@ -295,7 +301,7 @@ def init_db():
         db.session.add_all(agents)
         db.session.commit()
 
-        # Create Customers and Users
+        # --- Customers and Users ---
         customers = []
         customer_users = [
             {
@@ -367,7 +373,6 @@ def init_db():
                 'booking_status': 'interested',
             }
         ]
-        # Assign reference_agent alternately between the two agents
         agent_u_ids = u_id_map['ag']
         for idx, cust_info in enumerate(customer_users):
             u_id = f"cs-{idx + 1:010d}"
@@ -388,32 +393,22 @@ def init_db():
                 reference_agent=reference_agent,
                 agent_team=cust_info.get('agent_team', None),
                 mobile=cust_info.get('phone', None),
-                u_id=u_id
+                u_id=u_id,
+                address=cust_info.get('address', None)  # User model uses 'address'
             )
             db.session.add(user)
             db.session.commit()
             customer = Customer(
                 user_id=user.u_id,
-                first_name=cust_info['first_name'],
-                middle_name=cust_info.get('middle_name', ''),
-                last_name=cust_info['last_name'],
-                age=cust_info['age'],
-                address=cust_info['address'],
-                email=cust_info['email'],
-                phone=cust_info['phone'],
-                adhar=cust_info['adhar'],
-                pan=cust_info['pan'],
                 interested_project=cust_info['interested_project'],
                 interested_plot=cust_info['interested_plot'],
-                booking_status=cust_info['booking_status'],
-                password=user.password,
-                role=cust_info['role']
+                booking_status=cust_info['booking_status']
             )
             customers.append(customer)
         db.session.add_all(customers)
         db.session.commit()
 
-        # Create Projects
+        # --- Projects ---
         projects = [
             Project(
                 name='Green Valley',
@@ -459,7 +454,7 @@ def init_db():
         db.session.add_all(projects)
         db.session.commit()
 
-        # Create Plots (multiple per project)
+        # --- Plots ---
         plots = [
             # Green Valley
             Plot(
@@ -525,28 +520,28 @@ def init_db():
         db.session.add_all(plots)
         db.session.commit()
 
-        # Create Bookings
+        # --- Bookings ---
         bookings = [
             booking(
-                customer_id=customers[1].id,
-                plot_id=plots[1].id,
+                customer_id=customers[1].id,  # booking expects integer customer_id
+                plot_id=plots[1].id,          # booking expects integer plot_id
                 booking_date=datetime.now(),
                 status='confirmed',
                 amount=750000.0,
                 payment_status='paid',
                 payment_date=datetime.now(),
-                agent_id=agents[0].id
+                agent_id=agents[0].id         # booking expects integer agent.id (not user_id)
             )
         ]
         db.session.add_all(bookings)
         db.session.commit()
 
-        # Create Visits
+        # --- Visits ---
         visits = [
             Visit(
-                customer_id=customers[0].id,
+                customer_id=customers[0].user_id,  # Use a valid customer user_id (users.u_id)
                 plot_id=plots[0].id,
-                agent_id=agents[0].id,
+                agent_id=agents[0].user_id,        # Visit expects user.u_id (string)
                 visit_date=datetime.now() + timedelta(days=7),
                 purpose='Site inspection',
                 feedback='Customer showed interest',
@@ -556,10 +551,10 @@ def init_db():
         db.session.add_all(visits)
         db.session.commit()
 
-        # Create Feedbacks
+        # --- Feedbacks ---
         feedbacks = [
             feedback(
-                customer_id=customers[1].id,
+                customer_id=customers[1].id,  # feedback expects integer customer_id
                 comments='Excellent service and communication',
                 rating=5,
                 status='new'
