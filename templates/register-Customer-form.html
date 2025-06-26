@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Customer Register-Sri Aditya Developers</title>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png"/>
+    <script data-search-pseudo-elements defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
+            crossorigin="anonymous"></script>
+    <style>
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding-left: 0 !important;
+            margin-left: 50px;
+            margin-top: 100px; /* Adjust the value to move the form down */
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .row.justify-content-center {
+            justify-content: flex-start !important;
+            width: 100%;
+        }
+
+        .col-lg-5, .col-lg-7 {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04) !important;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .card-body {
+            background: rgba(255, 255, 255, 0.04) !important;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        h2.font-weight-light {
+            color: blue; /* Changed text color to blue */
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        h2.font-weight-light {
+            color: blue;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        label {
+            color: blue;
+        }
+
+        .form-control {
+            color: #2c3e50 !important; /* Navy blue for input text */
+            background-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .form-control::placeholder {
+            color: black !important;
+            opacity: 1;
+        }
+
+        .custom-green-btn {
+            background-color:blue !important;
+        }
+
+        .photo-upload-group {
+            position: relative;
+            height: 400px; /* Increased height */
+            min-width: 180px;
+            min-height: 300px;
+            background: rgba(0, 0, 0, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+            padding: 32px 14px 32px 14px; /* More padding */
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .photo-preview-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 220px; /* Increased height */
+            margin-bottom: 18px;
+        }
+
+        .photo-preview-img {
+            width: 160px;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 5px;
+            background: transparent;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        .form-control-file {
+            margin-top: 18px; /* Space between file input and preview */
+        }
+        .custom-dropdown {
+            width: 100%; /* Adjust width */
+            padding: 10px; /* Consistent padding */
+            font-size: 16px; /* Increase font size */
+            border-radius: 5px; /* Rounded corners */
+            background-color: rgba(0, 0, 0, 0.1); /* Light background */
+            color: black; /* Navy blue text */
+            border: 1px solid #ccc; /* Border styling */
+            margin-top: 8px; /* Align with other fields */
+            margin-left: 50; /* Align dropdown box to the left */
+        }
+    .custom-dropdown option:hover {
+        background-color: rgba(0, 0, 0, 0.2); /* Highlight on hover */
+    }
+    </style>
+
+</head>
+<body class="nav-fixed">
+<nav class="topnav navbar navbar-expand shadow navbar-light bg-transparent" id="sidenavAccordion">
+    <a class="navbar-brand d-none d-sm-block" href="index.html" style="color: blue;"> &lt;-- Back to Home Page</a>
+</nav>
+<section style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0;">
+    <video autoplay muted playsinline
+           style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 1;">
+        <source src="assets/img/aditya.webm" type="video/webm">
+    </video>
+</section>
+<main>
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header justify-content-center">
+                                <h1 style="font-weight:700; color:blue;">Customer Registration Form</h1>
+                            </div>
+                            <div class="card-body">
+                                <form id="registerForm" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputFirstName">First
+                                                    Name</label>
+                                                <input class="form-control py-4"
+                                                       id="inputFirstName"
+                                                       name="first_name"
+                                                       type="text"
+                                                       placeholder="Enter first name"
+                                                       pattern="^[A-Za-z]+$"
+                                                       inputmode="text"
+                                                       maxlength="32"
+                                                       required
+                                                       title="Only letters are allowed"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputLastName">Last Name</label>
+                                                <input class="form-control py-4"
+                                                       id="inputLastName"
+                                                       name="last_name"
+                                                       type="text"
+                                                       placeholder="Enter last name"
+                                                       pattern="^[A-Za-z]+$"
+                                                       inputmode="text"
+                                                       maxlength="32"
+                                                       required
+                                                       title="Only letters are allowed"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Email Address -->
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="inputEmailAddress">
+                                            Email <span class="text-danger">*</span>
+                                        </label>
+                                        <input class="form-control py-4" id="inputEmailAddress" name="email"
+                                               type="email"
+                                               placeholder="Enter email address"
+                                               pattern="^[a-zA-Z0-9._%+-]+@(gmail|outlook|hotmail|yahoo)\.com$"
+                                               autocomplete="off"/>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid email address (Gmail, Outlook, Hotmail, or
+                                            Yahoo).
+                                        </div>
+                                    </div>
+                                    <!--Phone number -->
+                                    <div class="form-row">
+                                        <div class="col-md-7">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="phone">Phone Number</label>
+                                                <input class="form-control py-4" id="phone" name="phone"
+                                                       type="tel"
+                                                       placeholder="Enter phone number"
+                                                       pattern="^\d{10}$"
+                                                       required
+                                                       title="Phone number must be 10 digits long"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   <div class="form-row">
+                                       <div class="col-md-8 px-3">
+                                           <div class="form-group">
+                                               <label class="small mb-1" for="intersted_in">Interested In</label>
+                                               <select class="form-control custom-dropdown" id="intrested_in" name="reference">
+                                                   <option value="" disabled selected>Select an option</option>
+                                                   <option value="Nanda Gokulam">Nanda Gokulam</option>
+                                                   <option value="Panasapadu">Panasapadu</option>
+                                                   <option value="Aditya Enclave">Aditya Enclave</option>
+                                                   <option value="Aditya Heights">Aditya Heights</option>
+                                               </select>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class="form-row">
+                                       <div class="col-md-8 px-3">
+                                           <div class="form-group">
+                                               <label class="small mb-1" for="dateOfVisit">Date of Visit</label>
+                                               <input type="date" class="form-control" id="dateOfVisit" required>
+                                               <div id="dateError" style="color: red; display: none; font-size: 0.9em;"></div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                    <!-- Terms and Conditions -->
+                                    <div class="form-group mt-4 mb-0">
+                                        <button type="submit"
+                                                class="btn btn-primary btn-block custom-green-btn">
+                                            Submit Registration
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div id="layoutAuthentication_footer">
+    <footer class="footer mt-auto footer-dark">
+        <div class="container-fluid">
+            <div class="row" style="color:blue;">
+                <div class="col-md-6 small">Copyright &copy; Sri Aditya Developers 2025</div>
+                <div class="col-md-6 text-md-right small">
+                    <a href="#!">Privacy Policy</a>
+                    &middot;
+                    <a href="#!">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="js/validate.js"></script>
+<script>
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        try {
+            const response = await fetch('/register-customer', {
+                method: 'POST',
+                body: formData
+            });
+            const responseText = await response.text();
+            if (response.ok && responseText.includes('Registration successful!')) {
+                alert('Registration successful!');
+            } else {
+                let errorMsg = 'Registration failed.\n';
+                try {
+                    // Try to parse as JSON if possible
+                    const data = JSON.parse(responseText);
+                    if (data && (data.error || data.message)) {
+                        errorMsg += ' ' + (data.error || data.message);
+                    } else {
+                        errorMsg += ' (No error message from server)';
+                    }
+                } catch (e) {
+                    errorMsg += ` (Status: ${response.status})\n${responseText}`;
+                }
+                alert(errorMsg);
+            }
+        } catch (err) {
+            alert('Registration failed. Network or server error.');
+        }
+    });
+</script>
+</body>
+</html>

@@ -32,18 +32,6 @@
             margin-bottom: 120px;
         }
 
-        /* Set video background */
-        body {
-            margin: 0;
-            padding: 0;
-            overflow-y: auto;
-            background-image: url('/assets/img/abg9.png'); /* Corrected property name */
-            background-size: cover; /* Ensures the image covers the entire background */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat; /* Prevents the image from repeating */
-            background-attachment: fixed;
-        }
-
         /* Change field background and text color */
         select.form-control {
             background: rgba(240, 240, 240, 0.8); /* Light gray background */
@@ -148,15 +136,15 @@
     </style>
 </head>
 <body class="nav-fixed">
+<nav class="topnav navbar navbar-expand shadow navbar-light bg-transparent" id="sidenavAccordion">
+    <a class="navbar-brand d-none d-sm-block" href="index.html" style="color: blue;"> <-- Back to Home Page</a>
+</nav>
 <section style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0;">
     <video autoplay muted playsinline
            style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 1;">
         <source src="assets/img/aditya.webm" type="video/webm">
     </video>
-</section>
-<nav class="topnav navbar navbar-expand shadow navbar-light bg-transparent" id="sidenavAccordion">
-    <a class="navbar-brand d-none d-sm-block" href="index.html" style="color: white"> <-- Back to Home Page</a>
-</nav>
+</section
 <div id="layoutAuthentication" style="position: relative; z-index: 2;">
     <div id="layoutAuthentication_content">
         <main>
@@ -164,8 +152,8 @@
                 <div class="row w-100">
                     <div class="col-lg-6 col-md-8 col-sm-10">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Agent
-                                Registration Form</h3></div>
+                            <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Customer
+                                to Client Conversion Form</h3></div>
                             <div class="card-body">
                                 <form>
                                     <div class="form-row">
