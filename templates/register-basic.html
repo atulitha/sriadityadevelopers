@@ -27,29 +27,11 @@
             margin-bottom: 20px;
         }
 
-        /* Add space below the navigation bar */
-        nav.topnav {
-            margin-bottom: 120px;
-        }
-
-        /* Set video background */
-        body {
-            margin: 0;
-            padding: 0;
-            overflow-y: auto;
-            background-image: url('/assets/img/abg9.png'); /* Corrected property name */
-            background-size: cover; /* Ensures the image covers the entire background */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat; /* Prevents the image from repeating */
-            background-attachment: fixed;
-        }
-
         /* Change field background and text color */
         select.form-control {
             background: rgba(240, 240, 240, 0.8); /* Light gray background */
             backdrop-filter: blur(5px); /* Apply blur effect */
-            border: 1px solid #007bff; /* Border color matching button */
-            color: #333; /* Dark text color */
+            border: 1px ; /* Border color matching button */
             border-radius: 8px; /* Rounded corners */
             padding: 8px; /* Padding for better appearance */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -57,7 +39,6 @@
 
         select.form-control:focus {
             outline: none; /* Remove default focus outline */
-            border-color: #0056b3; /* Change border color on focus */
             box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect on focus */
         }
 
@@ -66,7 +47,6 @@
             background-color: rgba(240, 240, 240, 0.8) !important; /* Light gray background */
             color: #333 !important; /* Dark text color */
             backdrop-filter: blur(5px); /* Apply blur effect */
-            border-color: #007bff !important; /* Match border color to button */
         }
 
         /* Default outline color */
@@ -121,11 +101,12 @@
         }
 
         .card-header h3 {
-            color: white !important; /* Button color */
+            color: #323f52 !important; /* Button color */
         }
 
         label {
-            color: white !important; /* Button color */
+            color: #323f52!important; /* Button color */
+            font-weight: 700;
         }
 
         select.form-control {
@@ -142,21 +123,181 @@
             color: #000 !important; /* Black text input color */
             background-color: rgba(255, 255, 255, 0.4) !important; /* Adjust alpha for field transparency */
             backdrop-filter: blur(5px); /* Apply blur effect */
-            border-color: #007bff !important; /* Match border color to button */
         }
 
     </style>
 </head>
 <body class="nav-fixed">
+<nav class="topnav navbar navbar-expand shadow navbar-light bg-transparent" id="sidenavAccordion"
+     style="position: relative;">
+    <a class="navbar-brand d-none d-sm-block" href="index.html"> Sri Aditya Developers</a><img class="dropdown-user-img"
+                                                                                               src="/static/assets/img/siradithya.jpg"
+                                                                                               style="width: 60px;height:58px;"/>
+    <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToogle" href="#"><i
+            data-feather="menu"></i></button>
+    <form class="form-inline mr-auto d-none d-lg-block"><input class="form-control form-control-solid mr-sm-2"
+                                                               type="search" placeholder="Search" aria-label="Search"/>
+    </form>
+    <ul class="navbar-nav align-items-center ml-auto">
+        <li class="nav-item dropdown no-caret mr-3">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            >
+                <div class="d-inline d-md-none font-weight-500">Docs</div>
+                <div class="d-none d-md-inline font-weight-500">Documentation</div>
+                <i class="fas fa-chevron-right dropdown-arrow"></i
+                ></a>
+            <div class="dropdown-menu dropdown-menu-right py-0 o-hidden mr-n15 mr-lg-0 animated--fade-in-up"
+                 aria-labelledby="navbarDropdownDocs">
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank"
+                >
+                    <div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="book"></i></div>
+                    <div>
+                        <div class="small text-gray-500">Documentation</div>
+                        Usage instructions and reference
+                    </div>
+                </a>
+                <div class="dropdown-divider m-0"></div>
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components"
+                   target="_blank">
+                    <div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="code"></i></div>
+                    <div>
+                        <div class="small text-gray-500">Components</div>
+                        Code snippets and reference
+                    </div>
+                </a>
+                <div class="dropdown-divider m-0"></div>
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog"
+                   target="_blank"
+                >
+                    <div class="icon-stack bg-primary-soft text-primary mr-4"><i data-feather="file-text"></i></div>
+                    <div>
+                        <div class="small text-gray-500">Changelog</div>
+                        Updates and changes
+                    </div>
+                </a
+                >
+            </div>
+        </li>
+        <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts"
+               href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><i data-feather="bell"></i></a>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                 aria-labelledby="navbarDropdownAlerts">
+                <h6 class="dropdown-header dropdown-notifications-header"><i class="mr-2" data-feather="bell"></i>Alerts
+                    Center</h6>
+                <a class="dropdown-item dropdown-notifications-item" href="#!"
+                >
+                    <div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
+                    <div class="dropdown-notifications-item-content">
+                        <div class="dropdown-notifications-item-content-details">December 29, 2019</div>
+                        <div class="dropdown-notifications-item-content-text">This is an alert message. It's nothing
+                            serious, but it requires your attention.
+                        </div>
+                    </div>
+                </a
+                ><a class="dropdown-item dropdown-notifications-item" href="#!"
+            >
+                <div class="dropdown-notifications-item-icon bg-info"><i data-feather="bar-chart"></i></div>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-details">December 22, 2019</div>
+                    <div class="dropdown-notifications-item-content-text">A new monthly report is ready. Click here to
+                        view!
+                    </div>
+                </div>
+            </a
+            ><a class="dropdown-item dropdown-notifications-item" href="#!">
+                <div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-details">December 8, 2019</div>
+                    <div class="dropdown-notifications-item-content-text">Critical system failure, systems shutting
+                        down.
+                    </div>
+                </div>
+            </a>
+                <a class="dropdown-item dropdown-notifications-item" href="#!">
+                    <div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
+                    <div class="dropdown-notifications-item-content">
+                        <div class="dropdown-notifications-item-content-details">December 2, 2019</div>
+                        <div class="dropdown-notifications-item-content-text">New user request. Woody has requested
+                            access
+                            to the organization.
+                        </div>
+                    </div>
+                </a
+                ><a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages"
+               href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><i data-feather="mail"></i></a>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                 aria-labelledby="navbarDropdownMessages">
+                <h6 class="dropdown-header dropdown-notifications-header"><i class="mr-2" data-feather="mail"></i>Message
+                    Center</h6>
+                <a class="dropdown-item dropdown-notifications-item" href="#!"
+                ><img class="dropdown-notifications-item-img" src="/assets/img/siradithya.jpg"/>
+                    <div class="dropdown-notifications-item-content">
+                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                            officia deserunt mollit anim id est laborum.
+                        </div>
+                        <div class="dropdown-notifications-item-content-details">Emily Fowler · 58m</div>
+                    </div>
+                </a
+                ><a class="dropdown-item dropdown-notifications-item" href="#!"
+            ><img class="dropdown-notifications-item-img" src="https://source.unsplash.com/4ytMf8MgJlY/60x60"/>
+                <div class="dropdown-notifications-item-content">
+                    <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                        mollit anim id est laborum.
+                    </div>
+                    <div class="dropdown-notifications-item-content-details">Diane Chambers · 2d</div>
+                </div>
+            </a
+            ><a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-caret mr-3 dropdown-user">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
+               href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"><img class="img-fluid" src="/assets/img/siradithya.jpg"/></a>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
+                 aria-labelledby="navbarDropdownUserImage">
+                <h6 class="dropdown-header d-flex align-items-center">
+                    <img class="dropdown-user-img" src="/assets/img/siradithya.jpg"/>
+                    <div class="dropdown-user-details">
+                        <div class="dropdown-user-details-name">Valerie Luna</div>
+                        <div class="dropdown-user-details-email">vluna@aol.com</div>
+                    </div>
+                </h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#!"
+                >
+                    <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
+                    Account</a>
+                <a class="dropdown-item" href="#!">
+                    <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                    Logout</a>
+            </div>
+        </li>
+    </ul>
+</nav>
 <section style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0;">
     <video autoplay muted playsinline
            style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 1;">
         <source src="assets/img/aditya.webm" type="video/webm">
     </video>
 </section>
-<nav class="topnav navbar navbar-expand shadow navbar-light bg-transparent" id="sidenavAccordion">
-    <a class="navbar-brand d-none d-sm-block" href="index.html" style="color: white"> <-- Back to Home Page</a>
-</nav>
 <div id="layoutAuthentication" style="position: relative; z-index: 2;">
     <div id="layoutAuthentication_content">
         <main>
@@ -164,7 +305,7 @@
                 <div class="row w-100">
                     <div class="col-lg-6 col-md-8 col-sm-10">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">Agent
+                            <div class="card-header justify-content-center"><h3 >Agent
                                 Registration Form</h3></div>
                             <div class="card-body">
                                 <form>
@@ -265,7 +406,7 @@
                                                 <input class="form-control-file" id="photo_file" name="photo_file"
                                                        type="file" accept="image/png, image/jpeg"
                                                        aria-describedby="photoHelp" style="margin-top: 18px;"/>
-                                                <small id="photoHelp" class="form-text text-muted">Max size: 2MB. JPEG
+                                                <small id="photoHelp" style="color: black">Max size: 2MB. JPEG
                                                     or
                                                     PNG only.</small>
                                                 <div id="photoError" class="text-danger"
@@ -347,7 +488,7 @@
                                     <!-- Aadhaar Upload -->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="medium mb-1" for="aadhaar_file">Upload Aadhaar (PDF
+                                            <label class="smalls mb-1"  style="font-size: 14px;" for="aadhaar_file">Upload Aadhaar (PDF
                                                 only)</label>
                                             <input class="form-control py-4" id="aadhaar_file"
                                                    name="aadhaar_file"
@@ -382,7 +523,7 @@
     <div id="layoutAuthentication_footer">
         <footer class="footer mt-auto footer-dark">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" style="color: blue;">
                     <div class="col-md-6 small">Copyright &copy; Sri Aditya Developers 2025</div>
                     <div class="col-md-6 text-md-right small">
                         <a href="#!">Privacy Policy</a>
