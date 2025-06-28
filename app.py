@@ -174,11 +174,11 @@ def test():
                 ]
             },
             'projects': [
-                {"id": 1, "name": "Aditya Enclave"},
-                {"id": 2, "name": "Aditya Heights"},
-                {"id": 3, "name": "Aditya Meadows"},
-                {"id": 4, "name": "Aditya Greens"},
-                {"id": 5, "name": "Aditya Pearl"}
+                {"id": 'Aditya Enclave', "name": "Aditya Enclave"},
+                {"id": "Aditya Heights", "name": "Aditya Heights"},
+                {"id": "Aditya Meadows", "name": "Aditya Meadows"},
+                {"id": "Aditya Greens", "name": "Aditya Greens"},
+                {"id": "Aditya Pearl", "name": "Aditya Pearl"}
             ]
         }
         if key in sample_data:
