@@ -398,10 +398,6 @@
                                                          alt="Photo Preview"
                                                          class="photo-preview-img"
                                                          style="width: 160px; height: 210px; object-fit: cover; border-radius: 5px; background: transparent; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.04); margin-top: 20px; margin-bottom: 8px;"/>
-                                                    <button type="button" id="remove_photo"
-                                                            style="display:none; position: absolute; top: 8px; right: 8px; z-index: 3;"
-                                                            class="btn btn-sm btn-outline-danger">Remove
-                                                    </button>
                                                 </div>
                                                 <input class="form-control-file" id="photo_file" name="photo_file"
                                                        type="file" accept="image/png, image/jpeg"
@@ -547,16 +543,16 @@
             const form = e.target;
             const formData = new FormData();
 
-            formData.append('firstName', document.getElementById('inputFirstName').value);
-            formData.append('lastName', document.getElementById('inputLastName').value);
+            formData.append('first_name', document.getElementById('inputFirstName').value);
+            formData.append('last_name', document.getElementById('inputLastName').value);
             formData.append('email', document.getElementById('inputEmailAddress').value);
             formData.append('password', document.getElementById('inputPassword').value);
-            formData.append('confirmPassword', document.getElementById('inputConfirmPassword').value);
+            formData.append('confirm_password', document.getElementById('inputConfirmPassword').value);
             formData.append('dob', document.getElementById('dob').value);
             formData.append('gender', document.getElementById('gender').value);
             formData.append('designation', document.getElementById('designation').value);
-            formData.append('referenceAgent', document.getElementById('Reference_agent').value);
-            formData.append('agentTeam', document.getElementById('Agent_team').value);
+            formData.append('reference_agent', document.getElementById('Reference_agent').value);
+            formData.append('agent_team', document.getElementById('Agent_team').value);
             formData.append('aadhaar', document.getElementById('adhar').value);
             formData.append('pan', document.getElementById('pan').value);
 

@@ -128,8 +128,8 @@ def register_agent():
             hashed_password = generate_password_hash(data['password'])
 
             agent = User(
-                first_name=data['firstName'],
-                last_name=data['lastName'],
+                first_name=data['first_name'],
+                last_name=data['last_name'],
                 email=data['email'],
                 password=hashed_password,
                 dob=datetime.strptime(data['dob'], '%Y-%m-%d').date(),
