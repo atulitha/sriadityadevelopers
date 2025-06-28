@@ -68,7 +68,8 @@ def register_agent():
                 data['aadhaarFile'].save('static/uploads/')
             if 'panFile' in request.files:
                 data['panFile'] = request.files['panFile']
-            if reference_agent.strip() and not (isinstance(reference_agent, str) and re.match(r'^(ag|md|mg)-\d{6}$', reference_agent.lower())):
+            if reference_agent.strip() and not (
+                    isinstance(reference_agent, str) and re.match(r'^(ag|md|mg)-\d{6}$', reference_agent.lower())):
                 return jsonify({'status': 'error', 'message': 'Invalid reference agent'}), 400
 
             validation_result = validate_agent_data(data)
@@ -249,3 +250,33 @@ def register_customer():
                 'status': 'error',
                 'message': 'Failed to register customer'
             }), 500
+
+
+def register_client():
+    if request.method == 'GET':
+        return jsonify({
+            'status': 'ok',
+        })
+
+    if request.method == 'POST':
+        try:
+            data = request.form.to_dict()
+            print("Received data for client registration:\n", data)
+            # Use validate_customer_data for validation
+            validation_result = validate_customer_data(data)
+            if validation_result['status'] == 'error':
+                return jsonify(validation_result), 400
+
+            # Extract fields from form
+            first_name = data.get('first_name')
+            last_name = data.get('last_name')
+            email = data.get('email')
+            phone = data.get('phone')  # keep for validation, but use as 'mobile' in User
+            reference_agent = data.get('reference_agent')
+
+            return jsonify({'status': 'ok', 'message': 'done'}), 400
+        except Exception as e:
+            print(f"Error processing client registration data: {e}")
+            return jsonify({'status': 'error', 'message': 'Invalid request data'}), 400
+
+    return

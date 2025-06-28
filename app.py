@@ -119,15 +119,22 @@ def test():
             # Handle pure JSON
             json_data = request.get_json()
             print('JSON:', json_data)
-            return jsonify({'status': 'ok', 'type': 'json', 'data': json_data})
+            return jsonify({
+                'status': 'error',
+                'message': 'data received',
+            }), 500
         elif request.content_type.startswith('multipart/form-data'):
             # Handle multipart with JSON blob and files
             import json
             json_blob = request.files.get('data')
             json_fields = json.load(json_blob) if json_blob else {}
-            print('Form JSON:', json_fields)
             print('Files:', request.files)
-            return jsonify({'status': 'ok', 'type': 'multipart', 'data': json_fields})
+            form = request.form.to_dict()
+            print(form)
+            return jsonify({
+                'status': 'error',
+                'message': 'recived data'
+            }), 500
         else:
             return jsonify({'status': 'error', 'message': 'Unsupported Content-Type'}), 415
     if request.method == 'GET':
