@@ -435,6 +435,27 @@
             alert('Registration failed. Network or server error.');
         }
     });
+
+    fetch('/test?key=projects')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'ok' && Array.isArray(data.projects)) {
+                        const select = document.getElementById('interested_in');
+                        select.innerHTML = '<option value="">Select Project</option>';
+                        data.projects.forEach(item => {
+                            const option = document.createElement('option');
+                            option.value = item.id || item.name;
+                            option.textContent = item.name;
+                            select.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
 </script>
 </body>
 </html>
