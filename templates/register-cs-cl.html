@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Register - Sri Aditya Developers</title>
+    <title> Customer to client Register - Sri Aditya Developers</title>
     <link href="/css/styles.css" rel="stylesheet"/>
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png"/>
     <script data-search-pseudo-elements defer
@@ -18,7 +18,7 @@
         /* Make card transparent with glass effect */
         .card.shadow-lg {
             background: rgba(255, 255, 255, 0.1) !important; /* Adjust alpha for transparency */
-            backdrop-filter: blur(-10px); /* Apply blur effect */
+            backdrop-filter: blur(-25px); /* Apply blur effect */
             border: none !important;
         }
 
@@ -32,8 +32,7 @@
         select.form-control {
             background: rgba(240, 240, 240, 0.8); /* Light gray background */
             backdrop-filter: blur(5px); /* Apply blur effect */
-            border: 1px solid #007bff; /* Border color matching button */
-            color: #333; /* Dark text color */
+            border: 1px; /* Border color matching button */
             border-radius: 8px; /* Rounded corners */
             padding: 8px; /* Padding for better appearance */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -49,7 +48,6 @@
             background-color: rgba(240, 240, 240, 0.8) !important; /* Light gray background */
             color: #333 !important; /* Dark text color */
             backdrop-filter: blur(5px); /* Apply blur effect */
-            border-color: #007bff !important; /* Match border color to button */
         }
 
         /* Default outline color */
@@ -94,11 +92,11 @@
         }
 
         .card-footer {
-            color: #007bff !important; /* Button color */
+            color: #323f52 !important; /* Button color */
         }
 
         label {
-            color: blue !important; /* Button color */
+            color: #323f52 !important; /* Button color */
         }
 
         textarea.form-control {
@@ -108,10 +106,9 @@
         /* Set text input color to black */
         input.form-control,
         textarea.form-control {
-            color: #000 !important; /* Black text input color */
+            color: black !important; /* Black text input color */
             background-color: rgba(255, 255, 255, 0.4) !important; /* Adjust alpha for field transparency */
             backdrop-filter: blur(5px); /* Apply blur effect */
-            border-color: #007bff !important; /* Match border color to button */
         }
 
     </style>
@@ -295,7 +292,7 @@
                     <div class="col-lg-6 col-md-8 col-sm-10">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header justify-content-center">
-                                <h2 style="font-weight:800; color:blue;">Customer to Client Conversion Form</h2>
+                                <h2 style="font-weight:800; color:#323f52;">Customer to Client Conversion Form</h2>
                             </div>
                             <div class="card-body">
                                 <form>
@@ -378,8 +375,8 @@
                                         <!-- Photo Upload and Preview (already updated) -->
                                         <div class="col-md-7">
                                             <div class="form-group photo-upload-group"
-                                                 style="position: relative; height: 400px; min-width: 180px; min-height: 300px; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.08); padding: 32px 14px 32px 14px; margin-top: 0; display: flex; flex-direction: column; justify-content: flex-end;">
-                                                <label class="small mb-1" for="photo_file" style="font-size: 1.0rem;">
+                                                 style="position: relative; height: 400px; min-width: 180px; min-height: 300px;border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.08); padding: 32px 14px 32px 14px; margin-top: 0; display: flex; flex-direction: column; justify-content: flex-end;">
+                                                <label class="small mb-1" for="photo_file" style="font-size: 1.0rem; color: black;">
                                                     Upload Photo <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="photo-preview-container"
@@ -388,15 +385,12 @@
                                                          alt="Photo Preview"
                                                          class="photo-preview-img"
                                                          style="width: 160px; height: 210px; object-fit: cover; border-radius: 5px; background: transparent; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.04); margin-top: 20px; margin-bottom: 8px;"/>
-                                                    <button type="button" id="remove_photo"
-                                                            style="display:none; position: absolute; top: 8px; right: 8px; z-index: 3;"
-                                                            class="btn btn-sm btn-outline-danger">Remove
-                                                    </button>
+
                                                 </div>
                                                 <input class="form-control-file" id="photo_file" name="photo_file"
                                                        type="file" accept="image/png, image/jpeg"
                                                        aria-describedby="photoHelp" style="margin-top: 18px;"/>
-                                                <small id="photoHelp" class="form-text text-muted">Max size: 2MB. JPEG
+                                                <small id="photoHelp" style="color:black;">Max size: 2MB. JPEG
                                                     or
                                                     PNG only.</small>
                                                 <div id="photoError" class="text-danger"
@@ -501,16 +495,16 @@
             const form = e.target;
             const formData = new FormData();
 
-            formData.append('firstName', document.getElementById('inputFirstName').value);
-            formData.append('lastName', document.getElementById('inputLastName').value);
+            formData.append('first_name', document.getElementById('inputFirstName').value);
+            formData.append('last_name', document.getElementById('inputLastName').value);
             formData.append('email', document.getElementById('inputEmailAddress').value);
             formData.append('password', document.getElementById('inputPassword').value);
-            formData.append('confirmPassword', document.getElementById('inputConfirmPassword').value);
+            formData.append('confirm_password', document.getElementById('inputConfirmPassword').value);
             formData.append('dob', document.getElementById('dob').value);
             formData.append('gender', document.getElementById('gender').value);
             formData.append('designation', document.getElementById('designation').value);
-            formData.append('referenceAgent', document.getElementById('Reference_agent').value);
-            formData.append('agentTeam', document.getElementById('Agent_team').value);
+            formData.append('reference_agent', document.getElementById('Reference_agent').value);
+            formData.append('agent_team', document.getElementById('Agent_team').value);
             formData.append('aadhaar', document.getElementById('adhar').value);
             formData.append('pan', document.getElementById('pan').value);
 

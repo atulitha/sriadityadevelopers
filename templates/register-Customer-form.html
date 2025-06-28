@@ -22,7 +22,7 @@
             justify-content: flex-start;
             padding-left: 0 !important;
             margin-left: 50px;
-            margin-top: 100px; /* Adjust the value to move the form down */
+            margin-top: 10px; /* Adjust the value to move the form down */
             background: transparent !important;
             box-shadow: none !important;
         }
@@ -32,7 +32,7 @@
             width: 100%;
         }
 
-        .col-lg-5, .col-lg-7 {
+        .col-lg-7 {
             margin-left: 0 !important;
             padding-left: 0 !important;
         }
@@ -55,71 +55,21 @@
             -webkit-backdrop-filter: blur(4px);
         }
 
-        h2.font-weight-light {
-            color: blue; /* Changed text color to blue */
+        h1{
+            color: #323f52; /* Changed text color to blue */
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            font-weight: 700;
         }
 
         label {
-            color: blue;
+            color: #323f52;
         }
 
         .form-control {
-            color: #2c3e50 !important; /* Navy blue for input text */
-            background-color: rgba(0, 0, 0, 0.15) !important;
+            color: #000 !important; /* Black text input color */
+            background-color: rgba(255, 255, 255, 0.4) !important; /* Adjust alpha for field transparency */
+            backdrop-filter: blur(5px); /* Apply blur effect */
         }
-
-        .form-control::placeholder {
-            color: black !important;
-            opacity: 1;
-        }
-
-        .custom-green-btn {
-            background-color: blue !important;
-        }
-
-        .photo-upload-group {
-            position: relative;
-            height: 400px; /* Increased height */
-            min-width: 180px;
-            min-height: 300px;
-            background: rgba(0, 0, 0, 0.18);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
-            padding: 32px 14px 32px 14px; /* More padding */
-            margin-top: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .photo-preview-container {
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 220px; /* Increased height */
-            margin-bottom: 18px;
-        }
-
-        .photo-preview-img {
-            width: 160px;
-            height: 210px;
-            object-fit: cover;
-            border-radius: 5px;
-            background: transparent;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-
-        .form-control-file {
-            margin-top: 18px; /* Space between file input and preview */
-        }
-
         .custom-dropdown {
             width: 100%; /* Adjust width */
             padding: 10px; /* Consistent padding */
@@ -133,6 +83,19 @@
 
         .custom-dropdown option:hover {
             background-color: rgba(0, 0, 0, 0.2); /* Highlight on hover */
+        }
+        input.form-control:focus,
+        select.form-control:focus,
+        textarea.form-control:focus {
+            border-color: white; /* Green border color on focus */
+            box-shadow: 0 0 8px rgba(40, 167, 69, 0.5); /* Glow effect */
+            outline: none; /* Remove default outline */
+        }
+        input.form-control,
+        select.form-control,
+        textarea.form-control {
+            border: 2px solid white; /* Default border color */
+            border-radius: 8px; /* Rounded corners */
         }
     </style>
 
@@ -316,7 +279,7 @@
                     <div class="col-lg-7">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header justify-content-center">
-                                <h1 style="font-weight:700; color:blue;">Customer Registration Form</h1>
+                                <h1>Customer Registration Form</h1>
                             </div>
                             <div class="card-body">
                                 <form id="registerForm" enctype="multipart/form-data">
@@ -383,7 +346,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="col-md-8 px-3">
+                                        <div class="col-md-8">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="intrested_in">Interested In</label>
                                                 <select class="form-control custom-dropdown" id="intrested_in"
@@ -398,7 +361,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="col-md-8 px-3">
+                                        <div class="col-md-8">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="dateOfVisit">Date of Visit</label>
                                                 <input type="date" class="form-control" id="dateOfVisit" required>
@@ -408,9 +371,9 @@
                                         </div>
                                     </div>
                                     <!-- Terms and Conditions -->
-                                    <div class="form-group mt-4 mb-0">
+                                    <div class="form-group mt-4 mb-0 text-center">
                                         <button type="submit"
-                                                class="btn btn-primary btn-block custom-green-btn">
+                                                class="btn btn-primary">
                                             Submit Registration
                                         </button>
                                     </div>
