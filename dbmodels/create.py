@@ -110,6 +110,7 @@ class Visit(db.Model):
     purpose = db.Column(db.String(200))  # purpose of the visit
     feedback = db.Column(db.Text)  # feedback from the visit
     status = db.Column(db.String(50), default='scheduled')  # 'scheduled', 'completed', 'cancelled'0
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), nullable=True)  # Link to project if applicable
 
 
 

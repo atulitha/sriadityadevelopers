@@ -9,9 +9,19 @@ def leads():
         """
         Render the leads page.
         """
-        users = User.query.filter_by(role='customer').all()
-        return jsonify([
-            {
+        # Get all user_ids from Customer and Visit tables
+        customer_user_ids = {c.user_id for c in Customer.query.with_entities(Customer.user_id).all()}
+        visit_customer_ids = {v.customer_id for v in Visit.query.with_entities(Visit.customer_id).all()}
+        all_user_ids = customer_user_ids.union(visit_customer_ids)
+
+        # Query all users whose u_id is in all_user_ids and role is 'customer'
+        users = User.query.filter(User.role == 'customer', User.u_id.in_(all_user_ids)).all()
+
+        result = []
+        for user in users:
+            customer = Customer.query.filter_by(user_id=user.u_id).first()
+            visit = Visit.query.filter_by(customer_id=user.u_id).order_by(Visit.visit_date.desc()).first()
+            result.append({
                 'id': user.id,
                 'name': user.first_name + ' ' + user.last_name,
                 'mobile': user.mobile,
@@ -19,16 +29,12 @@ def leads():
                 'address': user.address if user.address else 'NA',
                 'project': customer.interested_project if customer and customer.interested_project else 'None',
                 'plot': customer.interested_plot if customer and customer.interested_plot else 'None',
-                # Get site_visit from visits table by customer_id (not user_id)
                 'site_visit': (
                     visit.visit_date.strftime('%Y-%m-%d') if visit and visit.visit_date else None
                 ),
                 'u_id': user.u_id if user.u_id else None,
-            }
-            for user in users
-            for customer in [Customer.query.filter_by(user_id=user.u_id).first()]
-            for visit in [Visit.query.filter_by(customer_id=user.u_id).first()]
-        ])
+            })
+        return jsonify(result)
     if request.method == 'POST':
         data = request.get_json()
         # Process the lead data here

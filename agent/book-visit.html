@@ -26,13 +26,14 @@
                             <div class="card-header justify-content-center"><h4 class="font-weight-light my-1">
                                 book-site-visit</h4></div>
                             <div class="card-body">
-                                <div id="message" class="alert" style="display: none;" role="alert" aria-live="polite"></div>
+                                <div id="message" class="alert" style="display: none;" role="alert"
+                                     aria-live="polite"></div>
                                 <form id="siteVisitForm">
                                     <div class="form-group">
                                         <label class="small mb-1" for="phone">Mobile number</label>
                                         <input
-                                            class="form-control py-4" id="phone" name="mobile" type="text"
-                                            pattern="^\d{10}$" maxlength="10" placeholder="mobile number" required/>
+                                                class="form-control py-4" id="phone" name="mobile" type="text"
+                                                pattern="^\d{10}$" maxlength="10" placeholder="mobile number" required/>
                                     </div>
                                     <div class="form-group">
                                         <label class="small mb-1" for="project-name">Project Name </label>
@@ -120,25 +121,25 @@
 </script>
 <script>
     fetch('/test?key=projects')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
-            .then(data => {
-                if (data.status === 'ok' && Array.isArray(data.projects)) {
-                    const select = document.getElementById('project-name');
-                    select.innerHTML = '<option value="">Select Project</option>';
-                    data.projects.forEach(item => {
-                        const option = document.createElement('option');
-                        option.value = item.id || item.name;
-                        option.textContent = item.name;
-                        select.appendChild(option);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-            });
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'ok' && Array.isArray(data.projects)) {
+                const select = document.getElementById('project-name');
+                select.innerHTML = '<option value="">Select Project</option>';
+                data.projects.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id || item.name;
+                    option.textContent = item.name;
+                    select.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
 </script>
 <script src="js/validate.js"></script>
 </body>

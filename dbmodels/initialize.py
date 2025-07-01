@@ -542,10 +542,10 @@ def init_db():
                 customer_id=customers[0].user_id,  # Use a valid customer user_id (users.u_id)
                 plot_id=plots[0].id,
                 agent_id=agents[0].user_id,        # Visit expects user.u_id (string)
-                visit_date=datetime.now() + timedelta(days=7),
+                visit_date=(datetime.now() + timedelta(days=7)).date(),  # ensure date type
                 purpose='Site inspection',
                 feedback='Customer showed interest',
-                status='scheduled'
+                status='scheduled',
             )
         ]
         db.session.add_all(visits)

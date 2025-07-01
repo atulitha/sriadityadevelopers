@@ -490,7 +490,7 @@ if (combinedInput) {
     // agentid validation
     const agentIdInput = document.getElementById('agentid');
     const AGENT_ID_PREFIX = 'AG-';
-    const agentIdPattern = /^AG-\d{10}$/;
+    const agentIdPattern = /^AG-\d{6}$/;
 
     if (agentIdInput) {
         // Set maxlength to 10 for digits only
@@ -584,30 +584,11 @@ if (combinedInput) {
         customerIdInput.addEventListener('blur', function () {
             const digits = this.value.trim();
             const customerId = CUSTOMER_ID_PREFIX + digits;
-            if (customerIdPattern.test(customerId)) {
-                fetch(`/get-customer-details?id=${customerId}`)
-                    .then(response => {
-                        if (!response.ok) throw new Error('Network response was not ok');
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.status === 'success' && data.customer) {
-                            if (customerDetailsDiv) customerDetailsDiv.style.display = 'block';
-                            if (firstNameInput) firstNameInput.value = data.customer.firstName;
-                            if (lastNameInput) lastNameInput.value = data.customer.lastName;
-                        } else {
-                            if (customerDetailsDiv) customerDetailsDiv.style.display = 'none';
-                            alert('Customer not found');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                        if (customerDetailsDiv) customerDetailsDiv.style.display = 'none';
-                        alert('An error occurred while fetching customer details');
-                    });
+            // Only validate format, do not fetch or update details div/fields
+            if (!customerIdPattern.test(customerId)) {
+                customerIdInput.setCustomValidity('Customer ID must be CS- followed by exactly 10 digits.');
             } else {
-                if (customerDetailsDiv) customerDetailsDiv.style.display = 'none';
-                alert('Invalid Customer ID format. Enter exactly 10 digits after CS-.');
+                customerIdInput.setCustomValidity('');
             }
         });
     }
