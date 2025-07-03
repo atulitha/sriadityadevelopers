@@ -55,7 +55,7 @@
             -webkit-backdrop-filter: blur(4px);
         }
 
-        h1{
+        h1 {
             color: #323f52; /* Changed text color to blue */
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
             font-weight: 700;
@@ -70,6 +70,7 @@
             background-color: rgba(255, 255, 255, 0.4) !important; /* Adjust alpha for field transparency */
             backdrop-filter: blur(5px); /* Apply blur effect */
         }
+
         .custom-dropdown {
             width: 100%; /* Adjust width */
             padding: 10px; /* Consistent padding */
@@ -84,6 +85,7 @@
         .custom-dropdown option:hover {
             background-color: rgba(0, 0, 0, 0.2); /* Highlight on hover */
         }
+
         input.form-control:focus,
         select.form-control:focus,
         textarea.form-control:focus {
@@ -91,6 +93,7 @@
             box-shadow: 0 0 8px rgba(40, 167, 69, 0.5); /* Glow effect */
             outline: none; /* Remove default outline */
         }
+
         input.form-control,
         select.form-control,
         textarea.form-control {
@@ -103,8 +106,9 @@
 <body class="nav-fixed">
 <nav class="topnav navbar navbar-expand shadow navbar-light bg-transparent" id="sidenavAccordion"
      style="position: relative;">
-    <a class="navbar-brand d-none d-sm-block" href="index.html"> Sri Aditya Developers</a> < img
-    class="dropdown-user-img" src="/static/assets/img/siradithya.jpg" style="width: 60px;height:58px;"/>
+    <a class="navbar-brand d-none d-sm-block" href="index.html"> Sri Aditya Developers</a><img class="dropdown-user-img"
+                                                                                               src="/static/assets/img/siradithya.jpg"
+                                                                                               style="width: 60px;height:58px;"/>
     <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToogle" href="#"><i
             data-feather="menu"></i></button>
     <form class="form-inline mr-auto d-none d-lg-block"><input class="form-control form-control-solid mr-sm-2"
@@ -434,25 +438,25 @@
     });
 
     fetch('/test?key=projects')
-                .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.status === 'ok' && Array.isArray(data.projects)) {
-                        const select = document.getElementById('interested_in');
-                        select.innerHTML = '<option value="">Select Project</option>';
-                        data.projects.forEach(item => {
-                            const option = document.createElement('option');
-                            option.value = item.id || item.name;
-                            option.textContent = item.name;
-                            select.appendChild(option);
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error('Fetch error:', error);
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'ok' && Array.isArray(data.projects)) {
+                const select = document.getElementById('interested_in');
+                select.innerHTML = '<option value="">Select Project</option>';
+                data.projects.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id || item.name;
+                    option.textContent = item.name;
+                    select.appendChild(option);
                 });
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
 </script>
 </body>
 </html>

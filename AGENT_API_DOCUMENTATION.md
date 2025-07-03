@@ -1,5 +1,7 @@
 # Agent REST API Documentation
 
+
+
 This document provides a structured overview of the REST API endpoints available under the `/agent` blueprint. All endpoints are implemented in `app.py` and the `agent` module (`agent/agent.py`).
 
 ---
@@ -13,6 +15,7 @@ This document provides a structured overview of the REST API endpoints available
     - [Name List](#name-list-json-schema)
     - [Directors List](#directors-list-json-schema)
 4. [API Endpoints](#api-endpoints)
+
 
 ---
 

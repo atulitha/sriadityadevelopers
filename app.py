@@ -1,15 +1,13 @@
 import jinja2
 from flask import Flask, render_template, send_from_directory, jsonify, request, session
 from werkzeug.security import check_password_hash
-from flask_session import Session
-
-from pymemcache.client.base import Client as MemcacheClient  # <-- Use pymemcache
 
 import views
 from admin.admin import admin
 from agent.agent import agent
 from customer.customer import customer
 from dbmodels.create import User, db
+from flask_session import Session
 from lib import api_security
 
 app = Flask(__name__)
@@ -145,17 +143,17 @@ def test():
                 {'id': 2, 'name': 'Agent Jhon'},
                 {'id': 3, 'name': 'Agent Smith'}
             ],
-            'sub1Options': {
-                'nandagokulam': [
+            'projectdetails1': {
+                'project1': [
                     {'value': 'villas_ng', 'text': 'Luxury Villas'},
                     {'value': 'Flats_ng', 'text': 'Luxury Flats'},
                     {'value': 'plots_ng', 'text': 'Plots'}
                 ],
-                'panasapadu': [
+                'project2': [
                     {'value': 'plots_pns', 'text': 'Plots'}
                 ]
             },
-            'sub2Options': {
+            'projectdetails2': {
                 'villas_ng': [
                     {'value': 'villa1', 'text': 'Villa 1-East facing', 'size': 2500},
                     {'value': 'villa2', 'text': 'Villa 2-West facing', 'size': 2600}
@@ -179,7 +177,33 @@ def test():
                 {"id": "Aditya Meadows", "name": "Aditya Meadows"},
                 {"id": "Aditya Greens", "name": "Aditya Greens"},
                 {"id": "Aditya Pearl", "name": "Aditya Pearl"}
-            ]
+            ],
+            "Designation": [
+                {"id": "Agent", "name": "Agent"},
+                {"id": "Director", "name": "Director"},
+                {"id": "Manager", "name": "Manager"},
+                {"id": "Senior Agent", "name": "Senior Agent"},
+                {"id": "Team Lead", "name": "Team Lead"}
+            ],
+            "teams": [
+                {"id": "Team A", "name": "Team A"},
+                {"id": "Team Alpha", "name": "Team Alpha"},
+                {"id": "Team B", "name": "Team B"},
+                {"id": "Team Beta", "name": "Team Beta"},
+                {"id": "Team C", "name": "Team C"},
+                {"id": "Team D", "name": "Team D"},
+                {"id": "Team Delta", "name": "Team Delta"},
+                {"id": "Team Gamma", "name": "Team Gamma"}
+            ],
+            "name": [
+                {"id": 9, "name": "Jane Smith"},
+                {"id": 10, "name": "Raj Yadav"}
+            ],
+            "directors": [
+                {"id": 1, "name": "Satish Kumar"},
+                {"id": 2, "name": "Anita Sharma"}
+            ],
+
         }
         if key in sample_data:
             return jsonify({'status': 'ok', key: sample_data[key]})
