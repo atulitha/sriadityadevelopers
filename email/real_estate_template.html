@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><< property_title >></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333333;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .content {
+            padding: 20px;
+        }
+        .property-title {
+            font-size: 24px;
+            color: #2a9d8f;
+            margin-bottom: 10px;
+        }
+        .property-details {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #2a9d8f;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .footer {
+            font-size: 12px;
+            color: #888888;
+            text-align: center;
+            margin-top: 20px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="<< image_url >>" alt="Property Image">
+        </div>
+        <div class="content">
+            <p>Hello << name >>,</p>
+            <div class="property-title"><< property_title >></div>
+            <div class="property-details">
+                <strong>Location:</strong> << property_location >><br>
+                <strong>Price:</strong> << property_price >><br>
+                <strong>Bedrooms:</strong> << bedrooms >> |
+                <strong>Bathrooms:</strong> << bathrooms >> |
+                <strong>Area:</strong> << property_area >> sq ft
+            </div>
+            <div class="description">
+                << property_description >>
+            </div>
+            <a class="cta-button" href="<< listing_url >>" target="_blank">View Listing</a>
+        </div>
+        <div class="footer">
+            © 2025 Your Real Estate Company. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
