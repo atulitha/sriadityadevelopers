@@ -1,6 +1,7 @@
 import jinja2
 from flask import Flask, render_template, send_from_directory, jsonify, request, session
 from werkzeug.security import check_password_hash
+from flask_cors import CORS
 
 import views
 from admin.admin import admin
@@ -11,6 +12,7 @@ from flask_session import Session
 from lib import api_security
 
 app = Flask(__name__)
+CORS(app)
 app.config['SECRET_KEY'] = 'adityadeveloper'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
