@@ -17,14 +17,14 @@ SMTP_PORT = int(os.getenv("SMTP_PORT", 465))
 # Property Data
 property_data = {
     'image_url': 'https://jntukelearn.in/sriaditya/image.jpg',
-    'property_title': 'Charming 3 Bedroom Family Home',
-    'property_location': '123 Main St, Pleasantville',
-    'property_price': '$399,000',
-    'bedrooms': 3,
-    'bathrooms': 2,
+    'property_title': 'Nanda Gokulam',
+    'property_location': 'Sarpavaram junction, Kakinada',
+    'property_price': 'Affordable price starting at ₹50 Lakhs',
+    'Villas': "luxury gated community with modern amenities",
+    'Apartments': "flats designed for comfort and style",
     'property_area': 1800,
     'property_description': (
-        'This beautifully renovated home features an open floor plan, modern kitchen, '
+        'luxury gated community with modern amenities, villas designed for comfort and style, flats with spacious interiors, '
         'and a spacious backyard—perfect for family living.\n\nSchedule a visit today!'
     ),
     'listing_url': 'https://your-site.com/listings/123-main-st'
