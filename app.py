@@ -213,6 +213,10 @@ def test():
                 {"id": "Sree Pavitra Avenue","name":"Sree Pavitra Avenue"},
                 {"id": "Nandha Gokulam","name":"Nandha Gokulam"},
             ],
+            "Gender" :[
+                {"id":"Male", "name":"Male"},
+                {"id": "Female", "name": "Female"},
+            ],
 
         }
         if key in sample_data:
