@@ -206,6 +206,18 @@ def test():
                 {"id": 1, "name": "Satish Kumar"},
                 {"id": 2, "name": "Anita Sharma"}
             ],
+            "InterstedIn" : [
+                {"id": "Vasudha Township","name":"Vasudha Township"},
+                {"id": "Fortune City","name": "Fortune City"},
+                {"id": "Royal Smart City","name": "Royal Smart City"},
+                {"id": "Vasudha Township","name":"Vasudha Township"},
+                {"id": "Sree Pavitra Avenue","name":"Sree Pavitra Avenue"},
+                {"id": "Nandha Gokulam","name":"Nandha Gokulam"},
+            ],
+            "Gender" :[
+                {"id":"Male", "name":"Male"},
+                {"id": "Female", "name": "Female"},
+            ],
 
         }
         if key in sample_data:
