@@ -34,7 +34,7 @@ def init_db():
             # 2 Directors
             {
                 'email': 'director1@gmail.com',
-                'password': 'Director@123',
+                'password': 'Agent@123',
                 'role': 'director',
                 'first_name': 'Satish',
                 'middle_name': '',
@@ -54,7 +54,7 @@ def init_db():
             },
             {
                 'email': 'director2@gmail.com',
-                'password': 'Director@123',
+                'password': 'Agent@123',
                 'role': 'director',
                 'first_name': 'Anita',
                 'middle_name': '',
@@ -75,7 +75,7 @@ def init_db():
             # 2 Managers
             {
                 'email': 'manager1@gmail.com',
-                'password': 'Manager@123',
+                'password': 'Agent@123',
                 'role': 'manager',
                 'first_name': 'Ravi',
                 'middle_name': '',
@@ -95,7 +95,7 @@ def init_db():
             },
             {
                 'email': 'manager2@gmail.com',
-                'password': 'Manager@123',
+                'password': 'Agent@123',
                 'role': 'manager',
                 'first_name': 'Priya',
                 'middle_name': '',
@@ -116,7 +116,7 @@ def init_db():
             # 2 Team Leads
             {
                 'email': 'teamlead1@gmail.com',
-                'password': 'TeamLead@123',
+                'password': 'Agent@123',
                 'role': 'team lead',
                 'first_name': 'Amit',
                 'middle_name': '',
@@ -136,7 +136,7 @@ def init_db():
             },
             {
                 'email': 'teamlead2@gmail.com',
-                'password': 'TeamLead@123',
+                'password': 'Agent@123',
                 'role': 'team lead',
                 'first_name': 'Sneha',
                 'middle_name': '',
@@ -157,7 +157,7 @@ def init_db():
             # 2 Senior Agents
             {
                 'email': 'senioragent1@gmail.com',
-                'password': 'SeniorAgent@123',
+                'password': 'Agent@123',
                 'role': 'senior agent',
                 'first_name': 'John',
                 'middle_name': 'Robert',
@@ -177,7 +177,7 @@ def init_db():
             },
             {
                 'email': 'senioragent2@gmail.com',
-                'password': 'SeniorAgent@123',
+                'password': 'Agent@123',
                 'role': 'senior agent',
                 'first_name': 'Meena',
                 'middle_name': 'R.',

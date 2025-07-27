@@ -10,7 +10,7 @@ agent = Blueprint('agent', __name__, url_prefix='/agent',
 
 
 @agent.route('/')
-@api_security
+# @api_security
 def agent_index():
     """
     Agent index page.
@@ -26,7 +26,7 @@ def serveStaticResource(resource):
 
 
 @agent.route('/book-site-visit.html', methods=['GET'])
-@api_security
+# @api_security
 def book_site_visit():
     """
     Book a site visit.
@@ -43,7 +43,7 @@ agent.add_url_rule('/leads', view_func=leads.leads, methods=['GET', 'POST'])
 
 
 @agent.route('/plotdata-tables1.html', methods=['GET'])
-@api_security
+# @api_security
 def plotdata_tables():
     """
     Book a site visit.
@@ -54,6 +54,6 @@ def plotdata_tables():
 
 
 @agent.route('/<pagename>')
-@api_security
+# @api_security
 def serve_page(pagename):  # Changed from 'admin' to 'serve_page'
     return render_template(pagename)

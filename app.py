@@ -92,7 +92,7 @@ def login():
 
 
 @app.route("/get_name", methods=['GET'])
-@api_security
+# @api_security
 def get_name():
     user_id = session.get('user_id')
     if not user_id:
@@ -104,7 +104,7 @@ def get_name():
 
 
 @app.route('/logout', methods=['GET'])
-@api_security
+# @api_security
 def logout():
     session.pop('user_id', None)
     session.pop('role', None)
@@ -120,8 +120,9 @@ def test():
             json_data = request.get_json()
             print('JSON:', json_data)
             return jsonify({
-                'status': 'error',
+                'status': json_data["status"] if json_data["status"] else 'error',
                 'message': 'data received',
+                'data': json_data
             }), 500
         elif request.content_type.startswith('multipart/form-data'):
             # Handle multipart with JSON blob and files
